@@ -1,0 +1,20 @@
+{
+  "name": "lexical_api",
+  "version": "1.0.0+cfac7461",
+  "description": "",
+  "main": "build/index.js",
+  "files": [
+    "build/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d build"
+  },
+  "author": "L3",
+  "license": "MIT",
+  "dependencies": {
+    "build-if-changed": "^1.5.5",
+    "pushkin-api": "^1.5.4"
+  },
+  "yalcSig": "cfac7461ac82bf22cbd421aac7d997f1"
+}

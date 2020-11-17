@@ -1778,6 +1778,12 @@ levenary@^1.1.1:
   dependencies:
     leven "^3.1.0"
 
+"lexical_api@file:.yalc/lexical_api":
+  version "1.0.0"
+  dependencies:
+    build-if-changed "^1.5.5"
+    pushkin-api "^1.5.4"
+
 lodash@^4.17.19:
   version "4.17.19"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"

@@ -1,0 +1,24 @@
+{
+  "name": "lexical_web",
+  "version": "1.0.0+1060ce2b",
+  "description": "",
+  "main": "build/index.js",
+  "files": [
+    "build/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d build; cp -r src/assets build/"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "build-if-changed": "^1.5.5",
+    "js-yaml": "^3.14.0",
+    "pushkin-client": "^1.5.0",
+    "pushkin-jspsych": "^1.0.1",
+    "react": "^16.13.1",
+    "react-router-dom": "^5.2.0"
+  },
+  "yalcSig": "1060ce2b0c5111862ca425a8a814fefc"
+}

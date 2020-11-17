@@ -24,8 +24,8 @@ migrations:
 seeds:
   location: ''
 database: localtestdb
-logo: logo512.png
-text: Enter your experiment description here.
-tagline: Be a citizen scientist! Try this quiz.
+logo: mentalfolding.png
+text: Mental Folding test experiment
+tagline: Test tagline
 duration: ''
 productionDB: Main

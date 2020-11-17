@@ -43,8 +43,8 @@ const Header = (props) => {
           <Image
             className="mr-2 left"
             src={require('../../assets/images/logo/seeing-science-coloredin.png')}
-            width="30"
-            height="30"
+            width="70"
+            height="70"
           />
           {CONFIG.whoAmI}
         </Navbar.Brand>

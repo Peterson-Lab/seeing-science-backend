@@ -1,6 +1,6 @@
 {
   "name": "mentalfolding_web",
-  "version": "1.0.0+ee728c28",
+  "version": "1.0.0+91544416",
   "description": "",
   "main": "build/index.js",
   "files": [
@@ -20,5 +20,5 @@
     "react": "^16.13.1",
     "react-router-dom": "^5.2.0"
   },
-  "yalcSig": "ee728c28d1a5d99d5a3028a884c158f4"
+  "yalcSig": "9154441688ddee06fe28d415414b01c8"
 }

@@ -10,6 +10,7 @@
     "build-if-changed": "^1.5.5",
     "husky": "^4.2.5",
     "js-cookie": "^2.2.1",
+    "lexical_web": "file:.yalc/lexical_web",
     "lint-staged": "^10.2.11",
     "mentalfolding_web": "file:.yalc/mentalfolding_web",
     "prettier": "^2.0.5",

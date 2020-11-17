@@ -18,7 +18,7 @@ function QuizPage(props) {
       <Container className="mt-4 text-center">
         <Jumbotron style={{ backgroundColor: '#eeeeee', marginBottom: '0px' }}>
           <div>
-            We do <strong>citizen science</strong> to learn how the mind works.{' '}
+            Welcome to Seeing-Science.org! {' '}
           </div>
           <div>
             <strong>Pick a game to get started!</strong>

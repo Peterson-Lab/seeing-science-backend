@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "build-if-changed": "^1.5.5",
+    "lexical_api": "file:.yalc/lexical_api",
     "mentalfolding_api": "file:.yalc/mentalfolding_api",
     "pushkin-api": "^1.5.4"
   },
