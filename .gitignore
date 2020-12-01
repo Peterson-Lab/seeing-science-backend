@@ -1,6 +1,10 @@
+data
+node_modules
+dist
 
-# Created by https://www.toptal.com/developers/gitignore/api/macos,windows,node,react
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,node,react
+
+# Created by https://www.toptal.com/developers/gitignore/api/macos,windows,vscode,react,node
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,vscode,react,node
 
 ### macOS ###
 # General
@@ -155,6 +159,14 @@ psd
 thumb
 sketch
 
+### vscode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -181,4 +193,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,windows,node,react
+# End of https://www.toptal.com/developers/gitignore/api/macos,windows,vscode,react,node
