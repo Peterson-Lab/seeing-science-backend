@@ -1,21 +1,27 @@
 export type TextAnswer = {
-  answerText: string;
-};
+  answerText: string
+}
 
 export type TextQuestionType = {
-  prompt: string;
-  answers: TextAnswer[];
-  correct: number;
-};
+  prompt: string
+  answers: TextAnswer[]
+  correct: number
+}
 
 export type ImageAnswer = {
-  answerImage: string;
-};
+  answerImage: string
+}
 
 export type ImageQuestionType = {
-  prompt: string;
-  answers: ImageAnswer[];
-  correct: number;
-};
+  prompt: string
+  answers: ImageAnswer[]
+  correct: number
+}
 
-export type questionElement = 'prompt' | 'answers' | null;
+export type questionElement = 'prompt' | 'answers' | 'finish' | null
+
+export type questionReponse = {
+  question: number
+  response: number
+  correct: boolean
+}

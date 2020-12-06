@@ -1,54 +1,10 @@
-import { Button, Flex, HStack, Text, VStack } from '@chakra-ui/react';
-import React, { useState } from 'react';
-import Layout from '../components/Layout';
-import TextQuestion from '../components/experiments/TextQuestion';
-import ImageQuestion from '../components/experiments/ImageQuestion';
-import { ImageQuestionType, questionElement, TextQuestionType } from '../types';
+import { Flex, Heading, Text, VStack } from '@chakra-ui/react'
+import React, { useState } from 'react'
+import ImageQuestion from '../components/experiments/ImageQuestion'
+import Layout from '../components/Layout'
+import { ImageQuestionType, questionElement, questionReponse } from '../types'
 
-interface ExperimentProps {}
-
-const questions: TextQuestionType[] = [
-  {
-    prompt: 'What is the capital of France?',
-    answers: [
-      { answerText: 'New York' },
-      { answerText: 'London' },
-      { answerText: 'Paris' },
-      { answerText: 'Dublin' },
-    ],
-    correct: 2,
-  },
-  {
-    prompt: 'Who is CEO of Tesla?',
-    answers: [
-      { answerText: 'Jeff Bezos' },
-      { answerText: 'Elon Musk' },
-      { answerText: 'Bill Gates' },
-      { answerText: 'Tony Stark' },
-    ],
-    correct: 1,
-  },
-  {
-    prompt: 'The iPhone was created by which company?',
-    answers: [
-      { answerText: 'Apple' },
-      { answerText: 'Intel' },
-      { answerText: 'Amazon' },
-      { answerText: 'Microsoft' },
-    ],
-    correct: 0,
-  },
-  {
-    prompt: 'How many Harry Potter books are there?',
-    answers: [
-      { answerText: '1' },
-      { answerText: '4' },
-      { answerText: '6' },
-      { answerText: '7' },
-    ],
-    correct: 3,
-  },
-];
+//interface ExperimentProps {}
 
 const imageQuestions: ImageQuestionType[] = [
   {
@@ -105,40 +61,74 @@ const imageQuestions: ImageQuestionType[] = [
     ],
     correct: 2,
   },
-];
+]
 
-const Experiment: React.FC<ExperimentProps> = ({}) => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [questionStart, setQuestionStart] = useState(Date.now());
-  const [elementShown, setElementShown] = useState<questionElement>('prompt');
+const Experiment: React.FC = () => {
+  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [loading, setLoading] = useState(false)
+  const [questionStart, setQuestionStart] = useState(Date.now())
+  const [elementShown, setElement] = useState<questionElement>('prompt')
+  const [responses, setResponses] = useState<questionReponse[]>([])
 
-  const handleAnswerClick = (answer: number): void => {
-    const answerTime = Date.now();
+  const handleAnswerClick = async (answer: number): Promise<void> => {
+    const answerTime = Date.now()
 
-    setElementShown(null);
-    setLoading(true);
+    setElement(null)
+    setLoading(true)
 
-    const interval = answerTime - questionStart;
+    const interval = answerTime - questionStart
 
-    console.log(interval);
+    console.log(interval)
 
-    console.log(answer);
+    console.log(answer)
 
     if (imageQuestions[currentQuestion].correct === answer) {
-      console.log('correct!');
+      console.log('correct!')
     }
+
+    const isCorrect = imageQuestions[currentQuestion].correct === answer
+    setResponses((responses) => [
+      ...responses,
+      {
+        question: currentQuestion,
+        response: answer,
+        correct: isCorrect,
+      },
+    ])
+
+    console.log(responses)
 
     if (currentQuestion === imageQuestions.length - 1) {
-      console.log('last question');
+      console.log('last question')
+      setElement('finish')
     } else {
-      setCurrentQuestion(currentQuestion + 1);
-      setElementShown('prompt');
+      setCurrentQuestion(currentQuestion + 1)
+      setLoading(false)
+      setElement('prompt')
     }
+  }
 
-    setLoading(false);
-    setElementShown('prompt');
-  };
+  if (elementShown === 'finish') {
+    return (
+      <Layout>
+        <Flex justify="center">
+          <VStack
+            justifyContent="center"
+            alignItems="center"
+            height="50vh"
+            width="60vw"
+          >
+            <Heading fontSize="4vw">Thanks for playing!</Heading>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              feugiat porta turpis ac mattis. Fusce volutpat tempor est eu
+              scelerisque.
+            </Text>
+          </VStack>
+        </Flex>
+      </Layout>
+    )
+  }
 
   return (
     <Layout>
@@ -149,12 +139,12 @@ const Experiment: React.FC<ExperimentProps> = ({}) => {
           setQuestionStart={setQuestionStart}
           loading={loading}
           elementShown={elementShown}
-          setElementShown={setElementShown}
+          setElementShown={setElement}
         />
       </Flex>
     </Layout>
-  );
-};
+  )
+}
 
 {
   /* <TextQuestion
@@ -165,4 +155,4 @@ const Experiment: React.FC<ExperimentProps> = ({}) => {
         /> */
 }
 
-export default Experiment;
+export default Experiment

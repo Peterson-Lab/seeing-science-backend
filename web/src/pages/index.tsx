@@ -2,9 +2,9 @@ import { Box, Stack, Heading, Text, VStack, Flex } from '@chakra-ui/react'
 import React from 'react'
 import Layout from '../components/Layout'
 
-interface indexProps {}
+//interface indexProps {}
 
-const Index: React.FC<indexProps> = ({}) => {
+const Index: React.FC = () => {
   return (
     <Layout>
       <Flex justify="center">
