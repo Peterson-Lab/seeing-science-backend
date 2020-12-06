@@ -2,9 +2,9 @@ import React from 'react'
 import { Footer } from './Footer'
 import Navbar from './Navbar'
 
-interface LayoutProps {}
+// interface LayoutProps {}
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC = ({ children }) => {
   return (
     <>
       <Navbar />

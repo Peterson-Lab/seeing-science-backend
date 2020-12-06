@@ -8,20 +8,23 @@ export type TextQuestionType = {
   correct: number
 }
 
-export type ImageAnswer = {
+export type ImageResponse = {
   answerImage: string
 }
 
 export type ImageQuestionType = {
   prompt: string
-  answers: ImageAnswer[]
+  responses: ImageResponse[]
   correct: number
 }
 
-export type questionElement = 'prompt' | 'answers' | 'finish' | null
+export type experimentElement = 'question' | 'finish' | 'intro' | null
 
-export type questionReponse = {
+export type questionElement = 'prompt' | 'responses' | null
+
+export type questionResponse = {
   question: number
   response: number
   correct: boolean
+  time: number
 }

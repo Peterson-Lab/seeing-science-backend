@@ -2,9 +2,7 @@ import { Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import React from 'react'
 import { NextChakraImage } from './NextChakraImage'
 
-interface NavbarProps {}
-
-const Navbar: React.FC<NavbarProps> = ({}) => {
+const Navbar: React.FC = () => {
   return (
     <Flex position="sticky" top={0} zIndex={1} bg="green.500">
       <Flex flex={1} m="auto" align="center" my={2}>
