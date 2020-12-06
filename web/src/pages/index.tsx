@@ -1,4 +1,4 @@
-import { Box, Stack } from '@chakra-ui/react'
+import { Box, Stack, Heading, Text, VStack, Flex } from '@chakra-ui/react'
 import React from 'react'
 import Layout from '../components/Layout'
 
@@ -7,7 +7,21 @@ interface indexProps {}
 const Index: React.FC<indexProps> = ({}) => {
   return (
     <Layout>
-      <Hero />
+      <Flex justify="center">
+        <VStack
+          justifyContent="center"
+          alignItems="center"
+          height="50vh"
+          width="60vw"
+        >
+          <Heading fontSize="4vw">Welcome to Seeing Science!</Heading>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+            feugiat porta turpis ac mattis. Fusce volutpat tempor est eu
+            scelerisque.
+          </Text>
+        </VStack>
+      </Flex>
       <Stack
         direction={['column', 'row']}
         spacing="24px"
@@ -15,9 +29,9 @@ const Index: React.FC<indexProps> = ({}) => {
         justify="center"
         mt={5}
       >
-        <Box w="40px" h="40px" bg="yellow.200">
+        <Flex shadow="md" borderWidth="1px" p={5} bg="yellow.200">
           1
-        </Box>
+        </Flex>
         <Box w="40px" h="40px" bg="tomato">
           2
         </Box>

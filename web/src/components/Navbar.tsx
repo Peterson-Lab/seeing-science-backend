@@ -7,7 +7,7 @@ interface NavbarProps {}
 const Navbar: React.FC<NavbarProps> = ({}) => {
   return (
     <Flex position="sticky" top={0} zIndex={1} bg="green.500">
-      <Flex flex={1} m="auto" align="center">
+      <Flex flex={1} m="auto" align="center" my={2}>
         <HStack ml={4}>
           <NextChakraImage src="/placeholder.png" dimensions={[50, 50]} />
           <Heading ml={2}>Seeing Science</Heading>

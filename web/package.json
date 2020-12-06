@@ -13,6 +13,7 @@
     "@emotion/react": "11.1.1",
     "@emotion/styled": "11.0.0",
     "framer-motion": "^2.9.4",
+    "jspsych-react": "^0.3.0",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
