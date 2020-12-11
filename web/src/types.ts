@@ -20,7 +20,7 @@ export type ImageQuestionType = {
 
 export type experimentElement = 'question' | 'finish' | 'intro' | null
 
-export type questionElement = 'prompt' | 'responses' | null
+export type questionState = 'prompt' | 'responses' | null
 
 export type questionResponse = {
   question: number

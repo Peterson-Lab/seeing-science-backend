@@ -1,15 +1,14 @@
 import { Box } from '@chakra-ui/react'
 import { useRouter } from 'next/dist/client/router'
 import React from 'react'
-import Experiment from '../../components/experiments/Experiment'
-import { mentalFolding } from '../../experiments/mentalFolding'
+import { ExperimentWindow } from '../../components/jsPsych/jsPsychExperimentWindow'
 
-const ExperimentPage: React.FC = () => {
+const ExperimentPage: React.FunctionComponent = () => {
   const router = useRouter()
 
   const name = router.query.name
   if (name === 'mentalfolding') {
-    return <Experiment questions={mentalFolding} />
+    return <Box>{name}</Box>
   }
 
   return <Box>No Experiment with that name.</Box>

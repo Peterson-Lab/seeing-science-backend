@@ -1,10 +1,17 @@
 import { Box, Stack, Heading, Text, VStack, Flex } from '@chakra-ui/react'
 import React from 'react'
-import Layout from '../components/Layout'
+import Layout from '../components/Layout/Layout'
+import { useKey } from 'react-keyboard-hooks'
 
 //interface indexProps {}
 
 const Index: React.FC = () => {
+  const { keyStatus } = useKey('1')
+
+  if (keyStatus === 'down') {
+    console.log('keydown')
+  }
+
   return (
     <Layout>
       <Flex justify="center">

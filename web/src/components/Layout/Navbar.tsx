@@ -1,6 +1,6 @@
 import { Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import React from 'react'
-import { NextChakraImage } from './NextChakraImage'
+import { NextChakraImage } from '../NextChakraImage'
 
 const Navbar: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
-import { ImageQuestionType } from '../types'
+import { ImageQuestionType } from '../../types'
 
-const folderPath = '/mentalfolding'
+const folderPath = '/react-psych/mentalfolding'
 
 export const mentalFolding: ImageQuestionType[] = [
   {
@@ -19,7 +19,7 @@ export const mentalFolding: ImageQuestionType[] = [
         answerImage: `${folderPath}/prompt1/ans4.png`,
       },
     ],
-    correct: 2,
+    correct: 3,
   },
   {
     prompt: `${folderPath}/prompt2/stim.png`,
@@ -55,7 +55,7 @@ export const mentalFolding: ImageQuestionType[] = [
         answerImage: `${folderPath}/prompt3/ans4.png`,
       },
     ],
-    correct: 2,
+    correct: 4,
   },
   {
     prompt: `${folderPath}/prompt4/stim.png`,
@@ -73,7 +73,7 @@ export const mentalFolding: ImageQuestionType[] = [
         answerImage: `${folderPath}/prompt4/ans4.png`,
       },
     ],
-    correct: 2,
+    correct: 4,
   },
   {
     prompt: `${folderPath}/prompt5/stim.png`,
@@ -91,7 +91,7 @@ export const mentalFolding: ImageQuestionType[] = [
         answerImage: `${folderPath}/prompt5/ans4.png`,
       },
     ],
-    correct: 2,
+    correct: 1,
   },
   {
     prompt: `${folderPath}/prompt6/stim.png`,
@@ -109,7 +109,7 @@ export const mentalFolding: ImageQuestionType[] = [
         answerImage: `${folderPath}/prompt6/ans4.png`,
       },
     ],
-    correct: 2,
+    correct: 1,
   },
   {
     prompt: `${folderPath}/prompt7/stim.png`,
@@ -145,7 +145,7 @@ export const mentalFolding: ImageQuestionType[] = [
         answerImage: `${folderPath}/prompt8/ans4.png`,
       },
     ],
-    correct: 2,
+    correct: 4,
   },
   {
     prompt: `${folderPath}/prompt9/stim.png`,
@@ -163,7 +163,7 @@ export const mentalFolding: ImageQuestionType[] = [
         answerImage: `${folderPath}/prompt9/ans4.png`,
       },
     ],
-    correct: 2,
+    correct: 3,
   },
   {
     prompt: `${folderPath}/prompt10/stim.png`,

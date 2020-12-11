@@ -1,8 +1,8 @@
-import { Button, Flex, Heading, Text, VStack } from '@chakra-ui/react'
+import { Heading, Button, Flex, VStack, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import ImageQuestion from './ImageQuestion'
-import Layout from '../Layout'
 import { experimentElement, ImageQuestionType } from '../../types'
+import Layout from '../Layout/Layout'
+import ImageQuestion from './ImageQuestion'
 
 interface ExperimentProps {
   questions: ImageQuestionType[]

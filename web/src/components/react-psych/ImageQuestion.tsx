@@ -1,10 +1,10 @@
 import { Flex, HStack, Link, Text } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
-  experimentElement,
   ImageQuestionType,
-  questionElement,
+  experimentElement,
   questionResponse,
+  questionState,
 } from '../../types'
 import { sleep } from '../../utils/sleep'
 import { NextChakraImage } from '../NextChakraImage'
@@ -18,7 +18,7 @@ const ImageQuestion: React.FC<ImageQuestionProps> = ({
   questions,
   setElement,
 }) => {
-  const [questionElement, setQuestionElement] = useState<questionElement>(
+  const [questionElement, setQuestionElement] = useState<questionState>(
     'prompt'
   )
   const [responseStart, setResponseStart] = useState(Date.now())
@@ -35,7 +35,7 @@ const ImageQuestion: React.FC<ImageQuestionProps> = ({
     console.log(interval)
     console.log(response)
 
-    const isCorrect = questions[currentQuestion].correct === response
+    const isCorrect = questions[currentQuestion].correct === response + 1
 
     const newResponses = [
       ...responses,

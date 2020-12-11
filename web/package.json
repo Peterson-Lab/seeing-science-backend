@@ -14,9 +14,11 @@
     "@emotion/styled": "11.0.0",
     "framer-motion": "^2.9.4",
     "jspsych-react": "^0.3.0",
+    "lodash": "^4.17.20",
     "next": "latest",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-keyboard-hooks": "^1.0.11"
   },
   "devDependencies": {
     "@types/node": "^14.6.0",
