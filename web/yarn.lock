@@ -4948,10 +4948,10 @@ react-keyboard-hooks@^1.2.0:
   dependencies:
     use-ssr "^1.0.23"
 
-react-psych@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/react-psych/-/react-psych-1.0.8.tgz#2c9ff888f193246a338c7bf6011091e99c5cb3ba"
-  integrity sha512-kYqvKGKszBcO1POsGoZ2Rfw9vU+HmxaYQmVWI5dc7JwXmxFVhqWkaLbwHxyFY6cktxz0I0pZEFTGjP9KLQXZQw==
+react-psych@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/react-psych/-/react-psych-1.0.10.tgz#d457fb63f68e1349e1cd6e358a9bdc8662dcd6fa"
+  integrity sha512-PNa4Vl7gC5o4MOfIjEA2r3fHYbyXIU6mSOyXw1tTzWh0dNojfTZkPCRKsgq/S02nFtL6/HP871hW7rlEyWN3ig==
   dependencies:
     delay "^4.4.0"
 
