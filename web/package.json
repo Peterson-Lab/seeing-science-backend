@@ -19,7 +19,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-keyboard-hooks": "^1.2.0",
-    "react-psych": "^1.0.7"
+    "react-psych": "^1.0.8"
   },
   "devDependencies": {
     "@types/node": "^14.6.0",
