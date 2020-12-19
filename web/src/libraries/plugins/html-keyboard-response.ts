@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * jspsych-html-keyboard-response
  * Josh de Leeuw

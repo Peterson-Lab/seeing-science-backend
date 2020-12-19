@@ -1,4 +1,3 @@
-import jsPsych from '../libraries/jspsych'
 // const experimentConfig = require('./config').default
 // const stimArray = require('./stim').default
 // const debrief = require('./debrief.js').default

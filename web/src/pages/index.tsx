@@ -1,17 +1,11 @@
-import { Box, Stack, Heading, Text, VStack, Flex } from '@chakra-ui/react'
+import { Flex, Heading, Stack, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import Layout from '../components/Layout/Layout'
-import { useKey } from 'react-keyboard-hooks'
+import { NextChakraLink } from '../components/NextChakraLink'
 
 //interface indexProps {}
 
 const Index: React.FC = () => {
-  const { keyStatus } = useKey('1')
-
-  if (keyStatus === 'down') {
-    console.log('keydown')
-  }
-
   return (
     <Layout>
       <Flex justify="center">
@@ -31,20 +25,29 @@ const Index: React.FC = () => {
       </Flex>
       <Stack
         direction={['column', 'row']}
-        spacing="24px"
+        spacing={8}
         m="auto"
         justify="center"
         mt={5}
       >
-        <Flex shadow="md" borderWidth="1px" p={5} bg="yellow.200">
-          1
-        </Flex>
-        <Box w="40px" h="40px" bg="tomato">
-          2
-        </Box>
-        <Box w="40px" h="40px" bg="pink.100">
-          3
-        </Box>
+        <NextChakraLink
+          href="/experiment/reactpsych"
+          _hover={{ textDecoration: 'none', boxShadow: 'outline' }}
+        >
+          <VStack shadow="md" p={5}>
+            <Heading>React-Psych DRT</Heading>
+            <Text>Diagrammatic Representation Test built with React-Psych</Text>
+          </VStack>
+        </NextChakraLink>
+        <NextChakraLink
+          href="/experiment/jspsych"
+          _hover={{ textDecoration: 'none', boxShadow: 'outline' }}
+        >
+          <VStack shadow="md" p={5}>
+            <Heading>jsPsych DRT</Heading>
+            <Text>Diagrammatic Representation Test built with jsPsych</Text>
+          </VStack>
+        </NextChakraLink>
       </Stack>
     </Layout>
   )

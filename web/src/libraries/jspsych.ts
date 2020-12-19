@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { jsPsychOptions } from './types'
 
 /**
