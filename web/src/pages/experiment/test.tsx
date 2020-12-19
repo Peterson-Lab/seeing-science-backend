@@ -1,7 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import { useRouter } from 'next/dist/client/router'
 import React from 'react'
-import { ExperimentWindow } from '../../components/jsPsych/jsPsychExperimentWindow'
 
 const ExperimentPage: React.FunctionComponent = () => {
   const router = useRouter()
