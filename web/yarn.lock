@@ -5000,13 +5000,14 @@ react-keyboard-hooks@^1.2.3:
   dependencies:
     use-ssr "^1.0.23"
 
-react-psych@^1.1.15:
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/react-psych/-/react-psych-1.1.15.tgz#8605381607dec1292b99db5b791e2b2eba13e8e2"
-  integrity sha512-YMSG0nqvzG4wkCSBYAdvyYpkcU/eL+vWdl8T2MpfJKiGqN8GXvikl1mGhtKzdJhHb34xg6om7MSJNutTLx9GJQ==
+react-psych@^1.1.17:
+  version "1.1.17"
+  resolved "https://registry.yarnpkg.com/react-psych/-/react-psych-1.1.17.tgz#7f8d1449cd8484648fe5f38d06140b3afd2c1b3c"
+  integrity sha512-Qgk/NDZhcO6YnDHb3SnHlaqtjZAVMNtmo8DeEHSNFEczXak+RGH3ernA/ef87LP8cZsBz8nOZdsbkiEGKxZAkw==
   dependencies:
     delay "^4.4.0"
     react-keyboard-hooks "^1.2.3"
+    use-ssr "^1.0.23"
 
 react-refresh@0.8.3:
   version "0.8.3"

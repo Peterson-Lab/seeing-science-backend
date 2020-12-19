@@ -31,8 +31,8 @@ const ReactPsych: React.FC<ReactPsychProps> = () => {
                 <Heading>Diagrammatic Representation Test</Heading>
                 <Text align="center">
                   You will be shown a number of objects, select the correct
-                  respresentation of the object. Click on the image or use the
-                  keys 1-4 to select the right response.
+                  respresentation of the object. Click on the image to select
+                  the right response.
                 </Text>
                 <Text>
                   Press the spacebar or click the button below to begin.
