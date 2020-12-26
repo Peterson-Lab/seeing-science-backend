@@ -13,7 +13,7 @@ const jsPsych = (function () {
 
   //
   // private variables
-  //
+  // TODO: side effects
 
   // options
   let opts = {}
