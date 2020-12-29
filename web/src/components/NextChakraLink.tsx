@@ -5,12 +5,14 @@ import {
   Link as ChakraLink,
   LinkProps as ChakraLinkProps,
 } from '@chakra-ui/react'
+import React from 'react'
 
 export type NextChakraLinkProps = PropsWithChildren<
   NextLinkProps & Omit<ChakraLinkProps, 'as'>
 >
 
 //  Has to be a new component because both chakra and next share the `as` keyword
+
 export const NextChakraLink = ({
   href,
   as,

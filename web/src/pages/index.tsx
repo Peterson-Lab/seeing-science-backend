@@ -1,5 +1,6 @@
-import { Flex, Heading, Stack, Text, VStack } from '@chakra-ui/react'
+import { Button, Flex, Heading, Link, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
+import { ExperimentStack } from '../components/ExperimentStack'
 import Layout from '../components/Layout/Layout'
 import { NextChakraLink } from '../components/NextChakraLink'
 
@@ -14,41 +15,28 @@ const Index: React.FC = () => {
           alignItems="center"
           height="50vh"
           width="60vw"
+          spacing={3}
         >
-          <Heading fontSize="4vw">Welcome to Seeing Science!</Heading>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            feugiat porta turpis ac mattis. Fusce volutpat tempor est eu
-            scelerisque.
-          </Text>
+          <Heading fontSize="3vw">
+            Play games. Solve puzzles. Do science.
+          </Heading>
+          <Heading fontSize="2vw">Coming Spring 2021</Heading>
+          <Text textAlign="center">
+            Welcome to Seeing Science, an online laboratory investigating how
+            kids learn science! Seeing Science is a citizen science website
+            created by a team of researchers at American University in
+            Washington, DC. Through Seeing Science we seek to engage kids,
+            teachers, families, and scientists in science education research as
+            participants and collaborators. For updates on Seeing Science and
+            science education research, enter your email address below to join
+            our mailing list and follow us on Twitter
+          </Text>{' '}
+          <Link>
+            <Button>Twitter</Button>
+          </Link>
         </VStack>
       </Flex>
-      <Stack
-        direction={['column', 'row']}
-        spacing={8}
-        m="auto"
-        justify="center"
-        mt={5}
-      >
-        <NextChakraLink
-          href="/experiment/reactpsych"
-          _hover={{ textDecoration: 'none', boxShadow: 'outline' }}
-        >
-          <VStack shadow="md" p={5}>
-            <Heading>React-Psych DRT</Heading>
-            <Text>Diagrammatic Representation Test built with React-Psych</Text>
-          </VStack>
-        </NextChakraLink>
-        <NextChakraLink
-          href="/experiment/jspsych"
-          _hover={{ textDecoration: 'none', boxShadow: 'outline' }}
-        >
-          <VStack shadow="md" p={5}>
-            <Heading>jsPsych DRT</Heading>
-            <Text>Diagrammatic Representation Test built with jsPsych</Text>
-          </VStack>
-        </NextChakraLink>
-      </Stack>
+      <ExperimentStack />
     </Layout>
   )
 }

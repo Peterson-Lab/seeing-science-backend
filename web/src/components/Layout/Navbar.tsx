@@ -19,6 +19,17 @@ const Navbar: React.FC = () => {
           </HStack>
         </NextChakraLink>
         <Spacer />
+        <HStack spacing={4} mr={4}>
+          <NextChakraLink textColor="white" href="/about">
+            About
+          </NextChakraLink>
+          <NextChakraLink textColor="white" href="/participate">
+            Participate
+          </NextChakraLink>
+          <NextChakraLink textColor="white" href="/people">
+            People
+          </NextChakraLink>
+        </HStack>
         <HStack mr={4}>
           <Button>Login</Button>
           <Button>Register</Button>
