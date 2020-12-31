@@ -30,6 +30,7 @@ const Index: React.FC = () => {
             participants and collaborators. For updates on Seeing Science and
             science education research, enter your email address below to join
             our mailing list and follow us on Twitter
+            
           </Text>{' '}
           <Link>
             <Button>Twitter</Button>
