@@ -1,0 +1,12 @@
+{
+  "name": "seeing-science-server",
+  "version": "0.0.1",
+  "description": "Server for Seeing Science website",
+  "main": "index.js",
+  "author": {
+    "email": "mattwilki17@gmail.com",
+    "name": "Matt Wilkinson"
+  },
+  "repository": "https://github.com/Peterson-Lab/seeing-science",
+  "license": "MIT"
+}
