@@ -1,8 +1,9 @@
 import { Button, Flex, Heading, Link, Text, VStack } from '@chakra-ui/react'
+import { withUrqlClient } from 'next-urql'
 import React from 'react'
 import { ExperimentStack } from '../components/ExperimentStack'
 import Layout from '../components/Layout/Layout'
-import { NextChakraLink } from '../components/NextChakraLink'
+import { createUrqlClient } from '../utils/createUrqlClient'
 
 //interface indexProps {}
 
@@ -41,4 +42,4 @@ const Index: React.FC = () => {
   )
 }
 
-export default Index
+export default withUrqlClient(createUrqlClient)(Index)

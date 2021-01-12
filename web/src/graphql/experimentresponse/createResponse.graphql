@@ -1,0 +1,13 @@
+mutation createResponse($data: ResponseCreateInput!) {
+  createResponse(data: $data) {
+    id
+    responses
+    created_at
+    user {
+      email
+    }
+    experiment {
+      name
+    }
+  }
+}
