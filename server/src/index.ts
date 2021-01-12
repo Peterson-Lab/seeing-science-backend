@@ -4,6 +4,7 @@ import { buildSchema } from 'type-graphql'
 import { ApolloServer } from 'apollo-server'
 import { resolvers } from '@generated/type-graphql'
 import { createContext } from './context'
+import { PrismaClient } from '@prisma/client'
 
 const app = async () => {
   const schema = await buildSchema({
@@ -26,10 +27,10 @@ const app = async () => {
       // https://www.apollographql.com/docs/apollo-server/api/apollo-server/
 
       // Get the user token from the headers.
-      const token = req.headers.authorization || ''
+      const token = parseInt(req.headers.authorization || '-1')
 
       // try to retrieve a user with the token
-      const user = prisma.user.findUnique()
+      const user = prisma.user.findUnique({ where: { id: token } })
 
       // add the user to the context
       return { user }
