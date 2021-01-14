@@ -4,20 +4,21 @@ import 'reflect-metadata'
 import 'dotenv-safe/config'
 import {
   DeleteExperimentResolver,
+  DeleteTrialResolver,
   UpdateUserResolver,
-  DeleteResponseResolver,
+  CreateExperimentResolver,
 } from '@generated/type-graphql'
-import { PrismaClient } from '@prisma/client'
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 import { createContext } from './context'
 import { createPrismaClient } from './utils/prismaHelpers'
-import { CustomUserResolver } from './resolvers/user'
+import { UserResolver } from './resolvers/user'
 import cookieParser from 'cookie-parser'
 import express from 'express'
 import cors from 'cors'
 import { authChecker } from './utils/gqlAuth'
 import { checkRootUser } from './utils/rootUser'
+import { TrialResolver } from './resolvers/trial'
 
 const main = async () => {
   const app = express()
@@ -27,10 +28,12 @@ const main = async () => {
 
   const schema = await buildSchema({
     resolvers: [
+      CreateExperimentResolver,
       UpdateUserResolver,
       DeleteExperimentResolver,
-      DeleteResponseResolver,
-      CustomUserResolver,
+      DeleteTrialResolver,
+      UserResolver,
+      TrialResolver,
     ],
     validate: false,
     authChecker: authChecker,

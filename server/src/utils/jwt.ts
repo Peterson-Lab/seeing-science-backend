@@ -12,7 +12,7 @@ export interface jwtPayload {
   username: string
 }
 
-export const isPayload = (p: any): p is jwtPayload => {
+export const isPayload = (p: Record<string, any>): p is jwtPayload => {
   return p && p.id && typeof p.id === 'number'
 }
 
@@ -23,7 +23,7 @@ export const decryptToken = (req: Request): jwtPayload | undefined => {
 
   const payload = jwt.verify(token, JWT_SECRET_KEY)
 
-  if (!isPayload(payload)) return undefined
+  if (typeof payload !== 'object' || !isPayload(payload)) return undefined
 
   return payload
 }
@@ -43,4 +43,8 @@ export const setToken = (user: User, res: Response): void => {
     //secure: true, //on HTTPS
     //domain: 'example.com', //set your domain })
   })
+}
+
+export const clearToken = (res: Response): void => {
+  res.clearCookie(JWT_COOKIE_NAME)
 }

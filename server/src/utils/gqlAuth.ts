@@ -36,8 +36,8 @@ const resolversEnhanceMap: ResolversEnhanceMap = {
   Experiment: {
     deleteExperiment: [Authorized(Role.ADMIN)],
   },
-  Response: {
-    deleteResponse: [Authorized(Role.ADMIN)],
+  Trial: {
+    deleteTrial: [Authorized(Role.ADMIN)],
   },
 }
 

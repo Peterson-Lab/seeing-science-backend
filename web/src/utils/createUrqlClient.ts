@@ -1,5 +1,10 @@
 import { PartialNextContext, SSRExchange } from 'next-urql'
-import { ClientOptions } from 'urql'
+import {
+  ClientOptions,
+  dedupExchange,
+  cacheExchange,
+  fetchExchange,
+} from 'urql'
 import { isBrowser } from './isBrowser'
 
 export const createUrqlClient = (
@@ -17,6 +22,6 @@ export const createUrqlClient = (
       credentials: 'include' as const,
       headers: cookie ? { cookie } : undefined,
     },
-    exchanges: [ssrExchange],
+    exchanges: [dedupExchange, cacheExchange, ssrExchange, fetchExchange],
   }
 }

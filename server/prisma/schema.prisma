@@ -20,24 +20,24 @@ enum Role {
 }
 
 model User {
-  id        Int        @id @default(autoincrement())
-  email     String     @unique
-  username  String     @unique
-  role      Role       @default(USER)
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  username String  @unique
+  role     Role    @default(USER)
   /// @TypeGraphQL.omit(output: true)
-  password  String
-  responses Response[]
+  password String
+  trials   Trial[]
 }
 
 model Experiment {
-  id         Int        @id @default(autoincrement())
-  name       String
-  responses  Response[]
-  created_at DateTime   @default(now())
-  updated_at DateTime   @updatedAt
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  trials     Trial[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
-model Response {
+model Trial {
   id           Int        @id @default(autoincrement())
   userId       Int?
   user         User?      @relation(fields: [userId], references: [id])

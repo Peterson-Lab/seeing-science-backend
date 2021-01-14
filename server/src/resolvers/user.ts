@@ -13,14 +13,7 @@ import { Context } from '../context'
 import argon2 from 'argon2'
 import { Field, InputType } from 'type-graphql'
 import { validateRegister } from '../utils/validateRegister'
-import jwt from 'jsonwebtoken'
-import { Response } from 'express'
-import { isPayload, jwtPayload, setToken } from '../utils/jwt'
-import { Role } from '@prisma/client'
-import { RSA_PKCS1_OAEP_PADDING } from 'constants'
-
-const JWT_COOKIE_NAME = process.env.JWT_COOKIE_NAME
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY
+import { clearToken, setToken } from '../utils/jwt'
 @InputType()
 export class LoginInput {
   @Field()
@@ -76,7 +69,7 @@ export class RoleInput {
 }
 
 @Resolver()
-export class CustomUserResolver {
+export class UserResolver {
   @Query(() => User, { nullable: true })
   async bestUser(@Ctx() { prisma }: Context): Promise<User | null> {
     return await prisma.user.findUnique({
@@ -164,7 +157,7 @@ export class CustomUserResolver {
   @Authorized()
   @Mutation(() => Boolean)
   async logout(@Ctx() { res }: Context): Promise<boolean> {
-    res.clearCookie(JWT_COOKIE_NAME)
+    clearToken(res)
     return true
   }
 
@@ -183,7 +176,7 @@ export class CustomUserResolver {
     if (!user) return { errors: [{ field: 'none', message: 'Server Error' }] }
 
     if (user.id === userToken?.id) {
-      res.clearCookie(JWT_COOKIE_NAME)
+      clearToken(res)
     }
 
     return { user }

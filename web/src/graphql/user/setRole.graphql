@@ -1,0 +1,14 @@
+mutation setRole($input: RoleInput!) {
+  setRole(input: $input) {
+    user {
+      id
+      email
+      username
+      role
+    }
+    errors {
+      field
+      message
+    }
+  }
+}
