@@ -14,10 +14,16 @@ generator typegraphql {
   provider = "typegraphql-prisma"
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
   id        Int        @id @default(autoincrement())
   email     String     @unique
-  username  String
+  username  String     @unique
+  role      Role       @default(USER)
   /// @TypeGraphQL.omit(output: true)
   password  String
   responses Response[]
