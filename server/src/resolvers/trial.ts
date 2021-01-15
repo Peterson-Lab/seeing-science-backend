@@ -1,5 +1,4 @@
 import GraphQLJSON from 'graphql-type-json'
-import { stringify } from 'querystring'
 import {
   Arg,
   Ctx,

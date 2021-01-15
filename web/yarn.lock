@@ -3580,6 +3580,11 @@ defined@^1.0.0:
   resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
   integrity sha1-yY2bzvdWdBiOEQlpFRGZ45sfppM=
 
+delay@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/delay/-/delay-4.4.0.tgz#71abc745f3ce043fe7f450491236541edec4ad0c"
+  integrity sha512-txgOrJu3OdtOfTiEOT2e76dJVfG/1dz2NZ4F0Pyt4UGZJryssMRp5vdM5wQoLwSOBNdrJv3F9PAhp/heqd7vrA==
+
 delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
@@ -7209,6 +7214,11 @@ react-focus-lock@2.4.1:
     use-callback-ref "^1.2.1"
     use-sidecar "^1.0.1"
 
+react-hook-form@^6.14.1:
+  version "6.14.1"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.14.1.tgz#c15f03fe8a7df76232bd4ac07b87317acab0cbd8"
+  integrity sha512-Bf2fWcL2F34hUUqrx1rpgZ8ZErQ4/DvrPs6Je+lUYL59km8PXIQqyCTz/NbggC1RQUj7rChSmTx6eFap+mCttw==
+
 react-is@16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -7219,6 +7229,13 @@ react-keyboard-hooks@^1.2.3:
   resolved "https://registry.yarnpkg.com/react-keyboard-hooks/-/react-keyboard-hooks-1.2.3.tgz#4895ef87828d2d269dd029987365a4ba5d0d81c6"
   integrity sha512-M+JTjRClrDCWs3WA9LH+liUwgVwY8tryiOhAE7tADQDPOX0TTCg6mTEXSKqwvMaV9xr5fZOHQV+Ww+8HW4riDw==
   dependencies:
+    use-ssr "^1.0.23"
+
+"react-psych@file:.yalc/react-psych":
+  version "0.1.20"
+  dependencies:
+    delay "^4.4.0"
+    react-keyboard-hooks "^1.2.3"
     use-ssr "^1.0.23"
 
 react-refresh@0.8.3:

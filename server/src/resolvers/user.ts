@@ -104,14 +104,30 @@ export class UserResolver {
     }
 
     const hashedPass = await argon2.hash(input.password)
-
-    const user = await prisma.user.create({
-      data: {
-        email: input.email,
-        password: hashedPass,
-        username: input.username,
-      },
-    })
+    let user
+    try {
+      user = await prisma.user.create({
+        data: {
+          email: input.email,
+          password: hashedPass,
+          username: input.username,
+        },
+      })
+    } catch (err) {
+      if (err.code === 'P2002') {
+        const field = err.meta.target[0]
+        if (field === 'email') {
+          return {
+            errors: [{ field: 'email', message: 'Email already used' }],
+          }
+        } else if (field === 'username') {
+          return {
+            errors: [{ field: 'username', message: 'Username already taken' }],
+          }
+        }
+      }
+      console.error(err)
+    }
 
     if (!user) {
       return { errors: [{ field: 'none', message: 'Server Error' }] }
