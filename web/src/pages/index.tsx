@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Link, Text, VStack } from '@chakra-ui/react'
+import { Button, Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import { withUrqlClient } from 'next-urql'
 import React from 'react'
 import { ExperimentStack } from '../components/ExperimentStack'

@@ -13,8 +13,6 @@ import Layout from '../../components/Layout/Layout'
 import { TrialInput, usePostTrialMutation } from '../../generated/graphql'
 import { createUrqlClient } from '../../utils/createUrqlClient'
 
-interface ReactPsychProps {}
-
 const questionList = createQuestionList(
   '/react-psych/DRT',
   10,
@@ -22,7 +20,7 @@ const questionList = createQuestionList(
   4
 )
 
-const ReactPsych: React.FC<ReactPsychProps> = () => {
+const ReactPsych: React.FC = () => {
   const router = useRouter()
   const [, post] = usePostTrialMutation()
 

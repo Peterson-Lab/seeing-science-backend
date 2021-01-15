@@ -4,7 +4,7 @@ import { Flex } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import jsPsych from '../../libraries/jspsych'
 import htmlKeyboardResponse from '../../libraries/plugins/html-keyboard-response'
-import { jsPsychOptions } from '../../libraries/types'
+import { jsPsychOptions } from '../../libraries/jsPsychtypes'
 import { useRouter } from 'next/router'
 
 interface ExperimentWindowProps {

@@ -7,9 +7,7 @@ const ExperimentWindow = dynamic(
 import drt from '../../experiments/jspsych/drt'
 import Layout from '../../components/Layout/Layout'
 
-interface jspsychProps {}
-
-const jspsych: React.FC<jspsychProps> = ({}) => {
+const jspsych: React.FC = () => {
   return (
     <Layout>
       <ExperimentWindow timeline={drt} />

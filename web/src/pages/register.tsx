@@ -15,9 +15,7 @@ import { createUrqlClient } from '../utils/createUrqlClient'
 import { withUrqlClient } from 'next-urql'
 import Layout from '../components/Layout/Layout'
 
-interface registerProps {}
-
-const Register: React.FC<registerProps> = ({}) => {
+const Register: React.FC = () => {
   const router = useRouter()
   const [, submitRegistration] = useRegisterMutation()
   const { register, handleSubmit, errors, formState, setError } = useForm()

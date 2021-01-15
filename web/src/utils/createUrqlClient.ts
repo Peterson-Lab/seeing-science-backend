@@ -1,7 +1,6 @@
+import { cacheExchange } from '@urql/exchange-graphcache'
 import { PartialNextContext, SSRExchange } from 'next-urql'
-import { cacheExchange, Resolver } from '@urql/exchange-graphcache'
 import { ClientOptions, dedupExchange, fetchExchange } from 'urql'
-import { isBrowser } from './isBrowser'
 import {
   LoginMutation,
   LogoutMutation,
@@ -10,6 +9,7 @@ import {
   RegisterMutation,
 } from '../generated/graphql'
 import { betterUpdateQuery } from './betterUpdateQuery'
+import { isBrowser } from './isBrowser'
 
 export const createUrqlClient = (
   ssrExchange: SSRExchange,

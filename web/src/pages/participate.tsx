@@ -1,11 +1,9 @@
-import { Flex, VStack, Heading, Stack, Box, Text } from '@chakra-ui/react'
+import { Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import { ExperimentStack } from '../components/ExperimentStack'
 import Layout from '../components/Layout/Layout'
 
-interface participateProps {}
-
-const Participate: React.FC<participateProps> = ({}) => {
+const Participate: React.FC = () => {
   return (
     <Layout>
       <Flex justify="center">

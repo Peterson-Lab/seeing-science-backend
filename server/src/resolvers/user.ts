@@ -93,7 +93,7 @@ export class UserResolver {
   @Mutation(() => UserResponse)
   async register(
     @Arg('input') input: RegisterInput,
-    @Ctx() { req, res, prisma, userToken }: Context
+    @Ctx() { res, prisma, userToken }: Context
   ): Promise<UserResponse> {
     if (userToken)
       return { errors: [{ field: 'none', message: 'Already logged in' }] }
@@ -141,7 +141,7 @@ export class UserResolver {
   @Mutation(() => UserResponse)
   async login(
     @Arg('input') input: LoginInput,
-    @Ctx() { req, res, prisma, userToken }: Context
+    @Ctx() { res, prisma, userToken }: Context
   ): Promise<UserResponse> {
     if (userToken)
       return { errors: [{ field: 'none', message: 'Already logged in' }] }

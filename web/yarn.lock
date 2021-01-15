@@ -7231,8 +7231,10 @@ react-keyboard-hooks@^1.2.3:
   dependencies:
     use-ssr "^1.0.23"
 
-"react-psych@file:.yalc/react-psych":
-  version "0.1.20"
+react-psych@^0.1.21:
+  version "0.1.21"
+  resolved "https://registry.yarnpkg.com/react-psych/-/react-psych-0.1.21.tgz#def76274193875938fa8a5c5c86a262da3242e25"
+  integrity sha512-FxYPycK9wpufHV1BVCJ/2Lb5FvlJG+OH9Mbh8TYAKtEs0BMXgfAMfJoN+pOJo9fDfSHykrQlU5G647kxkgVhUw==
   dependencies:
     delay "^4.4.0"
     react-keyboard-hooks "^1.2.3"
