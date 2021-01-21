@@ -20,10 +20,3 @@ services:
       - ./data/pgadmin:/root/.pgadmin
     ports:
       - "8000:80"
-  redis:
-    image: redis
-    ports:
-      - 6379:6379
-    volumes:
-      - ./data/redis:/data
-      - ./data/redis-dump:/var/lib/redis
