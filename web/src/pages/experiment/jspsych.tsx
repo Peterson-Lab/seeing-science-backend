@@ -5,7 +5,6 @@ const ExperimentWindow = dynamic(
   { ssr: false }
 )
 import drtimg from '../../experiments/jspsych/drt_img'
-import drt from '../../experiments/jspsych/drt'
 import Layout from '../../components/Layout/Layout'
 
 const jspsych: React.FC = () => {
