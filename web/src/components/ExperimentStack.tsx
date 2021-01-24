@@ -2,9 +2,7 @@ import { Heading, Stack, VStack, Text } from '@chakra-ui/react'
 import React from 'react'
 import { NextChakraLink } from './NextChakraLink'
 
-interface ExperimentStackProps {}
-
-export const ExperimentStack: React.FC<ExperimentStackProps> = ({}) => {
+export const ExperimentStack: React.FC = () => {
   return (
     <Stack
       direction={['column', 'row']}

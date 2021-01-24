@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { jsPsychOptions } from './types'
+import { jsPsychOptions } from './jsPsychtypes'
 
 /**
  * jspsych.js

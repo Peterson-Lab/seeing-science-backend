@@ -1,16 +1,16 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 const ExperimentWindow = dynamic(
-  () => import('../../components/jsPsych/jsPsychExperimentWindow'),
+  () => import('../../components/jsPsych/jsPsychKBResponseExperimentWindow'),
   { ssr: false }
 )
-import drt from '../../experiments/jspsych/drt'
+import drtimg from '../../experiments/jspsych/drt_img'
 import Layout from '../../components/Layout/Layout'
 
 const jspsych: React.FC = () => {
   return (
     <Layout>
-      <ExperimentWindow timeline={drt} />
+      <ExperimentWindow timeline={drtimg} />
     </Layout>
   )
 }

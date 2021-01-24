@@ -1,4 +1,5 @@
 import { Flex, Heading, Text, VStack } from '@chakra-ui/react'
+import { withUrqlClient } from 'next-urql'
 import { useRouter } from 'next/router'
 import React from 'react'
 import {
@@ -7,8 +8,11 @@ import {
   TextScreen,
   Timeline,
 } from 'react-psych'
+import { defaultUserResponse } from 'react-psych/dist/types'
 import Layout from '../../components/Layout/Layout'
 import { NextChakraImage } from '../../components/NextChakraImage'
+import { TrialInput, usePostTrialMutation } from '../../generated/graphql'
+import { createUrqlClient } from '../../utils/createUrqlClient'
 
 const questionList = createQuestionList(
   '/react-psych/DRT',
@@ -19,12 +23,29 @@ const questionList = createQuestionList(
 
 const ReactPsych: React.FC = () => {
   const router = useRouter()
+  const [, post] = usePostTrialMutation()
+
+  const finish = async (responses: defaultUserResponse[]): Promise<void> => {
+    const data: TrialInput = {
+      experiment: 'DRT',
+      responses,
+    }
+
+    const res = await post({ data })
+
+    if (res.data?.postTrial.success) {
+      router.push('/')
+    } else {
+      console.log(res)
+      console.log(res.data?.postTrial.errors)
+    }
+  }
 
   return (
     <Layout>
       <Flex align="center" justify="center">
         <Flex shadow="md" align="center" justify="center" my={5}>
-          <Timeline onFinish={() => router.push('/')} size="85">
+          <Timeline onFinish={finish} size="85">
             <TextScreen buttonText="Start">
               <VStack spacing={4} mx={10} mb={5} textAlign="center">
                 <Heading>Diagrammatic Representations Test</Heading>
@@ -67,4 +88,4 @@ const ReactPsych: React.FC = () => {
   )
 }
 
-export default ReactPsych
+export default withUrqlClient(createUrqlClient)(ReactPsych)

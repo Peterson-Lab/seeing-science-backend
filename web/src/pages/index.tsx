@@ -1,7 +1,10 @@
-import { Button, Flex, Heading, Link, Text, VStack } from '@chakra-ui/react'
+import { Button, Flex, Heading, Text, VStack } from '@chakra-ui/react'
+import { withUrqlClient } from 'next-urql'
 import React from 'react'
 import { ExperimentStack } from '../components/ExperimentStack'
 import Layout from '../components/Layout/Layout'
+import { NextChakraLink } from '../components/NextChakraLink'
+import { createUrqlClient } from '../utils/createUrqlClient'
 
 //interface indexProps {}
 
@@ -14,7 +17,7 @@ const Index: React.FC = () => {
           alignItems="center"
           height="50vh"
           width="60vw"
-          spacing={3}
+          spacing={6}
         >
           <Heading fontSize="3vw">
             Play games. Solve puzzles. Do science.
@@ -27,12 +30,17 @@ const Index: React.FC = () => {
             Washington, DC. Through Seeing Science we seek to engage kids,
             teachers, families, and scientists in science education research as
             participants and collaborators. For updates on Seeing Science and
-            science education research, enter your email address below to join
-            our mailing list and follow us on Twitter
-          </Text>{' '}
-          <Link>
-            <Button>Twitter</Button>
-          </Link>
+            science education research, register for an account below! Also{' '}
+            <NextChakraLink
+              textColor="blue.400"
+              href="https://twitter.com/SeeingScience"
+            >
+              follow us on Twitter!
+            </NextChakraLink>
+          </Text>
+          <NextChakraLink href="/register">
+            <Button>Sign Up</Button>
+          </NextChakraLink>
         </VStack>
       </Flex>
       <ExperimentStack />
@@ -40,4 +48,4 @@ const Index: React.FC = () => {
   )
 }
 
-export default Index
+export default withUrqlClient(createUrqlClient)(Index)

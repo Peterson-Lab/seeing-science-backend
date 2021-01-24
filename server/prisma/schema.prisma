@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  username String  @unique
+  role     Role    @default(USER)
+  /// @TypeGraphQL.omit(output: true)
+  password String
+  trials   Trial[]
+}
+
+model Experiment {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  trials     Trial[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Trial {
+  id           Int        @id @default(autoincrement())
+  userId       Int?
+  user         User?      @relation(fields: [userId], references: [id])
+  experimentId Int
+  experiment   Experiment @relation(fields: [experimentId], references: [id])
+  responses    Json[]
+  created_at   DateTime   @default(now())
+}
