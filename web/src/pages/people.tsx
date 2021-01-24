@@ -2,9 +2,7 @@ import { Flex, VStack, Heading, Text, Stack, Box } from '@chakra-ui/react'
 import React from 'react'
 import Layout from '../components/Layout/Layout'
 
-interface peopleProps {}
-
-const People: React.FC<peopleProps> = ({}) => {
+const People: React.FC = () => {
   return (
     <Layout>
       <Flex justify="center">

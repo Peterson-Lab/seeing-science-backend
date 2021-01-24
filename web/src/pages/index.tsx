@@ -2,7 +2,6 @@ import { Button, Flex, Heading, Link, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import { ExperimentStack } from '../components/ExperimentStack'
 import Layout from '../components/Layout/Layout'
-import { NextChakraLink } from '../components/NextChakraLink'
 
 //interface indexProps {}
 

@@ -8,8 +8,7 @@ import {
   Timeline,
 } from 'react-psych'
 import Layout from '../../components/Layout/Layout'
-
-interface ReactPsychProps {}
+import { NextChakraImage } from '../../components/NextChakraImage'
 
 const questionList = createQuestionList(
   '/react-psych/DRT',
@@ -18,7 +17,7 @@ const questionList = createQuestionList(
   4
 )
 
-const ReactPsych: React.FC<ReactPsychProps> = () => {
+const ReactPsych: React.FC = () => {
   const router = useRouter()
 
   return (
@@ -26,17 +25,30 @@ const ReactPsych: React.FC<ReactPsychProps> = () => {
       <Flex align="center" justify="center">
         <Flex shadow="md" align="center" justify="center" my={5}>
           <Timeline onFinish={() => router.push('/')} size="85">
-            <TextScreen buttonText="Begin">
-              <VStack spacing={4} mx={8} mb={5}>
-                <Heading>Diagrammatic Representation Test</Heading>
-                <Text align="center">
-                  You will be shown a number of objects, select the correct
-                  respresentation of the object. Click on the image to select
-                  the right response.
+            <TextScreen buttonText="Start">
+              <VStack spacing={4} mx={10} mb={5} textAlign="center">
+                <Heading>Diagrammatic Representations Test</Heading>
+                <Text px={60} mb={6}>
+                  This is Danny - he likes to draw. And he likes to draw things
+                  exactly how he sees them, so that his drawings match the real
+                  things as closely as possible.
                 </Text>
-                <Text>
-                  Press the spacebar or click the button below to begin.
-                </Text>
+                <NextChakraImage
+                  src="/exp/drt/danny.png"
+                  dimensions={[640, 400]}
+                />
+                <VStack px={60} spacing={2} textAlign="center">
+                  <Text>
+                    He‘s drawing the house exactly how it looks and his drawing
+                    matches the house perfectly. This is excellent work!
+                  </Text>
+                  <Text>
+                    So, now I am going to show you some more of Danny’s drawings
+                    and I‘ll show you what he tried to draw. Your job in this
+                    game is to tell me which one is his best drawing, where he
+                    did the best job!
+                  </Text>
+                </VStack>
               </VStack>
             </TextScreen>
             {questionList.map((q, idx) => {
