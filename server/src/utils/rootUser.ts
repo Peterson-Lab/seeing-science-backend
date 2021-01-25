@@ -12,6 +12,7 @@ export const checkRootUser = async (prisma: PrismaClient): Promise<void> => {
         email: process.env.ROOT_EMAIL,
         password: pw,
         username: process.env.ROOT_USERNAME,
+        role: 'ADMIN',
       },
     })
   }
