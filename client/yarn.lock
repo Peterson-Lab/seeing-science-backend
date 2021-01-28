@@ -3580,11 +3580,6 @@ defined@^1.0.0:
   resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
   integrity sha1-yY2bzvdWdBiOEQlpFRGZ45sfppM=
 
-delay@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/delay/-/delay-4.4.0.tgz#71abc745f3ce043fe7f450491236541edec4ad0c"
-  integrity sha512-txgOrJu3OdtOfTiEOT2e76dJVfG/1dz2NZ4F0Pyt4UGZJryssMRp5vdM5wQoLwSOBNdrJv3F9PAhp/heqd7vrA==
-
 delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
@@ -7229,15 +7224,6 @@ react-keyboard-hooks@^1.2.3:
   resolved "https://registry.yarnpkg.com/react-keyboard-hooks/-/react-keyboard-hooks-1.2.3.tgz#4895ef87828d2d269dd029987365a4ba5d0d81c6"
   integrity sha512-M+JTjRClrDCWs3WA9LH+liUwgVwY8tryiOhAE7tADQDPOX0TTCg6mTEXSKqwvMaV9xr5fZOHQV+Ww+8HW4riDw==
   dependencies:
-    use-ssr "^1.0.23"
-
-react-psych@^0.1.21:
-  version "0.1.21"
-  resolved "https://registry.yarnpkg.com/react-psych/-/react-psych-0.1.21.tgz#def76274193875938fa8a5c5c86a262da3242e25"
-  integrity sha512-FxYPycK9wpufHV1BVCJ/2Lb5FvlJG+OH9Mbh8TYAKtEs0BMXgfAMfJoN+pOJo9fDfSHykrQlU5G647kxkgVhUw==
-  dependencies:
-    delay "^4.4.0"
-    react-keyboard-hooks "^1.2.3"
     use-ssr "^1.0.23"
 
 react-refresh@0.8.3:

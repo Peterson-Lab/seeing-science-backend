@@ -7,8 +7,9 @@ import {
   ImageQuestion,
   TextScreen,
   Timeline,
-} from 'react-psych'
-import { defaultUserResponse } from 'react-psych/dist/types'
+  SelectImage,
+} from '../../react-psych'
+import { defaultUserResponse } from '../../react-psych/types'
 import Layout from '../../components/Layout/Layout'
 import { NextChakraImage } from '../../components/NextChakraImage'
 import { TrialInput, usePostTrialMutation } from '../../generated/graphql'
@@ -80,7 +81,7 @@ const ReactPsych: React.FC = () => {
               </VStack>
             </TextScreen>
             {questionList.map((q, idx) => {
-              return <ImageQuestion key={idx} {...q} />
+              return <SelectImage key={idx} {...q} />
             })}
             <TextScreen buttonText="Finish">
               <Heading>Done!</Heading>
