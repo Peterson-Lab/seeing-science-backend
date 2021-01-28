@@ -105,7 +105,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
         <HStack spacing={15}>
           {responses.map((response, idx) => (
             <Link
-              bgColor="gray.50"
+              bgColor="gray.200"
               borderWidth="1px"
               borderRadius="lg"
               p={2}
@@ -123,7 +123,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
                   loading="eager"
                   priority={true}
                 />
-                <Text fontSize={20} fontWeight="600">
+                <Text fontSize={30} fontWeight="600">
                   {idx + 1}
                 </Text>
               </VStack>
