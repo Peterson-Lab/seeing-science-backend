@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import {
   createQuestionList,
-  ImageQuestion,
   TextScreen,
   Timeline,
   SelectImage,

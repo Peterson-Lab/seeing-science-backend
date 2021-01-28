@@ -1,5 +1,4 @@
-import { Box, Button, Flex, HStack, Link, Text, VStack } from '@chakra-ui/react'
-import { time } from 'console'
+import { Button, HStack, Link, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { sleep } from '../../utils/sleep'
 import {

@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "react-psych": {
-      "signature": "7a7b65f44896dd41d2f489cf8d66efb1",
-      "file": true
-    }
-  }
-}
