@@ -1,7 +1,7 @@
 import { Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import { withUrqlClient } from 'next-urql'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   createQuestionList,
   TextScreen,
@@ -13,6 +13,7 @@ import Layout from '../../components/Layout/Layout'
 import { NextChakraImage } from '../../components/NextChakraImage'
 import { TrialInput, usePostTrialMutation } from '../../generated/graphql'
 import { createUrqlClient } from '../../utils/createUrqlClient'
+import { cacheImages } from '../../utils/cacheImages'
 
 const questionList = createQuestionList(
   '/react-psych/DRT',
@@ -41,6 +42,10 @@ const ReactPsych: React.FC = () => {
     }
   }
 
+  useEffect(() => {
+    cacheImages(['/exp/drt/danny.png'])
+  }, [])
+
   return (
     <Layout>
       <Flex align="center" justify="center">
@@ -55,7 +60,8 @@ const ReactPsych: React.FC = () => {
             <TextScreen buttonText="Begin">
               <NextChakraImage
                 src="/exp/drt/danny.png"
-                dimensions={[640, 400]}
+                width={640}
+                height={400}
               />
               <VStack px={60} spacing={2} textAlign="center">
                 <Text>

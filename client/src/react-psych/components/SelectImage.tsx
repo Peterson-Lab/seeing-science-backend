@@ -1,12 +1,13 @@
-import { Button, HStack, Link, Text, VStack } from '@chakra-ui/react'
+import { Button, HStack, Image, Link, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
+import { cacheImages } from '../../utils/cacheImages'
 import { sleep } from '../../utils/sleep'
 import {
   defaultUserResponse,
   ImageQuestionFields,
   TimelineNodeProps,
 } from '../types'
-import { NextChakraImage } from '../util-components/NextChakraImage'
+import { NextChakraImage } from '../../components/NextChakraImage'
 import { TimelineNodeError } from '../utils/errors'
 
 export type SelectImageProps = ImageQuestionFields & {
@@ -60,12 +61,23 @@ export const SelectImage: React.FC<SelectImageProps> = ({
 
   useEffect(() => {
     if (timeline.isActive && timeline.keyPressed) {
+      if (timeline.keyPressed === ' ') {
+        handleResponse()
+      }
       const keyNum = parseInt(timeline.keyPressed)
       if (keyNum > 0 && keyNum <= responses.length) {
         handleClick(keyNum - 1)
       }
     }
   }, [timeline.isActive, timeline.keyPressed, responses.length])
+
+  useEffect(() => {
+    const images: string[] = [stimulus]
+    responses.forEach((res) => {
+      images.push(res.answerImage)
+    })
+    cacheImages(images)
+  }, [stimulus, responses])
 
   useEffect(() => {
     const waitShow = async (): Promise<void> => {
