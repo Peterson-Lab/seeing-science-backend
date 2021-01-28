@@ -1,19 +1,18 @@
 import { Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import { withUrqlClient } from 'next-urql'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
-import {
-  createQuestionList,
-  TextScreen,
-  Timeline,
-  SelectImage,
-} from '../../react-psych'
-import { defaultUserResponse } from '../../react-psych/types'
+import React from 'react'
 import Layout from '../../components/Layout/Layout'
 import { NextChakraImage } from '../../components/NextChakraImage'
 import { TrialInput, usePostTrialMutation } from '../../generated/graphql'
+import {
+  createQuestionList,
+  SelectImage,
+  TextScreen,
+  Timeline,
+} from '../../react-psych'
+import { defaultUserResponse } from '../../react-psych/types'
 import { createUrqlClient } from '../../utils/createUrqlClient'
-import { cacheImages } from '../../utils/cacheImages'
 
 const questionList = createQuestionList(
   '/react-psych/DRT',
@@ -76,12 +75,17 @@ const ReactPsych: React.FC = () => {
               </VStack>
             </TextScreen>
             <TextScreen buttonText="Next">
-              <VStack px={60} spacing={2} textAlign="center">
+              <VStack px={60} spacing={4} textAlign="center">
                 <Text>
                   So, now I am going to show you some more of Danny’s drawings
                   and I‘ll show you what he tried to draw. Your job in this game
                   is to tell me which one is his best drawing, where he did the
                   best job!
+                </Text>
+                <Text mb={4}>
+                  Click the drawing you think is best or press the number on
+                  your keyboard! Then click Next or press the spacebar to go to
+                  the next question.
                 </Text>
               </VStack>
             </TextScreen>

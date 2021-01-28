@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
           _hover={{ textDecoration: 'none', boxShadow: 'xs' }}
         >
           <HStack ml={4}>
-            <NextChakraImage src="/bdmagnify.png" dimensions={[50, 50]} />
+            <NextChakraImage src="/bdmagnify.png" width="50px" height="50px" />
             <Heading color="white" ml={2}>
               Seeing Science
             </Heading>

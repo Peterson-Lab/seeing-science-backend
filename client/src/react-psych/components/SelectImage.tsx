@@ -1,21 +1,12 @@
-import {
-  Box,
-  Button,
-  HStack,
-  Image,
-  Link,
-  Text,
-  VStack,
-} from '@chakra-ui/react'
+import { Box, Button, HStack, Link, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { cacheImages } from '../../utils/cacheImages'
+import { NextChakraImage } from '../../components/NextChakraImage'
 import { sleep } from '../../utils/sleep'
 import {
   defaultUserResponse,
   ImageQuestionFields,
   TimelineNodeProps,
 } from '../types'
-import { NextChakraImage } from '../../components/NextChakraImage'
 import { TimelineNodeError } from '../utils/errors'
 
 export type SelectImageProps = ImageQuestionFields & {
