@@ -71,13 +71,13 @@ export const SelectImage: React.FC<SelectImageProps> = ({
     }
   }, [timeline.isActive, timeline.keyPressed, responses.length])
 
-  useEffect(() => {
-    const images: string[] = [stimulus]
-    responses.forEach((res) => {
-      images.push(res.answerImage)
-    })
-    cacheImages(images)
-  }, [stimulus, responses])
+  // useEffect(() => {
+  //   const images: string[] = [stimulus]
+  //   responses.forEach((res) => {
+  //     images.push(res.answerImage)
+  //   })
+  //   cacheImages(images)
+  // }, [stimulus, responses])
 
   useEffect(() => {
     const waitShow = async (): Promise<void> => {

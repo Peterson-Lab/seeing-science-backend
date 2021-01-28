@@ -42,9 +42,9 @@ const ReactPsych: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    cacheImages(['/exp/drt/danny.png'])
-  }, [])
+  // useEffect(() => {
+  //   cacheImages(['/exp/drt/danny.png'])
+  // }, [])
 
   return (
     <Layout>
