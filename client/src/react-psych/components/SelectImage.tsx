@@ -1,4 +1,12 @@
-import { Button, HStack, Image, Link, Text, VStack } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  HStack,
+  Image,
+  Link,
+  Text,
+  VStack,
+} from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { cacheImages } from '../../utils/cacheImages'
 import { sleep } from '../../utils/sleep'
@@ -152,8 +160,31 @@ export const SelectImage: React.FC<SelectImageProps> = ({
   }
 
   return (
-    <VStack spacing={10} display={timeline.isActive ? 'flex' : 'none'}>
-      {body}
-    </VStack>
+    <>
+      <Box display="none">
+        <NextChakraImage
+          height="20vh"
+          width="20vw"
+          src={stimulus}
+          quality={100}
+          loading="eager"
+          priority={true}
+        />
+        {responses.map((response, idx) => (
+          <NextChakraImage
+            key={idx}
+            height="15vh"
+            width="15vw"
+            src={response.answerImage}
+            quality={100}
+            loading="eager"
+            priority={true}
+          />
+        ))}
+      </Box>
+      <VStack spacing={10} display={timeline.isActive ? 'flex' : 'none'}>
+        {body}
+      </VStack>
+    </>
   )
 }
