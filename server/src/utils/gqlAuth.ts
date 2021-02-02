@@ -10,19 +10,11 @@ export const authChecker: AuthChecker<Context> = (
   { context: { userToken } },
   roles
 ) => {
-  if (roles.length === 0) {
-    // if `@Authorized()`, check only if user exists
-    return userToken !== undefined
-  }
-  // there are some roles defined now
+  if (!userToken) return false
 
-  if (!userToken) {
-    // and if no user, restrict access
-    return false
-  }
-
-  // role is in roles list, return true
-  if (roles.includes(userToken.role)) return true
+  // check user's role
+  if (roles.length === 0) return true
+  else if (roles.includes(userToken.role)) return true
 
   // no roles matched, restrict access
   return false

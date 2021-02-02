@@ -28,19 +28,23 @@ const main = async () => {
 
   const schema = await buildSchema({
     resolvers: [
+      // included resolvers from type-graphql
       CreateExperimentResolver,
       UpdateUserResolver,
       DeleteExperimentResolver,
       DeleteTrialResolver,
+      // custom resolvers
       UserResolver,
       TrialResolver,
     ],
     validate: false,
+    // using built in type-graphql auth
     authChecker: authChecker,
   })
 
   const prisma = createPrismaClient()
 
+  // creates root user in DB if hasn't been created already. Might need to remove depending on how service is deployed. Works for testing for now.
   checkRootUser(prisma)
 
   const apolloSrv = new ApolloServer({
