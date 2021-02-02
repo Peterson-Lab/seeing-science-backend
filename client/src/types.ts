@@ -7,13 +7,14 @@ export type TextQuestionType = {
   answers: TextAnswer[]
   correct: number
 }
+//comment
 
 export type ImageResponse = {
   answerImage: string
 }
 
-export type ImageQuestionType = {
-  prompt: string
+export type ImageQuestionFields = {
+  stimulus: string
   responses: ImageResponse[]
   correct: number
 }
@@ -21,6 +22,20 @@ export type ImageQuestionType = {
 export type experimentElement = 'question' | 'finish' | 'intro' | null
 
 export type questionState = 'prompt' | 'responses' | null
+
+export type defaultUserResponse = {
+  node: number
+  response: number | string | null
+  correct: boolean | null
+  time: number | null
+}
+
+export type TimelineNodeProps = {
+  onFinish: (userResponse: defaultUserResponse) => void
+  isActive: boolean
+  index: number
+  keyPressed: string | null
+}
 
 export type questionResponse = {
   question: number

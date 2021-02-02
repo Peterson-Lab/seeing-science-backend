@@ -2,16 +2,16 @@ import { Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import { withUrqlClient } from 'next-urql'
 import { useRouter } from 'next/router'
 import React from 'react'
-import {
-  createQuestionList,
-  ImageQuestion,
-  TextScreen,
-  Timeline,
-} from 'react-psych'
-import { defaultUserResponse } from 'react-psych/dist/types'
 import Layout from '../../components/Layout/Layout'
 import { NextChakraImage } from '../../components/NextChakraImage'
 import { TrialInput, usePostTrialMutation } from '../../generated/graphql'
+import {
+  createQuestionList,
+  SelectImage,
+  TextScreen,
+  Timeline,
+} from '../../react-psych'
+import { defaultUserResponse } from '../../react-psych/types'
 import { createUrqlClient } from '../../utils/createUrqlClient'
 
 const questionList = createQuestionList(
@@ -41,39 +41,56 @@ const ReactPsych: React.FC = () => {
     }
   }
 
+  // useEffect(() => {
+  //   cacheImages(['/exp/drt/danny.png'])
+  // }, [])
+
   return (
     <Layout>
       <Flex align="center" justify="center">
         <Flex shadow="md" align="center" justify="center" my={5}>
           <Timeline onFinish={finish} size="85">
-            <TextScreen buttonText="Start">
+            <TextScreen buttonText="Next">
               <VStack spacing={4} mx={10} mb={5} textAlign="center">
                 <Heading>Diagrammatic Representations Test</Heading>
-                <Text px={60} mb={6}>
+                <Text px={60} mb={6}></Text>
+              </VStack>
+            </TextScreen>
+            <TextScreen buttonText="Begin">
+              <NextChakraImage
+                src="/exp/drt/danny.png"
+                width={640}
+                height={400}
+              />
+              <VStack px={60} spacing={2} textAlign="center">
+                <Text>
                   This is Danny - he likes to draw. And he likes to draw things
                   exactly how he sees them, so that his drawings match the real
                   things as closely as possible.
                 </Text>
-                <NextChakraImage
-                  src="/exp/drt/danny.png"
-                  dimensions={[640, 400]}
-                />
-                <VStack px={60} spacing={2} textAlign="center">
-                  <Text>
-                    He‘s drawing the house exactly how it looks and his drawing
-                    matches the house perfectly. This is excellent work!
-                  </Text>
-                  <Text>
-                    So, now I am going to show you some more of Danny’s drawings
-                    and I‘ll show you what he tried to draw. Your job in this
-                    game is to tell me which one is his best drawing, where he
-                    did the best job!
-                  </Text>
-                </VStack>
+                <Text>
+                  He‘s drawing the house exactly how it looks and his drawing
+                  matches the house perfectly. This is excellent work!
+                </Text>
+              </VStack>
+            </TextScreen>
+            <TextScreen buttonText="Next">
+              <VStack px={60} spacing={4} textAlign="center">
+                <Text>
+                  So, now I am going to show you some more of Danny’s drawings
+                  and I‘ll show you what he tried to draw. Your job in this game
+                  is to tell me which one is his best drawing, where he did the
+                  best job!
+                </Text>
+                <Text mb={4}>
+                  Click the drawing you think is best or press the number on
+                  your keyboard! Then click Next or press the spacebar to go to
+                  the next question.
+                </Text>
               </VStack>
             </TextScreen>
             {questionList.map((q, idx) => {
-              return <ImageQuestion key={idx} {...q} />
+              return <SelectImage key={idx} {...q} />
             })}
             <TextScreen buttonText="Finish">
               <Heading>Done!</Heading>
