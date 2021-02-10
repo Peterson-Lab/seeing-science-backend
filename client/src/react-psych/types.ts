@@ -1,3 +1,5 @@
+import { FullScreenHandle } from 'react-full-screen'
+
 export type TextAnswer = {
   answerText: string
 }
@@ -35,4 +37,5 @@ export type TimelineNodeProps = {
   isActive: boolean
   index: number
   keyPressed: string | null
+  fullscreen: FullScreenHandle | null
 }

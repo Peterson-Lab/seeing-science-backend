@@ -44,7 +44,7 @@ export class TrialResolver {
     @Arg('data') { experiment, responses }: TrialInput,
     @Ctx() { prisma, userToken }: Context
   ): Promise<TrialResponse> {
-    // validate responses for that trial. will need custom stuff here
+    // TODO: validate responses for that trial. will need custom stuff here
     if (experiment === 'DRT' && responses.length !== 12) {
       return {
         errors: [

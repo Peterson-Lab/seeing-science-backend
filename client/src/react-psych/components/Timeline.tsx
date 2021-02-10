@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Box, Button, Flex } from '@chakra-ui/react'
 import React, {
   ReactChild,
   ReactChildren,
@@ -7,7 +7,8 @@ import React, {
   useEffect,
   useState,
 } from 'react'
-import { defaultUserResponse } from '../types'
+import { defaultUserResponse, TimelineNodeProps } from '../types'
+import { FullScreen, useFullScreenHandle } from 'react-full-screen'
 
 export interface TimelineProps {
   children: ReactChild | ReactChildren | JSX.Element[] | any
@@ -71,23 +72,36 @@ export const Timeline: React.FC<TimelineProps> = ({
     }
   }, [timelineData, nodeCount, cbFinish])
 
+  const screen = useFullScreenHandle()
+
   const childrenWithProps = React.Children.map(
     Wrapper({ children }),
     (child, index) => {
+      const timeline: TimelineNodeProps = {
+        onFinish: onNodeFinish,
+        index,
+        isActive: index === activeNode,
+        keyPressed,
+        fullscreen: screen,
+      }
+
       return React.cloneElement(child, {
-        timeline: {
-          onFinish: onNodeFinish,
-          index,
-          isActive: index === activeNode,
-          keyPressed,
-        },
+        timeline,
       })
     }
   )
 
   return (
-    <Flex h={`${size}vh`} w={`${size}vw`} justify="center" align="center">
-      {childrenWithProps}
-    </Flex>
+    <FullScreen handle={screen}>
+      <Flex
+        h={`${size}vh`}
+        w={`${size}vw`}
+        justify="center"
+        align="center"
+        backgroundColor="white"
+      >
+        {childrenWithProps}
+      </Flex>
+    </FullScreen>
   )
 }

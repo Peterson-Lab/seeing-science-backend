@@ -11,6 +11,7 @@ import {
   TextScreen,
   Timeline,
 } from '../../react-psych'
+import { BeginScreen } from '../../react-psych/components/BeginScreen'
 import { defaultUserResponse } from '../../react-psych/types'
 import { createUrqlClient } from '../../utils/createUrqlClient'
 
@@ -50,12 +51,12 @@ const ReactPsych: React.FC = () => {
       <Flex align="center" justify="center">
         <Flex shadow="md" align="center" justify="center" my={5}>
           <Timeline onFinish={finish} size="85">
-            <TextScreen buttonText="Next">
+            <BeginScreen buttonText="Next">
               <VStack spacing={4} mx={10} mb={5} textAlign="center">
                 <Heading>Diagrammatic Representations Test</Heading>
                 <Text px={60} mb={6}></Text>
               </VStack>
-            </TextScreen>
+            </BeginScreen>
             <TextScreen buttonText="Begin">
               <NextChakraImage
                 src="/exp/drt/danny.png"
