@@ -95,7 +95,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
         textAlign="center"
         alignSelf="center"
         justifySelf="center"
-        fontSize="50px"
+        fontSize="60px"
         fontWeight="800"
       >
         +

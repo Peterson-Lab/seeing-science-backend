@@ -82,7 +82,7 @@ export class UserResolver {
     // Get the user token from the headers.
     if (!userToken) return undefined
 
-    // // try to retrieve a user with the token
+    // try to retrieve a user with the token
     const user = await prisma.user.findUnique({ where: { id: userToken.id } })
 
     if (!user) return undefined
@@ -116,17 +116,25 @@ export class UserResolver {
     } catch (err) {
       if (err.code === 'P2002') {
         const field = err.meta.target[0]
-        if (field === 'email') {
-          return {
-            errors: [{ field: 'email', message: 'Email already used' }],
-          }
-        } else if (field === 'username') {
-          return {
-            errors: [{ field: 'username', message: 'Username already taken' }],
-          }
+
+        switch (field) {
+          case 'email':
+            return {
+              errors: [{ field: 'email', message: 'Email already used' }],
+            }
+          case 'username':
+            return {
+              errors: [
+                { field: 'username', message: 'Username already taken' },
+              ],
+            }
+          default:
+            return {
+              errors: [{ field: 'none', message: 'Server Error' }],
+            }
         }
       }
-      console.error(err)
+      // console.error(err)
     }
 
     if (!user) {
@@ -183,7 +191,7 @@ export class UserResolver {
     @Arg('input') input: RoleInput,
     @Ctx() { prisma, userToken, res }: Context
   ): Promise<UserResponse> {
-    // two select queries and one update, can we simplify later?
+    // two select queries and one update, simplify later?
     const user = await prisma.user.update({
       where: { email: input.email },
       data: { role: input.role },
