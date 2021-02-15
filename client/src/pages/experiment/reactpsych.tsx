@@ -50,7 +50,7 @@ const ReactPsych: React.FC = () => {
     <Layout>
       <Flex align="center" justify="center">
         <Flex shadow="md" align="center" justify="center" my={5}>
-          <Timeline onFinish={finish} size="85">
+          <Timeline onFinish={finish} size="100">
             <BeginScreen buttonText="Next">
               <VStack spacing={4} mx={10} mb={5} textAlign="center">
                 <Heading>Diagrammatic Representations Test</Heading>
