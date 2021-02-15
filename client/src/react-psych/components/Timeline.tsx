@@ -1,4 +1,4 @@
-import { Box, Button, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import React, {
   ReactChild,
   ReactChildren,
@@ -7,8 +7,8 @@ import React, {
   useEffect,
   useState,
 } from 'react'
-import { defaultUserResponse, TimelineNodeProps } from '../types'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
+import { defaultUserResponse, TimelineNodeProps } from '../types'
 
 export interface TimelineProps {
   children: ReactChild | ReactChildren | JSX.Element[] | any

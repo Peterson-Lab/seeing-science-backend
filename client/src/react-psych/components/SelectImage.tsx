@@ -58,26 +58,19 @@ export const SelectImage: React.FC<SelectImageProps> = ({
     setResponseStart(Date.now())
   }, [show])
 
-  useEffect(() => {
-    if (timeline.isActive && timeline.keyPressed) {
-      if (timeline.keyPressed === ' ') {
-        handleResponse()
-      }
-      const keyNum = parseInt(timeline.keyPressed)
-      if (keyNum > 0 && keyNum <= responses.length) {
-        handleClick(keyNum - 1)
-      }
-    }
-  }, [timeline.isActive, timeline.keyPressed, responses.length])
-
   // useEffect(() => {
-  //   const images: string[] = [stimulus]
-  //   responses.forEach((res) => {
-  //     images.push(res.answerImage)
-  //   })
-  //   cacheImages(images)
-  // }, [stimulus, responses])
+  //   if (timeline.isActive && timeline.keyPressed) {
+  //     if (timeline.keyPressed === ' ') {
+  //       handleResponse()
+  //     }
+  //     const keyNum = parseInt(timeline.keyPressed)
+  //     if (keyNum > 0 && keyNum <= responses.length) {
+  //       handleClick(keyNum - 1)
+  //     }
+  //   }
+  // }, [timeline.isActive, timeline.keyPressed, responses.length])
 
+  // delay for showing cross
   useEffect(() => {
     const waitShow = async (): Promise<void> => {
       await sleep(1000)
@@ -91,22 +84,25 @@ export const SelectImage: React.FC<SelectImageProps> = ({
   let body
   if (!show) {
     body = (
-      <Text
-        textAlign="center"
-        alignSelf="center"
-        justifySelf="center"
-        fontSize="60px"
-        fontWeight="800"
-      >
-        +
-      </Text>
+      <>
+        <Text
+          textAlign="center"
+          alignSelf="center"
+          justifySelf="center"
+          fontSize="60px"
+          fontWeight="800"
+        >
+          +
+        </Text>
+        <Box height="18vh"></Box>
+      </>
     )
   } else {
     body = (
       <>
         <NextChakraImage
-          height="20vh"
-          width="20vw"
+          height="30vh"
+          width="30vw"
           src={stimulus}
           quality={100}
           loading="eager"
@@ -126,24 +122,39 @@ export const SelectImage: React.FC<SelectImageProps> = ({
             >
               <VStack spacing={4} p={4}>
                 <NextChakraImage
-                  height="15vh"
-                  width="15vw"
+                  height="25vh"
+                  width="18vw"
                   src={response.answerImage}
                   quality={100}
                   loading="eager"
                   priority={true}
                 />
-                <Text fontSize={30} fontWeight="600">
+                {/* <Text fontSize={30} fontWeight="600">
                   {idx + 1}
-                </Text>
+                </Text> */}
               </VStack>
             </Link>
           ))}
         </HStack>
         <VStack spacing={2}>
-          <Button colorScheme="blue" onClick={handleResponse}>
-            Next
-          </Button>
+          {elementClicked === -1 ? (
+            <Box height="4vh" width="1px"></Box>
+          ) : (
+            <Button
+              colorScheme="blue"
+              onClick={handleResponse}
+              mt="3vh"
+              size="lg"
+              height="5vh"
+              width="10vw"
+              fontSize="30px"
+              fontWeight="800"
+              display={elementClicked !== -1 ? 'flex' : 'none'}
+            >
+              Next
+            </Button>
+          )}
+
           {buttonError ? <Text>Please select one of the options</Text> : null}
         </VStack>
       </>
