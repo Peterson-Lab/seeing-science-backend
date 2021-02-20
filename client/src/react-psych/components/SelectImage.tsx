@@ -58,17 +58,15 @@ export const SelectImage: React.FC<SelectImageProps> = ({
     setResponseStart(Date.now())
   }, [show])
 
-  // useEffect(() => {
-  //   if (timeline.isActive && timeline.keyPressed) {
-  //     if (timeline.keyPressed === ' ') {
-  //       handleResponse()
-  //     }
-  //     const keyNum = parseInt(timeline.keyPressed)
-  //     if (keyNum > 0 && keyNum <= responses.length) {
-  //       handleClick(keyNum - 1)
-  //     }
-  //   }
-  // }, [timeline.isActive, timeline.keyPressed, responses.length])
+  useEffect(() => {
+    const maxResponseTime = async (): Promise<void> => {
+      if (show) {
+        await sleep(10000)
+        setButtonError(true)
+      }
+    }
+    maxResponseTime()
+  }, [show])
 
   // delay for showing cross
   useEffect(() => {
@@ -155,7 +153,11 @@ export const SelectImage: React.FC<SelectImageProps> = ({
             </Button>
           )}
 
-          {buttonError ? <Text>Please select one of the options</Text> : null}
+          {buttonError ? (
+            <Text fontSize="20px" fontWeight="600">
+              Please select one of the options
+            </Text>
+          ) : null}
         </VStack>
       </>
     )
