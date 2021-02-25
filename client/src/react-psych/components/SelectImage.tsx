@@ -24,6 +24,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
   const [show, setShow] = useState(false)
   const [buttonError, setButtonError] = useState(false)
 
+  // checks that the timeline props were passed.
   if (!timeline) {
     throw new TimelineNodeError()
   }
@@ -32,12 +33,8 @@ export const SelectImage: React.FC<SelectImageProps> = ({
     setElementClicked(idx)
   }
 
+  // handles the user submitting their selection
   const handleResponse = (): void => {
-    if (elementClicked === -1) {
-      setButtonError(true)
-      return
-    }
-
     const responseEnd = Date.now()
 
     const responseTime = responseEnd - responseStart
@@ -53,11 +50,12 @@ export const SelectImage: React.FC<SelectImageProps> = ({
     setShow(false)
     timeline.onFinish(userResponse)
   }
-
+  // Saves the time when the question is shown, might want to set this to just active
   useEffect(() => {
     setResponseStart(Date.now())
   }, [show])
 
+  // Gives time before telling user to select an option
   useEffect(() => {
     const maxResponseTime = async (): Promise<void> => {
       if (show) {
@@ -68,7 +66,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
     maxResponseTime()
   }, [show])
 
-  // delay for showing cross
+  // delay for showing cross and then question
   useEffect(() => {
     const waitShow = async (): Promise<void> => {
       await sleep(1000)
@@ -164,6 +162,8 @@ export const SelectImage: React.FC<SelectImageProps> = ({
   }
 
   return (
+    // hidden images to get Next to preload all of the images when starting the experiment
+    // I have no idea why this works but it does!
     <>
       <Box display="none">
         <NextChakraImage
@@ -186,6 +186,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
           />
         ))}
       </Box>
+      {/* The actual shown part. Body starts as just the + and then is rerendered as the question */}
       <VStack spacing={10} display={timeline.isActive ? 'flex' : 'none'}>
         {body}
       </VStack>
