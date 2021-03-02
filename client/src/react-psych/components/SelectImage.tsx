@@ -152,7 +152,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
           )}
 
           {buttonError ? (
-            <Text fontSize="20px" fontWeight="600">
+            <Text fontSize="22px" fontWeight="600">
               Please select one of the options
             </Text>
           ) : null}

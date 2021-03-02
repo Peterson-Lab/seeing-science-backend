@@ -45,7 +45,14 @@ export const TextScreen: React.FC<TextScreen> = ({
   return (
     <VStack>
       {children}
-      <Button colorScheme="blue" onClick={handleResponse}>
+      <Button
+        colorScheme="blue"
+        mt="3vh"
+        size="lg"
+        fontSize="20px"
+        fontWeight="600"
+        onClick={handleResponse}
+      >
         {buttonText}
       </Button>
     </VStack>

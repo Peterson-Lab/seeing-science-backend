@@ -14,6 +14,7 @@ import {
 import { BeginScreen } from '../../react-psych/components/BeginScreen'
 import { defaultUserResponse } from '../../react-psych/types'
 import { createUrqlClient } from '../../utils/createUrqlClient'
+import ReactPlayer from 'react-player/lazy'
 
 const questionList = createQuestionList(
   '/react-psych/DRT',
@@ -35,11 +36,12 @@ const ReactPsych: React.FC = () => {
     const res = await post({ data })
 
     if (res.data?.postTrial.success) {
-      router.push('/')
+      console.log('successfully sent trial')
     } else {
-      console.log(res)
-      console.log(res.data?.postTrial.errors)
+      console.log(`failed to send trial: ${res.data?.postTrial.errors}`)
     }
+
+    router.push('/')
   }
 
   // useEffect(() => {
@@ -53,50 +55,53 @@ const ReactPsych: React.FC = () => {
           <Timeline onFinish={finish} size="100">
             <BeginScreen buttonText="Next">
               <VStack spacing={4} mx={10} mb={5} textAlign="center">
-                <Heading>Diagrammatic Representations Test</Heading>
+                <Heading fontSize="70px">
+                  Diagrammatic Representations Test
+                </Heading>
                 <Text px={60} mb={6}></Text>
               </VStack>
             </BeginScreen>
+            <TextScreen buttonText="Next">
+              <VStack spacing={8} mx={10} mb={10} textAlign="center">
+                <Heading fontSize="60px">Audio Test</Heading>
+                <Text px={60} fontSize="25px">
+                  Please click the play button below and ensure you can hear the
+                  audio clip, then click Next.
+                </Text>
+                <ReactPlayer
+                  url="/react-psych/DRT/instructions/audio_test.mp3"
+                  height="50px"
+                  controls={true}
+                />
+              </VStack>
+            </TextScreen>
             <TextScreen buttonText="Begin">
-              <NextChakraImage
-                src="/exp/drt/danny.png"
-                width={640}
-                height={400}
-              />
-              <VStack px={60} spacing={2} textAlign="center">
-                <Text>
-                  This is Danny - he likes to draw. And he likes to draw things
-                  exactly how he sees them, so that his drawings match the real
-                  things as closely as possible.
-                </Text>
-                <Text>
-                  He‘s drawing the house exactly how it looks and his drawing
-                  matches the house perfectly. This is excellent work!
-                </Text>
+              <VStack px={20} spacing={2} textAlign="center">
+                <ReactPlayer
+                  url="/react-psych/DRT/instructions/DRT_instructions.mp4"
+                  controls={true}
+                  width="80%"
+                  height="80%"
+                />
               </VStack>
             </TextScreen>
             <TextScreen buttonText="Next">
-              <VStack px={60} spacing={4} textAlign="center">
-                <Text>
-                  So, now I am going to show you some more of Danny’s drawings
-                  and I‘ll show you what he tried to draw. Your job in this game
-                  is to tell me which one is his best drawing, where he did the
-                  best job!
-                </Text>
-                <Text mb={4}>
-                  Click the drawing you think is best or press the number on
-                  your keyboard! Then click Next or press the spacebar to go to
-                  the next question.
-                </Text>
+              <VStack px={20} spacing={4} textAlign="center">
+                <ReactPlayer
+                  url="/react-psych/DRT/instructions/DRT_demo.mp4"
+                  controls={true}
+                  width="80%"
+                  height="80%"
+                />
               </VStack>
             </TextScreen>
             {questionList.map((q, idx) => {
               return <SelectImage key={idx} {...q} />
             })}
             <TextScreen buttonText="Finish">
-              <Heading>Done!</Heading>
-              <Text mb={4}>
-                Press the spacebar or click below to return to the home page.
+              <Heading fontSize="70px">Done!</Heading>
+              <Text mb={4} fontSize="25px">
+                Click below to return to the home page.
               </Text>
             </TextScreen>
           </Timeline>

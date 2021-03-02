@@ -59,7 +59,14 @@ export const BeginScreen: React.FC<BeginScreen> = ({
   return (
     <VStack>
       {children}
-      <Button colorScheme="blue" onClick={handleResponse}>
+      <Button
+        colorScheme="blue"
+        mt="3vh"
+        size="lg"
+        fontSize="20px"
+        fontWeight="600"
+        onClick={handleResponse}
+      >
         {shownText}
       </Button>
     </VStack>
