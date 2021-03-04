@@ -9,5 +9,7 @@ declare namespace NodeJS {
     ROOT_USERNAME: string;
     ROOT_EMAIL: string;
     ROOT_PASSWORD: string;
+    NODE_ENV: string;
+    SENTRY_DSN: string;
   }
 }

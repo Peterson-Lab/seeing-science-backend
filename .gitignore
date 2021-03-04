@@ -1,6 +1,7 @@
 data
 node_modules
 dist
+.env.production
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,windows,vscode,react,node
