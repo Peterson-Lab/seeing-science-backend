@@ -1,6 +1,6 @@
 {
   "name": "seeing-science-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "server for Seeing Science",
   "main": "dist/index.js",
   "repository": "https://github.com/Peterson-Lab/seeing-science",

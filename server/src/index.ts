@@ -10,7 +10,7 @@ import {
 } from '@generated/type-graphql'
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
-import { createContext } from './context'
+import { createContext, __prod__ } from './context'
 import { createPrismaClient } from './utils/prismaHelpers'
 import { UserResolver } from './resolvers/user'
 import cookieParser from 'cookie-parser'
@@ -24,6 +24,9 @@ import * as Tracing from '@sentry/tracing'
 
 const main = async () => {
   const app = express()
+  if (__prod__) {
+    app.set('trust proxy', 1)
+  }
   Sentry.init({
     dsn: process.env.SENTRY_DSN,
     integrations: [
