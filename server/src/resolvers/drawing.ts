@@ -43,7 +43,7 @@ export class DrawingResolver {
   async postDrawing(
     @Arg('data') { prompt, image }: DrawingInput,
     @Ctx() { prisma }: Context
-  ) {
+  ): Promise<DrawingResponse> {
     // add size checks etc
     const stream = image.createReadStream()
 
@@ -54,5 +54,7 @@ export class DrawingResolver {
     const buf = Buffer.concat(arr)
 
     prisma.drawing.create({ data: { prompt, image: buf } })
+
+    return { success: true }
   }
 }
