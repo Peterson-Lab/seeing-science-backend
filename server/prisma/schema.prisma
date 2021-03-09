@@ -48,3 +48,11 @@ model Trial {
   responses     Json[]
   created_at    DateTime   @default(now())
 }
+
+model Drawing {
+  id         Int      @id @default(autoincrement())
+  prompt     String
+  image      Bytes
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
