@@ -1,3 +1,4 @@
+import { FileUpload } from 'graphql-upload'
 import {
   Arg,
   Ctx,
@@ -7,7 +8,6 @@ import {
   ObjectType,
   Resolver,
 } from 'type-graphql'
-import { GraphQLUpload, FileUpload } from 'graphql-upload'
 import { Context } from '../context'
 
 @InputType()
