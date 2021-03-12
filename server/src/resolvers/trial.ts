@@ -1,4 +1,4 @@
-import GraphQLJSON from 'graphql-type-json'
+import { GraphQLJSONObject } from 'graphql-scalars'
 import {
   Arg,
   Ctx,
@@ -33,7 +33,7 @@ export class TrialInput {
   @Field()
   experiment: string
 
-  @Field(() => [GraphQLJSON])
+  @Field(() => [GraphQLJSONObject])
   responses: Record<string, any>[]
 }
 

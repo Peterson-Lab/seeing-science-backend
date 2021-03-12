@@ -7,6 +7,7 @@ import {
   DeleteTrialResolver,
   UpdateUserResolver,
   CreateExperimentResolver,
+  FindManyDrawingResolver,
 } from '@generated/type-graphql'
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
@@ -21,6 +22,8 @@ import { checkRootUser } from './utils/rootUser'
 import { TrialResolver } from './resolvers/trial'
 import * as Sentry from '@sentry/node'
 import * as Tracing from '@sentry/tracing'
+import { DrawingResolver } from './resolvers/drawing'
+import { graphqlUploadExpress } from 'graphql-upload'
 
 const main = async () => {
   const app = express()
@@ -51,6 +54,8 @@ const main = async () => {
   app.use(express.urlencoded({ extended: true }))
   app.use(cookieParser())
 
+  app.use(graphqlUploadExpress())
+
   const schema = await buildSchema({
     resolvers: [
       // included resolvers from type-graphql
@@ -58,9 +63,11 @@ const main = async () => {
       UpdateUserResolver,
       DeleteExperimentResolver,
       DeleteTrialResolver,
+      FindManyDrawingResolver,
       // custom resolvers
       UserResolver,
       TrialResolver,
+      DrawingResolver,
     ],
     validate: false,
     // using built in type-graphql auth
@@ -74,6 +81,7 @@ const main = async () => {
 
   const apolloSrv = new ApolloServer({
     context: (exp) => createContext(exp, prisma),
+    uploads: false,
     schema,
   })
 
@@ -82,7 +90,6 @@ const main = async () => {
   app.get('/', (_req, res) => {
     res.redirect('/graphql')
   })
-
   // The error handler must be before any other error middleware and after all controllers
   app.use(Sentry.Handlers.errorHandler())
 

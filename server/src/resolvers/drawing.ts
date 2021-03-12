@@ -1,9 +1,11 @@
-import { FileUpload } from 'graphql-upload'
+import { ReadStream } from 'fs'
+import { GraphQLUpload, FileUpload } from 'graphql-upload'
 import {
   Arg,
   Ctx,
   Field,
   InputType,
+  Int,
   Mutation,
   ObjectType,
   Resolver,
@@ -15,7 +17,7 @@ export class DrawingInput {
   @Field()
   prompt: string
 
-  @Field()
+  @Field(() => GraphQLUpload)
   image: FileUpload
 }
 
@@ -35,26 +37,40 @@ class DrawingResponse {
 
   @Field(() => Boolean, { nullable: true })
   success?: boolean
+
+  @Field(() => Int, { nullable: true })
+  id?: number
+}
+
+function streamToBuffer(stream: ReadStream): Promise<Buffer> {
+  const chunks: Buffer[] = []
+  return new Promise((resolve, reject) => {
+    stream.on('data', (chunk) => chunks.push(chunk as Buffer))
+    stream.on('error', (err) => reject(err))
+    stream.on('end', () => resolve(Buffer.concat(chunks)))
+  })
 }
 
 @Resolver()
 export class DrawingResolver {
   @Mutation(() => DrawingResponse)
   async postDrawing(
-    @Arg('data') { prompt, image }: DrawingInput,
+    @Arg('prompt') prompt: string,
+    @Arg('image', () => GraphQLUpload)
+    { createReadStream }: FileUpload,
     @Ctx() { prisma }: Context
   ): Promise<DrawingResponse> {
     // add size checks etc
-    const stream = image.createReadStream()
+    const stream = createReadStream()
+    const buf = await streamToBuffer(stream)
 
-    const arr = []
-    for await (const chunk of stream) {
-      arr.push(chunk)
+    const drawing = await prisma.drawing.create({
+      data: { prompt, image: buf },
+    })
+
+    return {
+      success: true,
+      id: drawing.id,
     }
-    const buf = Buffer.concat(arr)
-
-    prisma.drawing.create({ data: { prompt, image: buf } })
-
-    return { success: true }
   }
 }
