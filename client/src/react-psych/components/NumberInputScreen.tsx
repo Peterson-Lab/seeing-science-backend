@@ -22,7 +22,7 @@ interface NumberInputScreen {
 }
 
 interface NumberFormData {
-  num: number
+  num: string
 }
 
 export const NumberInputScreen: React.FC<NumberInputScreen> = ({
@@ -44,7 +44,7 @@ export const NumberInputScreen: React.FC<NumberInputScreen> = ({
     timeline.onFinish({
       node: timeline.index,
       correct: null,
-      response: data.num,
+      response: parseInt(data.num),
       time: responseTime,
     })
   }
@@ -60,12 +60,18 @@ export const NumberInputScreen: React.FC<NumberInputScreen> = ({
         <Box>
           <FormControl>
             <FormLabel>{fieldLabel}</FormLabel>
-            <Input
+            <NumberInput
               label={fieldLabel}
               type="number"
-              placeholder="123"
-              ref={register({ required: true, valueAsNumber: true })}
-            ></Input>
+              ref={register({
+                required: true,
+                name: 'num',
+                validateAsNumber: true,
+              })}
+              onChange={(valueString) => setValue('num', valueString)}
+            >
+              <NumberInputField name="num" placeholder={fieldPlaceholder} />
+            </NumberInput>
           </FormControl>
           <Button colorScheme="blue" type="submit">
             {buttonText}
