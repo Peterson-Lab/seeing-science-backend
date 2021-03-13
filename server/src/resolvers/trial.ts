@@ -35,14 +35,17 @@ export class TrialInput {
 
   @Field(() => [GraphQLJSONObject])
   responses: Record<string, any>[]
+
+  @Field()
+  participantId: number
 }
 
 @Resolver()
 export class TrialResolver {
   @Mutation(() => TrialResponse)
   async postTrial(
-    @Arg('data') { experiment, responses }: TrialInput,
-    @Ctx() { prisma, userToken }: Context
+    @Arg('data') { experiment, responses, participantId }: TrialInput,
+    @Ctx() { prisma }: Context
   ): Promise<TrialResponse> {
     // TODO: validate responses for that trial. will need custom stuff here
     if (experiment === 'DRT' && responses.length !== 12) {
@@ -53,13 +56,12 @@ export class TrialResolver {
       }
     }
 
-    let user = undefined
-    if (userToken) {
-      user = { connect: { id: userToken.id } }
-    }
-
     const trial = await prisma.trial.create({
-      data: { experiment: { connect: { name: experiment } }, responses, user },
+      data: {
+        experiment: { connect: { name: experiment } },
+        responses,
+        participant_id: participantId,
+      },
     })
 
     console.log(trial)

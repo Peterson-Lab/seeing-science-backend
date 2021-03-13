@@ -26,7 +26,6 @@ model User {
   role       Role     @default(USER)
   /// @TypeGraphQL.omit(output: true)
   password   String
-  trials     Trial[]
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
@@ -40,13 +39,12 @@ model Experiment {
 }
 
 model Trial {
-  id            Int        @id @default(autoincrement())
-  user_id       Int?
-  user          User?      @relation(fields: [user_id], references: [id])
-  experiment_id Int
-  experiment    Experiment @relation(fields: [experiment_id], references: [id])
-  responses     Json[]
-  created_at    DateTime   @default(now())
+  id             Int        @id @default(autoincrement())
+  participant_id Int
+  experiment_id  Int
+  experiment     Experiment @relation(fields: [experiment_id], references: [id])
+  responses      Json[]
+  created_at     DateTime   @default(now())
 }
 
 model Drawing {

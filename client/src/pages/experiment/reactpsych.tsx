@@ -14,6 +14,7 @@ import { BeginScreen } from '../../react-psych/components/BeginScreen'
 import { defaultUserResponse } from '../../react-psych/types'
 import { createUrqlClient } from '../../utils/createUrqlClient'
 import ReactPlayer from 'react-player/lazy'
+import { NumberInputScreen } from '../../react-psych/components/NumberInputScreen'
 
 const questionList = createQuestionList(
   '/react-psych/DRT',
@@ -60,6 +61,13 @@ const ReactPsych: React.FC = () => {
                 <Text px={60} mb={6}></Text>
               </VStack>
             </BeginScreen>
+            <NumberInputScreen
+              buttonText="Next"
+              fieldLabel="Participant ID"
+              fieldPlaceholder="123"
+            >
+              <Heading>Enter your Participant ID below</Heading>
+            </NumberInputScreen>
             <TextScreen buttonText="Next">
               <VStack spacing={8} mx={10} mb={10} textAlign="center">
                 <Heading fontSize="60px">Audio Test</Heading>
