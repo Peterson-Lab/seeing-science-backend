@@ -1,7 +1,7 @@
 import { Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import { withUrqlClient } from 'next-urql'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../../components/Layout/Layout'
 import { TrialInput, usePostTrialMutation } from '../../generated/graphql'
 import {
@@ -27,10 +27,14 @@ const ReactPsych: React.FC = () => {
   const router = useRouter()
   const [, post] = usePostTrialMutation()
 
+  const [id, setId] = useState(-1)
+
   const finish = async (responses: defaultUserResponse[]): Promise<void> => {
+    console.log(id)
     const data: TrialInput = {
       experiment: 'DRT',
       responses,
+      participantId: id,
     }
 
     const res = await post({ data })
@@ -38,7 +42,8 @@ const ReactPsych: React.FC = () => {
     if (res.data?.postTrial.success) {
       console.log('successfully sent trial')
     } else {
-      console.log(`failed to send trial: ${res.data?.postTrial.errors}`)
+      console.log(`failed to send trial`)
+      console.log(res.data?.postTrial.errors)
     }
 
     router.push('/')
@@ -65,6 +70,7 @@ const ReactPsych: React.FC = () => {
               buttonText="Next"
               fieldLabel="Participant ID"
               fieldPlaceholder="123"
+              setNumber={setId}
             >
               <Heading>Enter your Participant ID below</Heading>
             </NumberInputScreen>

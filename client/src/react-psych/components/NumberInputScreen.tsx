@@ -19,6 +19,7 @@ interface NumberInputScreen {
   buttonText: string
   fieldLabel: string
   fieldPlaceholder: string
+  setNumber?: (n: number) => void
 }
 
 interface NumberFormData {
@@ -31,8 +32,9 @@ export const NumberInputScreen: React.FC<NumberInputScreen> = ({
   buttonText,
   fieldLabel,
   fieldPlaceholder,
+  setNumber,
 }) => {
-  const { register, handleSubmit, setValue } = useForm()
+  const { register, handleSubmit, setValue, setError } = useForm()
   if (!timeline) {
     throw new TimelineNodeError()
   }
@@ -41,10 +43,18 @@ export const NumberInputScreen: React.FC<NumberInputScreen> = ({
 
   const onSubmit = async (data: NumberFormData): Promise<void> => {
     const responseTime = getResponseTime(responseStart)
+    const number = parseInt(data.num)
+    if (isNaN(number)) {
+      setError('num', { type: 'required' })
+      return
+    }
+
+    if (setNumber) setNumber(number)
+
     timeline.onFinish({
       node: timeline.index,
       correct: null,
-      response: parseInt(data.num),
+      response: number,
       time: responseTime,
     })
   }
@@ -63,11 +73,13 @@ export const NumberInputScreen: React.FC<NumberInputScreen> = ({
             <NumberInput
               label={fieldLabel}
               type="number"
-              ref={register({
-                required: true,
-                name: 'num',
-                validateAsNumber: true,
-              })}
+              ref={
+                register({
+                  required: true,
+                  name: 'num',
+                  validateAsNumber: true,
+                }) as undefined
+              }
               onChange={(valueString) => setValue('num', valueString)}
             >
               <NumberInputField name="num" placeholder={fieldPlaceholder} />

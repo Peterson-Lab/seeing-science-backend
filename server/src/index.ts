@@ -18,7 +18,7 @@ import cookieParser from 'cookie-parser'
 import express from 'express'
 import cors from 'cors'
 import { authChecker } from './utils/gqlAuth'
-import { checkRootUser } from './utils/rootUser'
+import { checkExperimentsPresent, checkRootUser } from './utils/rootUser'
 import { TrialResolver } from './resolvers/trial'
 import * as Sentry from '@sentry/node'
 import * as Tracing from '@sentry/tracing'
@@ -78,6 +78,11 @@ const main = async () => {
 
   // creates root user in DB if hasn't been created already. Might need to remove depending on how service is deployed. Works for testing for now.
   checkRootUser(prisma)
+  // makes sure all current experiments are created in DB
+  checkExperimentsPresent(prisma)
+
+  // const experiments = await prisma.experiment.findMany()
+  // console.log(experiments)
 
   const apolloSrv = new ApolloServer({
     context: (exp) => createContext(exp, prisma),

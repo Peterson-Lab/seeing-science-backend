@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import argon2 from 'argon2'
+import { experiments } from '../context'
 
 export const checkRootUser = async (prisma: PrismaClient): Promise<void> => {
   const rootUser = await prisma.user.findUnique({ where: { username: 'root' } })
@@ -16,4 +17,21 @@ export const checkRootUser = async (prisma: PrismaClient): Promise<void> => {
       },
     })
   }
+}
+
+export const checkExperimentsPresent = async (
+  prisma: PrismaClient
+): Promise<void> => {
+  experiments.forEach(async (experimentName) => {
+    console.log(experimentName)
+    let experiment = await prisma.experiment.findUnique({
+      where: { name: experimentName },
+    })
+
+    if (!experiment) {
+      experiment = await prisma.experiment.create({
+        data: { name: experimentName },
+      })
+    }
+  })
 }

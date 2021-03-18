@@ -48,7 +48,10 @@ export class TrialResolver {
     @Ctx() { prisma }: Context
   ): Promise<TrialResponse> {
     // TODO: validate responses for that trial. will need custom stuff here
-    if (experiment === 'DRT' && responses.length !== 12) {
+    // console.log(responses.length)
+    // console.log(experiment)
+    // console.log(participantId)
+    if (experiment === 'DRT' && responses.length !== 16) {
       return {
         errors: [
           { error: 'Invalid Trial', message: 'Incorrect Number of Responses' },
@@ -56,15 +59,18 @@ export class TrialResolver {
       }
     }
 
-    const trial = await prisma.trial.create({
+    await prisma.trial.create({
       data: {
-        experiment: { connect: { name: experiment } },
+        experiment: {
+          connectOrCreate: {
+            where: { name: experiment },
+            create: { name: experiment },
+          },
+        },
         responses,
         participant_id: participantId,
       },
     })
-
-    console.log(trial)
 
     return { success: true }
   }
