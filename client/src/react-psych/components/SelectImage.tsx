@@ -125,9 +125,9 @@ export const SelectImage: React.FC<SelectImageProps> = ({
                   loading="eager"
                   priority={true}
                 />
-                {/* <Text fontSize={30} fontWeight="600">
+                <Text fontSize={30} fontWeight="600">
                   {idx + 1}
-                </Text> */}
+                </Text>
               </VStack>
             </Link>
           ))}

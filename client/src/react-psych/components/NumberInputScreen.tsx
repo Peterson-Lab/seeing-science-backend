@@ -8,7 +8,6 @@ import {
   Button,
   FormControl,
   FormLabel,
-  Input,
   NumberInput,
   NumberInputField,
   VStack,
@@ -64,12 +63,11 @@ export const NumberInputScreen: React.FC<NumberInputScreen> = ({
   }
 
   return (
-    <VStack>
+    <VStack spacing={5}>
       {children}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Box>
+        <VStack spacing={3}>
           <FormControl>
-            <FormLabel>{fieldLabel}</FormLabel>
             <NumberInput
               label={fieldLabel}
               type="number"
@@ -80,15 +78,25 @@ export const NumberInputScreen: React.FC<NumberInputScreen> = ({
                   validateAsNumber: true,
                 }) as undefined
               }
+              size="lg"
+              w="20vw"
               onChange={(valueString) => setValue('num', valueString)}
             >
               <NumberInputField name="num" placeholder={fieldPlaceholder} />
             </NumberInput>
           </FormControl>
-          <Button colorScheme="blue" type="submit">
+          <Button
+            colorScheme="blue"
+            size="lg"
+            height="4vh"
+            width="10vw"
+            fontSize="25px"
+            fontWeight="800"
+            type="submit"
+          >
             {buttonText}
           </Button>
-        </Box>
+        </VStack>
       </form>
     </VStack>
   )

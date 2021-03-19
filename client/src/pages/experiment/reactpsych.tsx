@@ -72,7 +72,7 @@ const ReactPsych: React.FC = () => {
               fieldPlaceholder="123"
               setNumber={setId}
             >
-              <Heading>Enter your Participant ID below</Heading>
+              <Heading>Enter your Participant ID</Heading>
             </NumberInputScreen>
             <TextScreen buttonText="Next">
               <VStack spacing={8} mx={10} mb={10} textAlign="center">
