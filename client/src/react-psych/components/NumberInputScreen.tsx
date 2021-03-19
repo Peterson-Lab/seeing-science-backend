@@ -1,17 +1,15 @@
-import React from 'react'
-import { getResponseTime, useResponseStart } from '../hooks/useResponseStart'
-import { TimelineNodeProps } from '../types'
-import { TimelineNodeError } from '../utils/errors'
-import { useForm } from 'react-hook-form'
 import {
-  Box,
   Button,
   FormControl,
-  FormLabel,
   NumberInput,
   NumberInputField,
   VStack,
 } from '@chakra-ui/react'
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import { getResponseTime, useResponseStart } from '../hooks/useResponseStart'
+import { TimelineNodeProps } from '../types'
+import { TimelineNodeError } from '../utils/errors'
 
 interface NumberInputScreen {
   timeline?: TimelineNodeProps

@@ -8,4 +8,4 @@ docker push zireael13/seeing-science:$VERSION
 
 cd ~/.ssh
 
-ssh -i digitalocean root@167.172.140.37 "docker pull zireael13/seeing-science:$VERSION && docker tag zireael13/seeing-science:$VERSION dokku/api:$VERSION && dokku deploy api $VERSION"
+ssh -i digitalocean root@159.89.36.182 "docker pull zireael13/seeing-science:$VERSION && docker tag zireael13/seeing-science:$VERSION dokku/api:$VERSION && dokku deploy api $VERSION"

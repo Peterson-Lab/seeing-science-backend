@@ -1,16 +1,16 @@
 import {
   Flex,
-  VStack,
   Heading,
-  Text,
-  OrderedList,
   ListItem,
+  OrderedList,
+  Text,
+  VStack,
 } from '@chakra-ui/react'
 import React from 'react'
 import ReactPlayer from 'react-player'
 import Layout from '../components/Layout/Layout'
 
-const CitizenScience: React.FC = ({}) => {
+const CitizenScience: React.FC = () => {
   return (
     <Layout>
       <Flex justify="center" mt={50}>
