@@ -16,17 +16,17 @@ export const ExperimentStack: React.FC = () => {
         _hover={{ textDecoration: 'none', boxShadow: 'outline' }}
       >
         <VStack shadow="md" p={5}>
-          <Heading>React-Psych DRT</Heading>
-          <Text>Diagrammatic Representation Test built with React-Psych</Text>
+          <Heading>DRT</Heading>
+          <Text>Diagrammatic Representation Test</Text>
         </VStack>
       </NextChakraLink>
       <NextChakraLink
-        href="/experiment/jspsych"
+        href="/"
         _hover={{ textDecoration: 'none', boxShadow: 'outline' }}
       >
         <VStack shadow="md" p={5}>
-          <Heading>jsPsych DRT</Heading>
-          <Text>Diagrammatic Representation Test built with jsPsych</Text>
+          <Heading>Example</Heading>
+          <Text>Example example</Text>
         </VStack>
       </NextChakraLink>
     </Stack>

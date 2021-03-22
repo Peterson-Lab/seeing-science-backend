@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, HStack, Link, Spacer } from '@chakra-ui/react'
 import React from 'react'
+import { useQueryClient } from 'react-query'
 import { useLogoutMutation, useMeQuery } from '../../generated/graphql'
 import { createClient } from '../../graphql/createClient'
 import { NextChakraImage } from '../NextChakraImage'
@@ -7,14 +8,24 @@ import { NextChakraLink } from '../NextChakraLink'
 
 const Navbar: React.FC = () => {
   const rqClient = createClient()
-  // TODO: auth not working
-  const { data, isFetching } = useMeQuery(rqClient, {}, { staleTime: 10000 })
-  const { mutateAsync: logout } = useLogoutMutation(rqClient)
+  const queryClient = useQueryClient()
+  const { data, isFetching } = useMeQuery(rqClient, {}, { staleTime: 360000 })
+  const { mutateAsync: logout } = useLogoutMutation(rqClient, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('Me')
+    },
+  })
 
   let userLogin
 
   if (isFetching) {
-    userLogin = null
+    userLogin = (
+      <>
+        <Box textColor="white" fontWeight="600">
+          Loading...
+        </Box>
+      </>
+    )
   } else if (!data?.me) {
     userLogin = (
       <>
@@ -53,6 +64,9 @@ const Navbar: React.FC = () => {
         </NextChakraLink>
         <Spacer />
         <HStack spacing={4} mr={4}>
+          <NextChakraLink textColor="white" href="/citizensciencemonth">
+            Citizen Science Month
+          </NextChakraLink>
           <NextChakraLink textColor="white" href="/about">
             About
           </NextChakraLink>

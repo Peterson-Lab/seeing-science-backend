@@ -95,15 +95,15 @@ const CitizenScience: React.FC = () => {
                   First, learn about spatial thinking by watching the video
                   below. Second, think about when you have used spatial thinking
                   in your life. Third, share your ideas in any of these ways:
-                  <OrderedList>
-                    <ListItem>Type in the form below</ListItem>
-                    <ListItem>Email us at edneurolab@american.edu</ListItem>
-                    <ListItem>
-                      Share on Twitter using #SpatialThinking or tagging
-                      @SeeingScience
-                    </ListItem>
-                  </OrderedList>
                 </Text>
+                <OrderedList>
+                  <ListItem>Type in the form below</ListItem>
+                  <ListItem>Email us at edneurolab@american.edu</ListItem>
+                  <ListItem>
+                    Share on Twitter using #SpatialThinking or tagging
+                    @SeeingScience
+                  </ListItem>
+                </OrderedList>
               </VStack>
             </VStack>
             <VStack>
