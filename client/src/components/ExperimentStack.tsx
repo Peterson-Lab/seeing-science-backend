@@ -20,15 +20,6 @@ export const ExperimentStack: React.FC = () => {
           <Text>Diagrammatic Representation Test</Text>
         </VStack>
       </NextChakraLink>
-      <NextChakraLink
-        href="/"
-        _hover={{ textDecoration: 'none', boxShadow: 'outline' }}
-      >
-        <VStack shadow="md" p={5}>
-          <Heading>Example</Heading>
-          <Text>Example example</Text>
-        </VStack>
-      </NextChakraLink>
     </Stack>
   )
 }
