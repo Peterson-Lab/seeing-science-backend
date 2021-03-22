@@ -7,7 +7,8 @@ import { NextChakraLink } from '../NextChakraLink'
 
 const Navbar: React.FC = () => {
   const rqClient = createClient()
-  const { data, isFetching } = useMeQuery(rqClient)
+  // TODO: auth not working
+  const { data, isFetching } = useMeQuery(rqClient, {}, { staleTime: 10000 })
   const { mutateAsync: logout } = useLogoutMutation(rqClient)
 
   let userLogin
