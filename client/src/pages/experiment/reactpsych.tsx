@@ -1,9 +1,10 @@
 import { Flex, Heading, Text, VStack } from '@chakra-ui/react'
-import { withUrqlClient } from 'next-urql'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import ReactPlayer from 'react-player/lazy'
 import Layout from '../../components/Layout/Layout'
 import { TrialInput, usePostTrialMutation } from '../../generated/graphql'
+import { createClient } from '../../graphql/createClient'
 import {
   createQuestionList,
   SelectImage,
@@ -11,10 +12,8 @@ import {
   Timeline,
 } from '../../react-psych'
 import { BeginScreen } from '../../react-psych/components/BeginScreen'
-import { defaultUserResponse } from '../../react-psych/types'
-import { createUrqlClient } from '../../utils/createUrqlClient'
-import ReactPlayer from 'react-player/lazy'
 import { NumberInputScreen } from '../../react-psych/components/NumberInputScreen'
+import { defaultUserResponse } from '../../react-psych/types'
 
 const questionList = createQuestionList(
   '/react-psych/DRT',
@@ -25,7 +24,8 @@ const questionList = createQuestionList(
 
 const ReactPsych: React.FC = () => {
   const router = useRouter()
-  const [, post] = usePostTrialMutation()
+  const rqClient = createClient()
+  const { mutateAsync } = usePostTrialMutation(rqClient)
 
   const [id, setId] = useState(-1)
 
@@ -37,13 +37,13 @@ const ReactPsych: React.FC = () => {
       participantId: id,
     }
 
-    const res = await post({ data })
+    const res = await mutateAsync({ data })
 
-    if (res.data?.postTrial.success) {
+    if (res.postTrial.success) {
       console.log('successfully sent trial')
     } else {
       console.log(`failed to send trial`)
-      console.log(res.data?.postTrial.errors)
+      console.log(res.postTrial.errors)
     }
 
     router.push('/')
@@ -124,4 +124,4 @@ const ReactPsych: React.FC = () => {
   )
 }
 
-export default withUrqlClient(createUrqlClient)(ReactPsych)
+export default ReactPsych

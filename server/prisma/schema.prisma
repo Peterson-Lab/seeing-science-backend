@@ -54,3 +54,8 @@ model Drawing {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
+
+model SpatialActivity {
+  id      Int      @id @default(autoincrement())
+  answers String[]
+}

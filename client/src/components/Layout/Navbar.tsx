@@ -1,16 +1,18 @@
 import { Box, Flex, Heading, HStack, Link, Spacer } from '@chakra-ui/react'
 import React from 'react'
 import { useLogoutMutation, useMeQuery } from '../../generated/graphql'
+import { createClient } from '../../graphql/createClient'
 import { NextChakraImage } from '../NextChakraImage'
 import { NextChakraLink } from '../NextChakraLink'
 
 const Navbar: React.FC = () => {
-  const [{ data, fetching }] = useMeQuery({})
-  const [, logout] = useLogoutMutation()
+  const rqClient = createClient()
+  const { data, isFetching } = useMeQuery(rqClient)
+  const { mutateAsync: logout } = useLogoutMutation(rqClient)
 
   let userLogin
 
-  if (fetching) {
+  if (isFetching) {
     userLogin = null
   } else if (!data?.me) {
     userLogin = (
@@ -27,7 +29,7 @@ const Navbar: React.FC = () => {
     userLogin = (
       <>
         <Box textColor="white">{data.me.username}</Box>
-        <Link textColor="white" onClick={() => logout()} fontWeight="700">
+        <Link textColor="white" onClick={() => logout({})} fontWeight="700">
           Logout
         </Link>
       </>

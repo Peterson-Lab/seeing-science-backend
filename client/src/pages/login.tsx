@@ -10,22 +10,22 @@ import {
   Heading,
   Input,
 } from '@chakra-ui/react'
-import { createUrqlClient } from '../utils/createUrqlClient'
-import { withUrqlClient } from 'next-urql'
 import Layout from '../components/Layout/Layout'
 import { LoginInput, useLoginMutation } from '../generated/graphql'
+import { createClient } from '../graphql/createClient'
 
 const Login: React.FC = () => {
   const router = useRouter()
-  const [, login] = useLoginMutation()
+  const rqClient = createClient()
+  const { mutateAsync } = useLoginMutation(rqClient)
   const { register, handleSubmit, errors, formState, setError } = useForm()
   const onSubmit = async (input: LoginInput): Promise<void> => {
-    const response = await login({ input })
-    if (response.data?.login.errors) {
-      response.data.login.errors.forEach((err) => {
+    const response = await mutateAsync({ input })
+    if (response.login.errors) {
+      response.login.errors.forEach((err) => {
         setError(err.field, { message: err.message })
       })
-    } else if (response.data?.login.user) {
+    } else if (response.login.user) {
       router.push('/')
     } else {
       console.log('unknown error')
@@ -74,4 +74,4 @@ const Login: React.FC = () => {
   )
 }
 
-export default withUrqlClient(createUrqlClient)(Login)
+export default Login

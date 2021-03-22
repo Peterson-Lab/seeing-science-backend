@@ -24,6 +24,7 @@ import * as Sentry from '@sentry/node'
 import * as Tracing from '@sentry/tracing'
 import { DrawingResolver } from './resolvers/drawing'
 import { graphqlUploadExpress } from 'graphql-upload'
+import { SpatialResolver } from './resolvers/spatial'
 
 const main = async () => {
   const app = express()
@@ -68,6 +69,7 @@ const main = async () => {
       UserResolver,
       TrialResolver,
       DrawingResolver,
+      SpatialResolver,
     ],
     validate: false,
     // using built in type-graphql auth

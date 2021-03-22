@@ -1,5 +1,4 @@
 import {
-  Box,
   Flex,
   Heading,
   ListItem,
@@ -8,7 +7,6 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import React from 'react'
-import { useForm } from 'react-hook-form'
 import ReactPlayer from 'react-player'
 import Layout from '../components/Layout/Layout'
 import SpatialForm from '../components/SpatialForm'

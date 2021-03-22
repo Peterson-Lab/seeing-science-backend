@@ -1,7 +1,3 @@
-import React from 'react'
-import { useRouter } from 'next/router'
-import { RegisterInput, useRegisterMutation } from '../generated/graphql'
-import { useForm } from 'react-hook-form'
 import {
   Box,
   Button,
@@ -11,21 +7,25 @@ import {
   Heading,
   Input,
 } from '@chakra-ui/react'
-import { createUrqlClient } from '../utils/createUrqlClient'
-import { withUrqlClient } from 'next-urql'
+import { useRouter } from 'next/router'
+import React from 'react'
+import { useForm } from 'react-hook-form'
 import Layout from '../components/Layout/Layout'
+import { RegisterInput, useRegisterMutation } from '../generated/graphql'
+import { createClient } from '../graphql/createClient'
 
 const Register: React.FC = () => {
   const router = useRouter()
-  const [, submitRegistration] = useRegisterMutation()
+  const rqClient = createClient()
+  const { mutateAsync } = useRegisterMutation(rqClient)
   const { register, handleSubmit, errors, formState, setError } = useForm()
   const onSubmit = async (input: RegisterInput): Promise<void> => {
-    const response = await submitRegistration({ input })
-    if (response.data?.register.errors) {
-      response.data.register.errors.forEach((err) => {
+    const response = await mutateAsync({ input })
+    if (response.register.errors) {
+      response.register.errors.forEach((err) => {
         setError(err.field, { message: err.message })
       })
-    } else if (response.data?.register.user) {
+    } else if (response.register.user) {
       router.push('/')
     } else {
       console.log('unknown error')
@@ -92,5 +92,4 @@ const Register: React.FC = () => {
     </Layout>
   )
 }
-
-export default withUrqlClient(createUrqlClient)(Register)
+export default Register
