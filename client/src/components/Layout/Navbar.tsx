@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
           </NextChakraLink>
         </HStack>
       </Flex>
-      <HStack bg="green.800" p={4} spacing={5} justify="end" ml="auto">
+      <HStack bg="green.500" p={4} spacing={5} justify="end" ml="auto">
         {userLogin}
       </HStack>
     </Flex>
