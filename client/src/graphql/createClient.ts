@@ -5,6 +5,6 @@ export const createClient = (): GraphQLClient => {
   if (process.env.NEXT_PUBLIC_API_URL) url = process.env.NEXT_PUBLIC_API_URL
   else url = 'http://localhost:4000/graphql'
 
-  const client = new GraphQLClient(url)
+  const client = new GraphQLClient(url, { credentials: 'include' })
   return client
 }

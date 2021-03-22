@@ -21,6 +21,7 @@ const Login: React.FC = () => {
   const { register, handleSubmit, errors, formState, setError } = useForm()
   const onSubmit = async (input: LoginInput): Promise<void> => {
     const response = await mutateAsync({ input })
+    console.log(response)
     if (response.login.errors) {
       response.login.errors.forEach((err) => {
         setError(err.field, { message: err.message })
