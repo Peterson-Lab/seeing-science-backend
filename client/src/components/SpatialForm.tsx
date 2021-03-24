@@ -35,7 +35,7 @@ const SpatialForm: React.FC = () => {
     if (!input.ans) {
       setError('ans', {
         type: 'minLength',
-        message: `You can't have no answers!`,
+        message: `You can't have zero answers!`,
       })
       return
     }
