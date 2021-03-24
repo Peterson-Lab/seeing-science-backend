@@ -30,21 +30,15 @@ model User {
   updated_at DateTime @updatedAt
 }
 
-model Experiment {
-  id         Int      @id @default(autoincrement())
-  name       String   @unique
-  trials     Trial[]
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-}
-
-model Trial {
-  id             Int        @id @default(autoincrement())
+model drtTrialResponse {
+  id             Int      @id @default(autoincrement())
   participant_id Int
-  experiment_id  Int
-  experiment     Experiment @relation(fields: [experiment_id], references: [id])
-  responses      Json[]
-  created_at     DateTime   @default(now())
+  question       Int
+  answer         Int
+  time           Int
+  correct        Boolean
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
 }
 
 model Drawing {
@@ -56,6 +50,8 @@ model Drawing {
 }
 
 model SpatialActivity {
-  id      Int      @id @default(autoincrement())
-  answers String[]
+  id         Int      @id @default(autoincrement())
+  answers    String[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

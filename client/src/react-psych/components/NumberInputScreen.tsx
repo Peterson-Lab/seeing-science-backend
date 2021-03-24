@@ -49,6 +49,7 @@ export const NumberInputScreen: React.FC<NumberInputScreen> = ({
     if (setNumber) setNumber(number)
 
     timeline.onFinish({
+      type: 'input',
       node: timeline.index,
       correct: null,
       response: number,

@@ -1,18 +1,12 @@
 import { Flex } from '@chakra-ui/react'
-import React, {
-  ReactChild,
-  ReactChildren,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
+import React, { ReactChild, ReactChildren, ReactNode, useState } from 'react'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
 import { defaultUserResponse, TimelineNodeProps } from '../types'
 
 export interface TimelineProps {
   children: ReactChild | ReactChildren | JSX.Element[] | any
-  onFinish: (data: defaultUserResponse[]) => void
+  onFinish: () => void
+  sendNodeData: (data: defaultUserResponse) => Promise<void>
   size: string
 }
 
@@ -23,54 +17,26 @@ const Wrapper = ({ children }: { children?: ReactNode }): JSX.Element => {
 export const Timeline: React.FC<TimelineProps> = ({
   children,
   onFinish,
+  sendNodeData,
   size,
 }) => {
   const [activeNode, setActiveNode] = useState(0)
-  const [timelineData, setTimelineData] = useState<defaultUserResponse[]>([])
-  const [keyPressed, setKeyPressed] = useState<string | null>(null)
 
   const nodeCount = React.Children.count(children)
-  // const keyDown = useCallback(
-  //   (e: KeyboardEvent): void => {
-  //     const validKeys = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-  //     console.log(e.key)
-  //     if (validKeys.includes(e.key)) {
-  //       e.preventDefault()
-  //       setKeyPressed(e.key)
-  //     }
-  //   },
-  //   [setKeyPressed]
-  // )
-  // find better way to do this
-  // useEffect(() => {
-  //   window.addEventListener('keydown', keyDown, { capture: true })
-  //   return () => {
-  //     window.removeEventListener('keydown', keyDown, { capture: true })
-  //   }
-  // }, [keyDown])
 
-  const onNodeFinish = (nodeData: defaultUserResponse): void => {
-    console.log(`Node ${activeNode} finished`)
-    console.log('data: ', nodeData)
-    setTimelineData((prevData) => {
-      return [...prevData, nodeData]
-    })
-    setKeyPressed(null)
+  const timelineNodeFinish = async (
+    nodeData: defaultUserResponse
+  ): Promise<void> => {
+    await sendNodeData(nodeData)
+
     if (activeNode < nodeCount - 1) {
       setActiveNode(activeNode + 1)
     }
     if (activeNode === nodeCount - 1) {
+      onFinish()
       console.log('finished')
     }
   }
-
-  const cbFinish = useCallback(() => onFinish(timelineData), [timelineData])
-
-  useEffect(() => {
-    if (timelineData.length === nodeCount) {
-      cbFinish()
-    }
-  }, [timelineData, nodeCount, cbFinish])
 
   const screen = useFullScreenHandle()
 
@@ -78,10 +44,9 @@ export const Timeline: React.FC<TimelineProps> = ({
     Wrapper({ children }),
     (child, index) => {
       const timeline: TimelineNodeProps = {
-        onFinish: onNodeFinish,
+        onFinish: timelineNodeFinish,
         index,
         isActive: index === activeNode,
-        keyPressed,
         fullscreen: screen,
       }
 

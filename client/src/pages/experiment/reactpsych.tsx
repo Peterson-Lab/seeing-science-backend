@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import ReactPlayer from 'react-player/lazy'
 import Layout from '../../components/Layout/Layout'
-import { TrialInput, usePostTrialMutation } from '../../generated/graphql'
+import { usePostTrialMutation } from '../../generated/graphql'
 import { createClient } from '../../graphql/createClient'
 import {
   createQuestionList,
@@ -28,25 +28,48 @@ const ReactPsych: React.FC = () => {
   const { mutateAsync } = usePostTrialMutation(rqClient)
 
   const [id, setId] = useState(-1)
+  const [questionNo, setQuestionNo] = useState(1)
 
-  const finish = async (responses: defaultUserResponse[]): Promise<void> => {
-    console.log(id)
-    const data: TrialInput = {
-      experiment: 'DRT',
-      responses,
-      participantId: id,
-    }
-
-    const res = await mutateAsync({ data })
-
-    if (res.postTrial.success) {
-      console.log('successfully sent trial')
-    } else {
-      console.log(`failed to send trial`)
-      console.log(res.postTrial.errors)
-    }
-
+  const finish = (): void => {
     router.push('/')
+  }
+
+  const onNodeFinish = async (data: defaultUserResponse): Promise<void> => {
+    switch (data.type) {
+      case 'input':
+        if (typeof data.response != 'number') {
+          throw new Error('input response invalid')
+        }
+        setId(data.response)
+        return
+      case 'question':
+        if (
+          typeof data.response != 'number' ||
+          typeof data.correct != 'boolean' ||
+          typeof data.time != 'number'
+        ) {
+          throw new Error('data invalid')
+        }
+        if (id <= 0) {
+          throw new Error('id not set')
+        }
+
+        await mutateAsync({
+          data: {
+            answer: data.response,
+            correct: data.correct,
+            participantId: id,
+            questionId: questionNo,
+            time: data.time,
+          },
+        })
+        setQuestionNo((prevNo) => prevNo + 1)
+        return
+      case 'practice':
+      case 'instruction':
+      default:
+        return
+    }
   }
 
   // useEffect(() => {
@@ -57,7 +80,7 @@ const ReactPsych: React.FC = () => {
     <Layout>
       <Flex align="center" justify="center">
         <Flex shadow="md" align="center" justify="center" my={5}>
-          <Timeline onFinish={finish} size="100">
+          <Timeline onFinish={finish} sendNodeData={onNodeFinish} size="100">
             <BeginScreen buttonText="Next">
               <VStack spacing={4} mx={10} mb={5} textAlign="center">
                 <Heading fontSize="70px">

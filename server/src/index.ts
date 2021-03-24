@@ -2,13 +2,6 @@
 
 import 'reflect-metadata'
 import 'dotenv-safe/config'
-import {
-  DeleteExperimentResolver,
-  DeleteTrialResolver,
-  UpdateUserResolver,
-  CreateExperimentResolver,
-  FindManyDrawingResolver,
-} from '@generated/type-graphql'
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 import { createContext, __prod__ } from './context'
@@ -18,13 +11,13 @@ import cookieParser from 'cookie-parser'
 import express from 'express'
 import cors from 'cors'
 import { authChecker } from './utils/gqlAuth'
-import { checkExperimentsPresent, checkRootUser } from './utils/rootUser'
-import { TrialResolver } from './resolvers/trial'
+import { checkRootUser } from './utils/rootUser'
 import * as Sentry from '@sentry/node'
 import * as Tracing from '@sentry/tracing'
 import { DrawingResolver } from './resolvers/drawing'
 import { graphqlUploadExpress } from 'graphql-upload'
 import { SpatialResolver } from './resolvers/spatial'
+import { TrialResolver } from './resolvers/drt/trial'
 
 const main = async () => {
   const app = express()
@@ -60,16 +53,10 @@ const main = async () => {
   const schema = await buildSchema({
     resolvers: [
       // included resolvers from type-graphql
-      CreateExperimentResolver,
-      UpdateUserResolver,
-      DeleteExperimentResolver,
-      DeleteTrialResolver,
-      FindManyDrawingResolver,
-      // custom resolvers
       UserResolver,
-      TrialResolver,
       DrawingResolver,
       SpatialResolver,
+      TrialResolver
     ],
     validate: false,
     // using built in type-graphql auth
@@ -80,12 +67,8 @@ const main = async () => {
 
   // creates root user in DB if hasn't been created already. Might need to remove depending on how service is deployed. Works for testing for now.
   checkRootUser(prisma)
-  // makes sure all current experiments are created in DB
-  checkExperimentsPresent(prisma)
 
-  // const experiments = await prisma.experiment.findMany()
-  // console.log(experiments)
-
+  
   const apolloSrv = new ApolloServer({
     context: (exp) => createContext(exp, prisma),
     uploads: false,

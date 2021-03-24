@@ -25,12 +25,6 @@ const resolversEnhanceMap: ResolversEnhanceMap = {
   User: {
     updateUser: [Authorized(Role.ADMIN)],
   },
-  Experiment: {
-    deleteExperiment: [Authorized(Role.ADMIN)],
-  },
-  Trial: {
-    deleteTrial: [Authorized(Role.ADMIN)],
-  },
 }
 
 applyResolversEnhanceMap(resolversEnhanceMap)

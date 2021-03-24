@@ -42,6 +42,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
     const isCorrect = elementClicked === correct - 1
 
     const userResponse: defaultUserResponse = {
+      type: 'question',
       node: timeline.index,
       response: elementClicked,
       correct: isCorrect,
