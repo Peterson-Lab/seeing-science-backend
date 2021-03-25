@@ -86,7 +86,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
           textAlign="center"
           alignSelf="center"
           justifySelf="center"
-          fontSize="60px"
+          fontSize="3cm"
           fontWeight="800"
         >
           +
@@ -98,8 +98,8 @@ export const SelectImage: React.FC<SelectImageProps> = ({
     body = (
       <>
         <NextChakraImage
-          height="30vh"
-          width="30vw"
+          height="70mm"
+          width="70mm"
           src={stimulus}
           quality={100}
           loading="eager"
@@ -119,14 +119,14 @@ export const SelectImage: React.FC<SelectImageProps> = ({
             >
               <VStack spacing={4} p={4}>
                 <NextChakraImage
-                  height="25vh"
-                  width="18vw"
+                  height="70mm"
+                  width="50mm"
                   src={response.answerImage}
                   quality={100}
                   loading="eager"
                   priority={true}
                 />
-                <Text fontSize={30} fontWeight="600">
+                <Text fontSize="8mm" fontWeight="600">
                   {idx + 1}
                 </Text>
               </VStack>
@@ -135,16 +135,16 @@ export const SelectImage: React.FC<SelectImageProps> = ({
         </HStack>
         <VStack spacing={2}>
           {elementClicked === -1 ? (
-            <Box height="4vh" width="1px"></Box>
+            <Box height="20mm" width="1px"></Box>
           ) : (
             <Button
               colorScheme="blue"
               onClick={handleResponse}
-              mt="3vh"
+              mt="10mm"
               size="lg"
-              height="5vh"
-              width="10vw"
-              fontSize="30px"
+              height="15mm"
+              width="50mm"
+              fontSize="10mm"
               fontWeight="800"
               display={elementClicked !== -1 ? 'flex' : 'none'}
             >
@@ -153,7 +153,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
           )}
 
           {buttonError ? (
-            <Text fontSize="22px" fontWeight="600">
+            <Text fontSize="6mm" fontWeight="600">
               Please select one of the options
             </Text>
           ) : null}
@@ -168,8 +168,8 @@ export const SelectImage: React.FC<SelectImageProps> = ({
     <>
       <Box display="none">
         <NextChakraImage
-          height="20vh"
-          width="20vw"
+          height="1mm"
+          width="1mm"
           src={stimulus}
           quality={100}
           loading="eager"
@@ -178,8 +178,8 @@ export const SelectImage: React.FC<SelectImageProps> = ({
         {responses.map((response, idx) => (
           <NextChakraImage
             key={idx}
-            height="15vh"
-            width="15vw"
+            height="1mm"
+            width="1mm"
             src={response.answerImage}
             quality={100}
             loading="eager"
@@ -188,7 +188,11 @@ export const SelectImage: React.FC<SelectImageProps> = ({
         ))}
       </Box>
       {/* The actual shown part. Body starts as just the + and then is rerendered as the question */}
-      <VStack spacing={10} display={timeline.isActive ? 'flex' : 'none'}>
+      <VStack
+        mt="10mm"
+        spacing="20mm"
+        display={timeline.isActive ? 'flex' : 'none'}
+      >
         {body}
       </VStack>
     </>

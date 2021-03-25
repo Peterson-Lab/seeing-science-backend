@@ -1,5 +1,4 @@
 // ALWAYS KEEP REFLECT META AT TOP
-
 import 'reflect-metadata'
 import 'dotenv-safe/config'
 import { ApolloServer } from 'apollo-server-express'
@@ -58,7 +57,7 @@ const main = async () => {
       SpatialResolver,
       TrialResolver
     ],
-    validate: false,
+    validate: {always: true},
     // using built in type-graphql auth
     authChecker: authChecker,
   })

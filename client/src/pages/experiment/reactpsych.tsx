@@ -3,7 +3,10 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import ReactPlayer from 'react-player/lazy'
 import Layout from '../../components/Layout/Layout'
-import { usePostTrialMutation } from '../../generated/graphql'
+import {
+  PostTrialMutation,
+  usePostTrialMutation,
+} from '../../generated/graphql'
 import { createClient } from '../../graphql/createClient'
 import {
   createQuestionList,
@@ -35,6 +38,8 @@ const ReactPsych: React.FC = () => {
   }
 
   const onNodeFinish = async (data: defaultUserResponse): Promise<void> => {
+    let res: PostTrialMutation
+
     switch (data.type) {
       case 'input':
         if (typeof data.response != 'number') {
@@ -54,7 +59,7 @@ const ReactPsych: React.FC = () => {
           throw new Error('id not set')
         }
 
-        await mutateAsync({
+        res = await mutateAsync({
           data: {
             answer: data.response,
             correct: data.correct,
@@ -63,6 +68,8 @@ const ReactPsych: React.FC = () => {
             time: data.time,
           },
         })
+
+        console.log(res)
         setQuestionNo((prevNo) => prevNo + 1)
         return
       case 'practice':
@@ -118,6 +125,7 @@ const ReactPsych: React.FC = () => {
                   controls={true}
                   width="80%"
                   height="80%"
+                  playing={true}
                 />
               </VStack>
             </TextScreen>
@@ -128,6 +136,7 @@ const ReactPsych: React.FC = () => {
                   controls={true}
                   width="80%"
                   height="80%"
+                  playing={true}
                 />
               </VStack>
             </TextScreen>

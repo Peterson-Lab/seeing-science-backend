@@ -4,9 +4,9 @@ import {
   defaultUserResponse,
   ImageQuestionFields,
   TimelineNodeProps,
-} from '../types'
-import { NextChakraImage } from '../../components/NextChakraImage'
-import { TimelineNodeError } from '../utils/errors'
+} from '../../types'
+import { NextChakraImage } from '../../../components/NextChakraImage'
+import { TimelineNodeError } from '../../utils/errors'
 
 export type ImageQuestionProps = ImageQuestionFields & {
   timeline?: TimelineNodeProps
