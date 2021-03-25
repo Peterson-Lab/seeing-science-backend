@@ -31,6 +31,11 @@ export type defaultUserResponse = {
   response: number | string | null
   correct: boolean | null
   time: number | null
+  targetFile?: string
+  responseFile_1?: string
+  responseFile_2?: string
+  responseFile_3?: string
+  responseFile_4?: string
 }
 
 export type TimelineNodeProps = {

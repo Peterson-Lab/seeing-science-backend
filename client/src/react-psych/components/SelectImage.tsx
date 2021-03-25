@@ -13,6 +13,9 @@ export type SelectImageProps = ImageQuestionFields & {
   timeline?: TimelineNodeProps
 }
 
+const getFileNameFromPath = (str: string): string =>
+  str.substring(str.lastIndexOf('/') + 1, str.length)
+
 export const SelectImage: React.FC<SelectImageProps> = ({
   stimulus,
   responses,
@@ -41,12 +44,23 @@ export const SelectImage: React.FC<SelectImageProps> = ({
 
     const isCorrect = elementClicked === correct - 1
 
+    const targetFile = getFileNameFromPath(stimulus)
+    const responseFile_1 = getFileNameFromPath(responses[0].answerImage)
+    const responseFile_2 = getFileNameFromPath(responses[1].answerImage)
+    const responseFile_3 = getFileNameFromPath(responses[2].answerImage)
+    const responseFile_4 = getFileNameFromPath(responses[3].answerImage)
+
     const userResponse: defaultUserResponse = {
       type: 'question',
       node: timeline.index,
       response: elementClicked,
       correct: isCorrect,
       time: responseTime,
+      targetFile,
+      responseFile_1,
+      responseFile_2,
+      responseFile_3,
+      responseFile_4,
     }
     setShow(false)
     timeline.onFinish(userResponse)

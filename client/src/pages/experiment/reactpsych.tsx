@@ -51,7 +51,12 @@ const ReactPsych: React.FC = () => {
         if (
           typeof data.response != 'number' ||
           typeof data.correct != 'boolean' ||
-          typeof data.time != 'number'
+          typeof data.time != 'number' ||
+          typeof data.targetFile != 'string' ||
+          typeof data.responseFile_1 != 'string' ||
+          typeof data.responseFile_2 != 'string' ||
+          typeof data.responseFile_3 != 'string' ||
+          typeof data.responseFile_4 != 'string'
         ) {
           throw new Error('data invalid')
         }
@@ -66,6 +71,11 @@ const ReactPsych: React.FC = () => {
             participantId: id,
             questionId: questionNo,
             time: data.time,
+            targetFile: data.targetFile,
+            responseFile_1: data.responseFile_1,
+            responseFile_2: data.responseFile_2,
+            responseFile_3: data.responseFile_3,
+            responseFile_4: data.responseFile_4,
           },
         })
 

@@ -1,7 +1,7 @@
 import { buildSchema } from "type-graphql"
 import { authChecker } from "../utils/gqlAuth"
 import { DrawingResolver } from "./resolvers/drawing"
-import { TrialResolver } from "./resolvers/drt/trial"
+import { TrialResolver } from "./resolvers/drt"
 import { SpatialResolver } from "./resolvers/spatial"
 import { UserResolver } from "./resolvers/user"
 import {crudResolvers} from '@generated/type-graphql'

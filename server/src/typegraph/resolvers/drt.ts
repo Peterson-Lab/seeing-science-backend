@@ -7,7 +7,7 @@ import {
   InputType,
   Mutation,
 } from 'type-graphql'
-import { Context } from '../../../context'
+import { Context } from '../../context'
 
 @ObjectType()
 export class TrialError {
@@ -44,24 +44,35 @@ export class TrialInput {
 
   @Field()
   participantId: number
+
+  @Field()
+  targetFile: string
+
+  @Field()
+  responseFile_1: string
+  @Field()
+  responseFile_2: string
+  @Field()
+  responseFile_3: string
+  @Field()
+  responseFile_4: string
 }
+
 
 @Resolver()
 export class TrialResolver {
   @Mutation(() => TrialResponse)
   async postTrial(
-    @Arg('data') { answer, correct, participantId, questionId, time }: TrialInput,
+    @Arg('data') {participantId, questionId, ...data }: TrialInput,
     @Ctx() { prisma }: Context
   ): Promise<TrialResponse> {
 
 
     await prisma.drtTrialResponse.create({
       data: {
-        answer,
-        correct,
         participant_id: participantId,
-        time,
-        question: questionId
+        question: questionId,
+        ...data
       }
     })
 

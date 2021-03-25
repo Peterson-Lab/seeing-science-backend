@@ -15,11 +15,16 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "drtTrialResponse" (
+CREATE TABLE "DrtTrialResponse" (
     "id" SERIAL NOT NULL,
     "participant_id" INTEGER NOT NULL,
     "question" INTEGER NOT NULL,
+    "targetFile" TEXT NOT NULL,
     "answer" INTEGER NOT NULL,
+    "responseFile_1" TEXT NOT NULL,
+    "responseFile_2" TEXT NOT NULL,
+    "responseFile_3" TEXT NOT NULL,
+    "responseFile_4" TEXT NOT NULL,
     "time" INTEGER NOT NULL,
     "correct" BOOLEAN NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
