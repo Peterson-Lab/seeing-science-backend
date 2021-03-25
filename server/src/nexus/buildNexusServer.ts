@@ -1,12 +1,10 @@
-import { objectType, asNexusMethod, } from "@nexus/schema"
-import {makeSchema} from 'nexus'
+import { PrismaClient } from "@prisma/client"
 import { addCrudResolvers } from '@ra-data-prisma/backend'
+import { ApolloServer } from "apollo-server-express"
+import { Express } from 'express'
+import { makeSchema } from 'nexus'
 import { nexusSchemaPrisma } from 'nexus-plugin-prisma/schema'
 import { createContext } from "../context"
-import {Express} from 'express'
-import { PrismaClient } from "@prisma/client"
-import { ApolloServer } from "apollo-server-express"
-import { User } from "./schema/User"
 import { drtTrialResponse } from "./schema/DRT"
 
 
@@ -15,8 +13,8 @@ export const buildNexusServer = async (app: Express, prisma: PrismaClient): Prom
 
     const schema = makeSchema({
         types: [
-            User,
-            addCrudResolvers("User"),
+            // User,
+            // addCrudResolvers("User"),
             drtTrialResponse,
             addCrudResolvers("DrtTrialResponse")
         ],

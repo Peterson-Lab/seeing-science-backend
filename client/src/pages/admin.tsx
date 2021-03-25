@@ -34,7 +34,7 @@ const AdminPanel: React.FC = () => {
   } else {
     body = (
       <Admin dataProvider={dataProvider}>
-        <Resource name="User" list={UserList} />
+        {/* <Resource name="User" list={UserList} /> */}
         <Resource name="DrtTrialResponse" list={dRTList} />
       </Admin>
     )
