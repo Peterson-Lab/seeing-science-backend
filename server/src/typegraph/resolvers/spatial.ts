@@ -1,6 +1,6 @@
 import { prisma } from '.prisma/client'
 import { Arg, Ctx, Field, Mutation, ObjectType, Resolver } from 'type-graphql'
-import { Context } from '../context'
+import { Context } from '../../context'
 
 @Resolver()
 export class SpatialResolver {

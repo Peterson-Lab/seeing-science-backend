@@ -7,7 +7,7 @@ import {
   InputType,
   Mutation,
 } from 'type-graphql'
-import { Context } from '../../context'
+import { Context } from '../../../context'
 
 @ObjectType()
 export class TrialError {
@@ -50,7 +50,7 @@ export class TrialInput {
 export class TrialResolver {
   @Mutation(() => TrialResponse)
   async postTrial(
-    @Arg('data') {answer, correct, participantId, questionId, time}: TrialInput,
+    @Arg('data') { answer, correct, participantId, questionId, time }: TrialInput,
     @Ctx() { prisma }: Context
   ): Promise<TrialResponse> {
 

@@ -10,7 +10,9 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@nexus/schema": "^0.20.1",
     "@prisma/client": "^2.19.0",
+    "@ra-data-prisma/backend": "^6.0.0",
     "@sentry/node": "^6.2.3",
     "@sentry/tracing": "^6.2.3",
     "apollo-server-express": "^2.21.2",
@@ -27,6 +29,8 @@
     "graphql-type-json": "^0.3.2",
     "graphql-upload": "^11.0.0",
     "jsonwebtoken": "^8.5.1",
+    "nexus": "^1.0.0",
+    "nexus-plugin-prisma": "^0.33.0",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^1.1.1"
   },

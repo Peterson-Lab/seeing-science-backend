@@ -20,11 +20,23 @@ export const authChecker: AuthChecker<Context> = (
   return false
 }
 
+
+
 //TODO: add all of the other methods here once determined which ones I need in general
 const resolversEnhanceMap: ResolversEnhanceMap = {
   User: {
-    updateUser: [Authorized(Role.ADMIN)],
+    _all: [Authorized(Role.ADMIN)]
   },
+  Drawing: {
+    _all: [Authorized(Role.ADMIN)]
+  },
+  DrtTrialResponse: {
+    _all: [Authorized(Role.ADMIN)]
+  },
+  SpatialActivity: {
+    _all: [Authorized(Role.ADMIN)]
+  }
 }
+
 
 applyResolversEnhanceMap(resolversEnhanceMap)

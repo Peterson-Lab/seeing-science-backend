@@ -9,11 +9,11 @@ import {
   Resolver,
 } from 'type-graphql'
 import { User } from '@generated/type-graphql'
-import { Context } from '../context'
+import { Context } from '../../context'
 import argon2 from 'argon2'
 import { Field, InputType } from 'type-graphql'
-import { validateRegister } from '../utils/validateRegister'
-import { clearToken, setToken } from '../utils/jwt'
+import { validateRegister } from '../../utils/validateRegister'
+import { clearToken, setToken } from '../../utils/jwt'
 @InputType()
 export class LoginInput {
   @Field()

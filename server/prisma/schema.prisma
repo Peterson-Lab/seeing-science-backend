@@ -30,7 +30,7 @@ model User {
   updated_at DateTime @updatedAt
 }
 
-model drtTrialResponse {
+model DrtTrialResponse {
   id             Int      @id @default(autoincrement())
   participant_id Int
   question       Int

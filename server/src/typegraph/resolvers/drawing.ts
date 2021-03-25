@@ -10,7 +10,7 @@ import {
   ObjectType,
   Resolver,
 } from 'type-graphql'
-import { Context } from '../context'
+import { Context } from '../../context'
 
 @InputType()
 export class DrawingInput {
