@@ -46,16 +46,16 @@ export class TrialInput {
   participantId: number
 
   @Field()
-  targetFile: string
+  target: string
 
   @Field()
-  responseFile_1: string
+  response_1: string
   @Field()
-  responseFile_2: string
+  response_2: string
   @Field()
-  responseFile_3: string
+  response_3: string
   @Field()
-  responseFile_4: string
+  response_4: string
 }
 
 

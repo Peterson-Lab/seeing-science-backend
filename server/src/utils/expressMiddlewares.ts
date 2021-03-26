@@ -1,9 +1,29 @@
+import { __prod__ } from "./constants"
+import express, { Express } from 'express'
+import cors from "cors"
+import cookieParser from "cookie-parser"
 import * as Sentry from '@sentry/node'
 import * as Tracing from '@sentry/tracing'
-import {Express} from 'express'
+
+const trustProxy = (app: Express) => {
+    if (__prod__) {
+        app.set('trust proxy', 1)
+    }
+}
+const setupCORS  = (app: Express) => {
+  app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }))
+}
+
+const setupUrlEncoded = (app: Express) => {
+  app.use(express.urlencoded({ extended: true }))
+}
 
 
-export const initSentry = (app: Express) => {
+const setupCookieParser = (app: Express) => {
+  app.use(cookieParser())
+}
+
+const initSentry = (app: Express) => {
     Sentry.init({
         dsn: process.env.SENTRY_DSN,
         integrations: [
@@ -23,4 +43,17 @@ export const initSentry = (app: Express) => {
       app.use(Sentry.Handlers.requestHandler())
       // TracingHandler creates a trace for every incoming request
       app.use(Sentry.Handlers.tracingHandler())
+}
+
+export const addErrorHandler = (app: Express): void => {
+  app.use(Sentry.Handlers.errorHandler())
+}
+
+
+export const addMiddlewares = (app:Express) => {
+    trustProxy(app)
+    initSentry(app)
+    setupCORS(app)
+    setupUrlEncoded(app)
+    setupCookieParser(app)
 }

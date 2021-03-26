@@ -34,12 +34,12 @@ model DrtTrialResponse {
   id             Int      @id @default(autoincrement())
   participant_id Int
   question       Int
-  targetFile     String
+  target         String
   answer         Int
-  responseFile_1 String
-  responseFile_2 String
-  responseFile_3 String
-  responseFile_4 String
+  response_1     String
+  response_2     String
+  response_3     String
+  response_4     String
   time           Int
   correct        Boolean
   created_at     DateTime @default(now())

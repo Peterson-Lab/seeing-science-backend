@@ -71,11 +71,11 @@ const ReactPsych: React.FC = () => {
             participantId: id,
             questionId: questionNo,
             time: data.time,
-            targetFile: data.targetFile,
-            responseFile_1: data.responseFile_1,
-            responseFile_2: data.responseFile_2,
-            responseFile_3: data.responseFile_3,
-            responseFile_4: data.responseFile_4,
+            target: data.targetFile,
+            response_1: data.responseFile_1,
+            response_2: data.responseFile_2,
+            response_3: data.responseFile_3,
+            response_4: data.responseFile_4,
           },
         })
 

@@ -2,7 +2,6 @@ import { AuthChecker, Authorized } from 'type-graphql'
 import { Context } from '../context'
 import {
   ResolversEnhanceMap,
-  applyResolversEnhanceMap,
 } from '@generated/type-graphql'
 import { Role } from '@prisma/client'
 
@@ -21,9 +20,7 @@ export const authChecker: AuthChecker<Context> = (
 }
 
 
-
-//TODO: add all of the other methods here once determined which ones I need in general
-const resolversEnhanceMap: ResolversEnhanceMap = {
+export const resolversEnhanceMap: ResolversEnhanceMap = {
   User: {
     _all: [Authorized(Role.ADMIN)]
   },
@@ -39,4 +36,4 @@ const resolversEnhanceMap: ResolversEnhanceMap = {
 }
 
 
-applyResolversEnhanceMap(resolversEnhanceMap)
+

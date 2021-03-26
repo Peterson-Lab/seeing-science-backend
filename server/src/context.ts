@@ -23,5 +23,3 @@ export async function createContext(
   // add the user to the context
   return { req, res, prisma, userToken }
 }
-
-export const __prod__ = process.env.NODE_ENV === 'production'

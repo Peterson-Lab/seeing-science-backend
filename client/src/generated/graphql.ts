@@ -364,12 +364,12 @@ export type DrtTrialResponse = {
   id: Scalars['Int']
   participant_id: Scalars['Int']
   question: Scalars['Int']
-  targetFile: Scalars['String']
+  target: Scalars['String']
   answer: Scalars['Int']
-  responseFile_1: Scalars['String']
-  responseFile_2: Scalars['String']
-  responseFile_3: Scalars['String']
-  responseFile_4: Scalars['String']
+  response_1: Scalars['String']
+  response_2: Scalars['String']
+  response_3: Scalars['String']
+  response_4: Scalars['String']
   time: Scalars['Int']
   correct: Scalars['Boolean']
   created_at: Scalars['DateTime']
@@ -387,12 +387,12 @@ export type DrtTrialResponseWhereInput = {
   id?: Maybe<IntFilter>
   participant_id?: Maybe<IntFilter>
   question?: Maybe<IntFilter>
-  targetFile?: Maybe<StringFilter>
+  target?: Maybe<StringFilter>
   answer?: Maybe<IntFilter>
-  responseFile_1?: Maybe<StringFilter>
-  responseFile_2?: Maybe<StringFilter>
-  responseFile_3?: Maybe<StringFilter>
-  responseFile_4?: Maybe<StringFilter>
+  response_1?: Maybe<StringFilter>
+  response_2?: Maybe<StringFilter>
+  response_3?: Maybe<StringFilter>
+  response_4?: Maybe<StringFilter>
   time?: Maybe<IntFilter>
   correct?: Maybe<BoolFilter>
   created_at?: Maybe<DateTimeFilter>
@@ -413,12 +413,12 @@ export type DrtTrialResponseOrderByInput = {
   id?: Maybe<SortOrder>
   participant_id?: Maybe<SortOrder>
   question?: Maybe<SortOrder>
-  targetFile?: Maybe<SortOrder>
+  target?: Maybe<SortOrder>
   answer?: Maybe<SortOrder>
-  responseFile_1?: Maybe<SortOrder>
-  responseFile_2?: Maybe<SortOrder>
-  responseFile_3?: Maybe<SortOrder>
-  responseFile_4?: Maybe<SortOrder>
+  response_1?: Maybe<SortOrder>
+  response_2?: Maybe<SortOrder>
+  response_3?: Maybe<SortOrder>
+  response_4?: Maybe<SortOrder>
   time?: Maybe<SortOrder>
   correct?: Maybe<SortOrder>
   created_at?: Maybe<SortOrder>
@@ -429,12 +429,12 @@ export enum DrtTrialResponseScalarFieldEnum {
   Id = 'id',
   ParticipantId = 'participant_id',
   Question = 'question',
-  TargetFile = 'targetFile',
+  Target = 'target',
   Answer = 'answer',
-  ResponseFile_1 = 'responseFile_1',
-  ResponseFile_2 = 'responseFile_2',
-  ResponseFile_3 = 'responseFile_3',
-  ResponseFile_4 = 'responseFile_4',
+  Response_1 = 'response_1',
+  Response_2 = 'response_2',
+  Response_3 = 'response_3',
+  Response_4 = 'response_4',
   Time = 'time',
   Correct = 'correct',
   CreatedAt = 'created_at',
@@ -455,12 +455,12 @@ export type DrtTrialResponseCountAggregate = {
   id: Scalars['Int']
   participant_id: Scalars['Int']
   question: Scalars['Int']
-  targetFile?: Maybe<Scalars['Int']>
+  target?: Maybe<Scalars['Int']>
   answer: Scalars['Int']
-  responseFile_1?: Maybe<Scalars['Int']>
-  responseFile_2?: Maybe<Scalars['Int']>
-  responseFile_3?: Maybe<Scalars['Int']>
-  responseFile_4?: Maybe<Scalars['Int']>
+  response_1?: Maybe<Scalars['Int']>
+  response_2?: Maybe<Scalars['Int']>
+  response_3?: Maybe<Scalars['Int']>
+  response_4?: Maybe<Scalars['Int']>
   time: Scalars['Int']
   correct?: Maybe<Scalars['Int']>
   created_at?: Maybe<Scalars['Int']>
@@ -491,12 +491,12 @@ export type DrtTrialResponseMinAggregate = {
   id: Scalars['Int']
   participant_id: Scalars['Int']
   question: Scalars['Int']
-  targetFile?: Maybe<Scalars['String']>
+  target?: Maybe<Scalars['String']>
   answer: Scalars['Int']
-  responseFile_1?: Maybe<Scalars['String']>
-  responseFile_2?: Maybe<Scalars['String']>
-  responseFile_3?: Maybe<Scalars['String']>
-  responseFile_4?: Maybe<Scalars['String']>
+  response_1?: Maybe<Scalars['String']>
+  response_2?: Maybe<Scalars['String']>
+  response_3?: Maybe<Scalars['String']>
+  response_4?: Maybe<Scalars['String']>
   time: Scalars['Int']
   correct?: Maybe<Scalars['Boolean']>
   created_at?: Maybe<Scalars['DateTime']>
@@ -508,12 +508,12 @@ export type DrtTrialResponseMaxAggregate = {
   id: Scalars['Int']
   participant_id: Scalars['Int']
   question: Scalars['Int']
-  targetFile?: Maybe<Scalars['String']>
+  target?: Maybe<Scalars['String']>
   answer: Scalars['Int']
-  responseFile_1?: Maybe<Scalars['String']>
-  responseFile_2?: Maybe<Scalars['String']>
-  responseFile_3?: Maybe<Scalars['String']>
-  responseFile_4?: Maybe<Scalars['String']>
+  response_1?: Maybe<Scalars['String']>
+  response_2?: Maybe<Scalars['String']>
+  response_3?: Maybe<Scalars['String']>
+  response_4?: Maybe<Scalars['String']>
   time: Scalars['Int']
   correct?: Maybe<Scalars['Boolean']>
   created_at?: Maybe<Scalars['DateTime']>
@@ -940,12 +940,12 @@ export type DrawingUpdateManyMutationInput = {
 export type DrtTrialResponseCreateInput = {
   participant_id: Scalars['Int']
   question: Scalars['Int']
-  targetFile: Scalars['String']
+  target: Scalars['String']
   answer: Scalars['Int']
-  responseFile_1: Scalars['String']
-  responseFile_2: Scalars['String']
-  responseFile_3: Scalars['String']
-  responseFile_4: Scalars['String']
+  response_1: Scalars['String']
+  response_2: Scalars['String']
+  response_3: Scalars['String']
+  response_4: Scalars['String']
   time: Scalars['Int']
   correct: Scalars['Boolean']
   created_at?: Maybe<Scalars['DateTime']>
@@ -955,12 +955,12 @@ export type DrtTrialResponseCreateInput = {
 export type DrtTrialResponseUpdateInput = {
   participant_id?: Maybe<IntFieldUpdateOperationsInput>
   question?: Maybe<IntFieldUpdateOperationsInput>
-  targetFile?: Maybe<StringFieldUpdateOperationsInput>
+  target?: Maybe<StringFieldUpdateOperationsInput>
   answer?: Maybe<IntFieldUpdateOperationsInput>
-  responseFile_1?: Maybe<StringFieldUpdateOperationsInput>
-  responseFile_2?: Maybe<StringFieldUpdateOperationsInput>
-  responseFile_3?: Maybe<StringFieldUpdateOperationsInput>
-  responseFile_4?: Maybe<StringFieldUpdateOperationsInput>
+  response_1?: Maybe<StringFieldUpdateOperationsInput>
+  response_2?: Maybe<StringFieldUpdateOperationsInput>
+  response_3?: Maybe<StringFieldUpdateOperationsInput>
+  response_4?: Maybe<StringFieldUpdateOperationsInput>
   time?: Maybe<IntFieldUpdateOperationsInput>
   correct?: Maybe<BoolFieldUpdateOperationsInput>
   created_at?: Maybe<DateTimeFieldUpdateOperationsInput>
@@ -982,12 +982,12 @@ export type BoolFieldUpdateOperationsInput = {
 export type DrtTrialResponseUpdateManyMutationInput = {
   participant_id?: Maybe<IntFieldUpdateOperationsInput>
   question?: Maybe<IntFieldUpdateOperationsInput>
-  targetFile?: Maybe<StringFieldUpdateOperationsInput>
+  target?: Maybe<StringFieldUpdateOperationsInput>
   answer?: Maybe<IntFieldUpdateOperationsInput>
-  responseFile_1?: Maybe<StringFieldUpdateOperationsInput>
-  responseFile_2?: Maybe<StringFieldUpdateOperationsInput>
-  responseFile_3?: Maybe<StringFieldUpdateOperationsInput>
-  responseFile_4?: Maybe<StringFieldUpdateOperationsInput>
+  response_1?: Maybe<StringFieldUpdateOperationsInput>
+  response_2?: Maybe<StringFieldUpdateOperationsInput>
+  response_3?: Maybe<StringFieldUpdateOperationsInput>
+  response_4?: Maybe<StringFieldUpdateOperationsInput>
   time?: Maybe<IntFieldUpdateOperationsInput>
   correct?: Maybe<BoolFieldUpdateOperationsInput>
   created_at?: Maybe<DateTimeFieldUpdateOperationsInput>
@@ -1082,11 +1082,11 @@ export type TrialInput = {
   time: Scalars['Float']
   questionId: Scalars['Float']
   participantId: Scalars['Float']
-  targetFile: Scalars['String']
-  responseFile_1: Scalars['String']
-  responseFile_2: Scalars['String']
-  responseFile_3: Scalars['String']
-  responseFile_4: Scalars['String']
+  target: Scalars['String']
+  response_1: Scalars['String']
+  response_2: Scalars['String']
+  response_3: Scalars['String']
+  response_4: Scalars['String']
 }
 
 export type UserResponse = {

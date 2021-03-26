@@ -57,7 +57,7 @@ export const buildNexusServer = async (app: Express, prisma: PrismaClient): Prom
 
   })
   // TODO: CORS
-  apolloSrv.applyMiddleware({ app, cors: { origin: "http://localhost:3000" }, path: "/admingql" })
+  apolloSrv.applyMiddleware({ app, cors: { origin: process.env.CORS_ORIGIN, credentials: true }, path: "/admingql" })
 
 
 }
