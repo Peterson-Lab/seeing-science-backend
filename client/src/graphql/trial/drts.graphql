@@ -1,0 +1,17 @@
+query Drts($cursor: DrtTrialResponseWhereUniqueInput, $limit: Int!) {
+  drtTrialResponses(orderBy: { id: asc }, take: $limit, cursor: $cursor) {
+    id
+    participant_id
+    question
+    target
+    answer
+    response_1
+    response_2
+    response_3
+    response_4
+    time
+    correct
+    created_at
+    updated_at
+  }
+}

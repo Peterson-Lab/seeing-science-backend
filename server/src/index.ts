@@ -5,7 +5,6 @@ import { __prod__ } from './utils/constants'
 import { createPrismaClient } from './utils/prismaHelpers'
 import express from 'express'
 import { buildTGServer } from './typegraph/buildTGServer'
-import { buildNexusServer } from './nexus/buildNexusServer'
 import { addMiddlewares, addErrorHandler } from './utils/expressMiddlewares'
 import { startExpress } from './utils/startExpress'
 import { checkRootUser } from './utils/rootUser'
@@ -22,8 +21,6 @@ const main = async () => {
   // main gql server for website
   await buildTGServer(app, prisma)
 
-  // hacky nexus gql server to serve admin panel
-  await buildNexusServer(app, prisma)
 
   checkRootUser(prisma)
 

@@ -1,4 +1,4 @@
-import { VStack, Text, Select, Button } from '@chakra-ui/react'
+import { VStack, Text, Button, Select } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
@@ -36,25 +36,32 @@ const UserEdit: React.FC = () => {
     console.log(response)
   }
 
+  if (!data || !data.findFirstUser) {
+    return <AdminLayout>Loading...</AdminLayout>
+  }
+
   return (
     <AdminLayout>
-      <VStack>
-        <VStack>
-          <Text>ID: {data?.findFirstUser?.id}</Text>
-          <Text>Email: {data?.findFirstUser?.email}</Text>
-          <Text>Username: {data?.findFirstUser?.username}</Text>
-          <Text>Role: {data?.findFirstUser?.role}</Text>
-          <Text>Created At: {data?.findFirstUser?.created_at}</Text>
-          <Text>Updated At: {data?.findFirstUser?.updated_at}</Text>
-        </VStack>
+      <VStack mt={50}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Select name="role" ref={register()}>
-            <option value="USER">User</option>
-            <option value="ADMIN">Admin</option>
-          </Select>
-          <Button mt={4} isLoading={formState.isSubmitting} type="submit">
-            Submit
-          </Button>
+          <VStack>
+            <Text>ID: {data.findFirstUser.id}</Text>
+            <Text>Email: {data.findFirstUser.email}</Text>
+            <Text>Username: {data.findFirstUser.username}</Text>
+            <Select
+              name="role"
+              ref={register()}
+              defaultValue={data.findFirstUser.role}
+            >
+              <option value="USER">User</option>
+              <option value="ADMIN">Admin</option>
+            </Select>
+            <Text>Created At: {data.findFirstUser.created_at}</Text>
+            <Text>Updated At: {data.findFirstUser.updated_at}</Text>
+            <Button mt={4} isLoading={formState.isSubmitting} type="submit">
+              Submit
+            </Button>
+          </VStack>
         </form>
       </VStack>
     </AdminLayout>

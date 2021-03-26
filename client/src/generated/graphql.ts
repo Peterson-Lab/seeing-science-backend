@@ -1168,6 +1168,20 @@ export type PostSpatialMutation = (
   & Pick<Mutation, 'postSpatial'>
 );
 
+export type DrtsQueryVariables = Exact<{
+  cursor?: Maybe<DrtTrialResponseWhereUniqueInput>;
+  limit: Scalars['Int'];
+}>;
+
+
+export type DrtsQuery = (
+  { __typename?: 'Query' }
+  & { drtTrialResponses: Array<(
+    { __typename?: 'DrtTrialResponse' }
+    & Pick<DrtTrialResponse, 'id' | 'participant_id' | 'question' | 'target' | 'answer' | 'response_1' | 'response_2' | 'response_3' | 'response_4' | 'time' | 'correct' | 'created_at' | 'updated_at'>
+  )> }
+);
+
 export type PostTrialMutationVariables = Exact<{
   data: TrialInput;
 }>;
@@ -1317,6 +1331,38 @@ export const usePostSpatialMutation = <
     ) => 
     useMutation<PostSpatialMutation, TError, PostSpatialMutationVariables, TContext>(
       (variables?: PostSpatialMutationVariables) => fetcher<PostSpatialMutation, PostSpatialMutationVariables>(client, PostSpatialDocument, variables)(),
+      options
+    );
+export const DrtsDocument = `
+    query Drts($cursor: DrtTrialResponseWhereUniqueInput, $limit: Int!) {
+  drtTrialResponses(orderBy: {id: asc}, take: $limit, cursor: $cursor) {
+    id
+    participant_id
+    question
+    target
+    answer
+    response_1
+    response_2
+    response_3
+    response_4
+    time
+    correct
+    created_at
+    updated_at
+  }
+}
+    `;
+export const useDrtsQuery = <
+      TData = DrtsQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient, 
+      variables: DrtsQueryVariables, 
+      options?: UseQueryOptions<DrtsQuery, TError, TData>
+    ) => 
+    useQuery<DrtsQuery, TError, TData>(
+      ['Drts', variables],
+      fetcher<DrtsQuery, DrtsQueryVariables>(client, DrtsDocument, variables),
       options
     );
 export const PostTrialDocument = `
