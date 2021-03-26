@@ -1,24 +1,32 @@
 import { CheckIcon, CloseIcon } from '@chakra-ui/icons'
 import {
+  Button,
+  Flex,
+  Heading,
+  HStack,
+  Spacer,
   Table,
-  Thead,
-  Tr,
-  Th,
   Tbody,
   Td,
-  Flex,
-  Button,
-  HStack,
+  Th,
+  Thead,
+  Tr,
   VStack,
-  Spacer,
-  Heading,
 } from '@chakra-ui/react'
-import React, { useEffect, useRef, useState } from 'react'
-import AdminLayout from '../../components/admin/AdminLayout'
-import { DrtTrialResponse, useDrtsQuery } from '../../generated/graphql'
-import { createClient } from '../../graphql/createClient'
-import { CSVLink } from 'react-csv'
 import { format } from 'date-fns'
+import { GraphQLClient } from 'graphql-request'
+import { last } from 'lodash'
+import React, { useEffect, useState } from 'react'
+import { CSVLink } from 'react-csv'
+import { useInfiniteQuery } from 'react-query'
+import AdminLayout from '../../components/admin/AdminLayout'
+import {
+  DrtsDocument,
+  DrtsQuery,
+  DrtsQueryVariables,
+  useDrtsQuery,
+} from '../../generated/graphql'
+import { createClient } from '../../graphql/createClient'
 
 type CSVDataExport = {
   trial_id: number
@@ -36,22 +44,61 @@ type CSVDataExport = {
   updated_at: string
 }
 
+const fetchDrts = (client: GraphQLClient, limit: number) => {
+  return async ({ pageParam = undefined }): Promise<DrtsQuery> =>
+    client.request(DrtsDocument, { limit, cursor: pageParam })
+}
+
 const DrtAdmin: React.FC = () => {
   const rqClient = createClient()
-  const { data } = useDrtsQuery(rqClient, { limit: 1000000 })
+
+  const pageLimit = 100000
+  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    'Drts',
+    fetchDrts(rqClient, pageLimit),
+    {
+      getNextPageParam: (lastPage, pages) => {
+        if (lastPage.drtTrialResponses.length < pageLimit) return undefined
+
+        return {
+          id:
+            lastPage.drtTrialResponses[lastPage.drtTrialResponses.length - 1]
+              .id + 1,
+        }
+      },
+    }
+  )
+
+  // const { data } = useDrtsQuery(
+  //   rqClient,
+  //   { limit: 1000000 },
+  //   { staleTime: 300000 }
+  // )
   const [csvData, setCsvData] = useState<CSVDataExport[]>([])
 
   useEffect(() => {
-    if (!data || !data.drtTrialResponses) return
-    setCsvData(
-      data.drtTrialResponses.map(({ __typename, id, correct, ...trial }) => {// eslint-disable-line
+    if (!data || !data.pages) return
 
-        return { trial_id: id, ...trial, accuracy: correct ? 1 : 0 }
-      })
-    )
+    const csv: CSVDataExport[] = []
+
+    data.pages.forEach((page) => {
+      page.drtTrialResponses.forEach(
+        ({ __typename, id, correct, time, answer, ...trial }) => {
+          csv.push({
+            trial_id: id,
+            ...trial,
+            answer,
+            time,
+            accuracy: correct ? 1 : 0,
+          })
+        }
+      )
+    })
+
+    setCsvData(csv)
   }, [data])
 
-  if (!data || !data.drtTrialResponses) {
+  if (!data || !data.pages) {
     return <AdminLayout>Loading...</AdminLayout>
   }
 
@@ -83,20 +130,25 @@ const DrtAdmin: React.FC = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {data?.drtTrialResponses.map((drt, idx) => (
-              <Tr key={idx}>
-                <Td>{drt.id}</Td>
-                <Td>{drt.participant_id}</Td>
-                <Td>{drt.question}</Td>
-                <Td>{drt.answer}</Td>
-                <Td>{drt.target}</Td>
-                <Td>{drt.time}</Td>
-                <Td>{drt.correct ? <CheckIcon /> : <CloseIcon />}</Td>
-                <Td>{format(new Date(drt.created_at), 'h:mmb LL/dd/yy')}</Td>
-              </Tr>
-            ))}
+            {data.pages.map((page, idx) =>
+              page.drtTrialResponses.map((drt, idx) => (
+                <Tr key={idx}>
+                  <Td>{drt.id}</Td>
+                  <Td>{drt.participant_id}</Td>
+                  <Td>{drt.question}</Td>
+                  <Td>{drt.answer}</Td>
+                  <Td>{drt.target}</Td>
+                  <Td>{drt.time}</Td>
+                  <Td>{drt.correct ? <CheckIcon /> : <CloseIcon />}</Td>
+                  <Td>{format(new Date(drt.created_at), 'h:mmb LL/dd/yy')}</Td>
+                </Tr>
+              ))
+            )}
           </Tbody>
         </Table>
+        {hasNextPage ? (
+          <Button onClick={() => fetchNextPage()}>Load More</Button>
+        ) : null}
       </VStack>
     </AdminLayout>
   )
