@@ -1,0 +1,10 @@
+query Users($cursor: UserWhereUniqueInput, $limit: Int!) {
+  users(orderBy: { id: asc }, take: $limit, cursor: $cursor) {
+    id
+    email
+    username
+    role
+    created_at
+    updated_at
+  }
+}

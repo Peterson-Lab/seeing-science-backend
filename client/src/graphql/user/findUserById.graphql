@@ -1,0 +1,10 @@
+query FindUserById($id: Int!) {
+  findFirstUser(where: { id: { equals: $id } }) {
+    id
+    username
+    email
+    role
+    created_at
+    updated_at
+  }
+}

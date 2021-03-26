@@ -49,14 +49,14 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <Flex position="sticky" top={0} zIndex={1}>
-      <Flex flex={1} m="auto" align="center" bg="green.500" py={2}>
+    <Flex position="sticky" top={0} zIndex={1} h="65px">
+      <Flex flex={1} m="auto" align="center" bg="green.500" py={2} h="65px">
         <NextChakraLink
           href="/"
           _hover={{ textDecoration: 'none', boxShadow: 'xs' }}
         >
           <HStack ml={4}>
-            <NextChakraImage src="/bdmagnify.png" width="50px" height="50px" />
+            <NextChakraImage src="/bdmagnify.png" width="50px" height="65px" />
             <Heading color="white" ml={2}>
               Seeing Science
             </Heading>
@@ -78,7 +78,14 @@ const Navbar: React.FC = () => {
           </NextChakraLink>
         </HStack>
       </Flex>
-      <HStack bg="green.500" p={4} spacing={5} justify="end" ml="auto">
+      <HStack
+        bg="green.500"
+        h="65px"
+        px={4}
+        spacing={5}
+        justify="end"
+        ml="auto"
+      >
         {userLogin}
       </HStack>
     </Flex>

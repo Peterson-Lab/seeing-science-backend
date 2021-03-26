@@ -9,12 +9,15 @@ import { initSentry } from '../utils/sentry'
 import { __prod__ } from '../utils/constants'
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  const queryClient = new QueryClient()
+  const queryClientRef = React.useRef<QueryClient>()
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient()
+  }
 
   initSentry()
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClientRef.current}>
       <ChakraProvider resetCSS theme={theme}>
         <Component {...pageProps} />
       </ChakraProvider>
