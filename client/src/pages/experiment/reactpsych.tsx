@@ -16,14 +16,10 @@ import {
 } from '../../react-psych'
 import { BeginScreen } from '../../react-psych/components/BeginScreen'
 import { NumberInputScreen } from '../../react-psych/components/NumberInputScreen'
+import { createTestQuestionList } from '../../react-psych/questionList'
 import { defaultUserResponse } from '../../react-psych/types'
 
-const questionList = createQuestionList(
-  '/react-psych/DRT',
-  10,
-  [4, 3, 2, 2, 2, 1, 4, 3, 4, 2],
-  4
-)
+const questionList = createTestQuestionList()
 
 const ReactPsych: React.FC = () => {
   const router = useRouter()

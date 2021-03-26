@@ -14,7 +14,7 @@ export type SelectImageProps = ImageQuestionFields & {
 }
 
 const getFileNameFromPath = (str: string): string =>
-  str.substring(str.lastIndexOf('/') + 1, str.length)
+  str.substring(str.lastIndexOf('/') + 1, str.lastIndexOf('.'))
 
 export const SelectImage: React.FC<SelectImageProps> = ({
   stimulus,
@@ -53,7 +53,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
     const userResponse: defaultUserResponse = {
       type: 'question',
       node: timeline.index,
-      response: elementClicked,
+      response: elementClicked + 1,
       correct: isCorrect,
       time: responseTime,
       targetFile,
@@ -122,8 +122,8 @@ export const SelectImage: React.FC<SelectImageProps> = ({
         <HStack spacing={15}>
           {responses.map((response, idx) => (
             <Link
-              bgColor="gray.200"
-              borderWidth="1px"
+              // bgColor="gray.200"
+              borderWidth="3px"
               borderRadius="lg"
               p={2}
               _hover={{ boxShadow: 'outline' }}

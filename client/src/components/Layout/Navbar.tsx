@@ -76,6 +76,11 @@ const Navbar: React.FC = () => {
           <NextChakraLink textColor="white" href="/people">
             People
           </NextChakraLink>
+          {data?.me?.role === 'ADMIN' ? (
+            <NextChakraLink textColor="white" href="/admin">
+              Admin Panel
+            </NextChakraLink>
+          ) : null}
         </HStack>
       </Flex>
       <HStack

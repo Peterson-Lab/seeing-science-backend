@@ -17,6 +17,7 @@
     "@sentry/integrations": "^6.2.3",
     "@sentry/node": "^6.2.3",
     "@sentry/webpack-plugin": "^1.14.2",
+    "date-fns": "^2.19.0",
     "framer-motion": "^4.0.0",
     "graphql": "^15.4.0",
     "graphql-request": "^3.4.0",

@@ -38,7 +38,7 @@ const AdminLayout: React.FC = ({ children }) => {
             </NextChakraLink>
           </VStack>
         </Box>
-        <Box ml={150}>{children}</Box>{' '}
+        <Box ml={150}>{children}</Box>
       </>
     )
   }

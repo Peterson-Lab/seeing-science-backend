@@ -13,11 +13,17 @@ import {
 import Layout from '../components/Layout/Layout'
 import { LoginInput, useLoginMutation } from '../generated/graphql'
 import { createClient } from '../graphql/createClient'
+import { useQueryClient } from 'react-query'
 
 const Login: React.FC = () => {
   const router = useRouter()
   const rqClient = createClient()
-  const { mutateAsync } = useLoginMutation(rqClient)
+  const queryClient = useQueryClient()
+  const { mutateAsync } = useLoginMutation(rqClient, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('Me')
+    },
+  })
   const { register, handleSubmit, errors, formState, setError } = useForm()
   const onSubmit = async (input: LoginInput): Promise<void> => {
     const response = await mutateAsync({ input })
