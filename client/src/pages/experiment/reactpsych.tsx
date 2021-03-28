@@ -16,10 +16,16 @@ import {
 } from '../../react-psych'
 import { BeginScreen } from '../../react-psych/components/BeginScreen'
 import { NumberInputScreen } from '../../react-psych/components/NumberInputScreen'
-import { createTestQuestionList } from '../../react-psych/questionList'
+import { PracticeSelectImage } from '../../react-psych/components/PracticeSelectImage'
+import {
+  createPracticeQuestionList,
+  createTestQuestionList,
+} from '../../react-psych/questionList'
 import { defaultUserResponse } from '../../react-psych/types'
 
 const questionList = createTestQuestionList()
+
+const practiceQuestionList = createPracticeQuestionList()
 
 const ReactPsych: React.FC = () => {
   const router = useRouter()
@@ -135,6 +141,9 @@ const ReactPsych: React.FC = () => {
                 />
               </VStack>
             </TextScreen>
+            {practiceQuestionList.map((q, idx) => {
+              return <PracticeSelectImage key={idx} {...q} />
+            })}
             <TextScreen buttonText="Next">
               <VStack px={20} spacing={4} textAlign="center">
                 <ReactPlayer
@@ -146,6 +155,7 @@ const ReactPsych: React.FC = () => {
                 />
               </VStack>
             </TextScreen>
+
             {questionList.map((q, idx) => {
               return <SelectImage key={idx} {...q} />
             })}

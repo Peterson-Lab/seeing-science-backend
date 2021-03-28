@@ -15,17 +15,11 @@ import {
 } from '@chakra-ui/react'
 import { format } from 'date-fns'
 import { GraphQLClient } from 'graphql-request'
-import { last } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { CSVLink } from 'react-csv'
 import { useInfiniteQuery } from 'react-query'
 import AdminLayout from '../../components/admin/AdminLayout'
-import {
-  DrtsDocument,
-  DrtsQuery,
-  DrtsQueryVariables,
-  useDrtsQuery,
-} from '../../generated/graphql'
+import { DrtsDocument, DrtsQuery } from '../../generated/graphql'
 import { createClient } from '../../graphql/createClient'
 
 type CSVDataExport = {
@@ -52,12 +46,12 @@ const fetchDrts = (client: GraphQLClient, limit: number) => {
 const DrtAdmin: React.FC = () => {
   const rqClient = createClient()
 
-  const pageLimit = 100000
+  const pageLimit = 1000000
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
     'Drts',
     fetchDrts(rqClient, pageLimit),
     {
-      getNextPageParam: (lastPage, pages) => {
+      getNextPageParam: (lastPage, _pages) => {
         if (lastPage.drtTrialResponses.length < pageLimit) return undefined
 
         return {
@@ -130,7 +124,7 @@ const DrtAdmin: React.FC = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {data.pages.map((page, idx) =>
+            {data.pages.map((page, _idx) =>
               page.drtTrialResponses.map((drt, idx) => (
                 <Tr key={idx}>
                   <Td>{drt.id}</Td>
