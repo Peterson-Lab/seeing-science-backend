@@ -12,7 +12,7 @@ export const ExperimentStack: React.FC = () => {
       mt={5}
     >
       <NextChakraLink
-        href="/experiment/reactpsych"
+        href="/experiment/drt"
         _hover={{ textDecoration: 'none', boxShadow: 'outline' }}
       >
         <VStack shadow="md" p={5}>
