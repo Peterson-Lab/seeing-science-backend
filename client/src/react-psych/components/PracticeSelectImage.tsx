@@ -54,24 +54,23 @@ export const PracticeSelectImage: React.FC<PracticeSelectImageProps> = ({
     // timeline.onFinish(userResponse)
   }
 
+  const handleFeedbackResponse = (): void => {
+    const responseEnd = Date.now()
+
+    const responseTime = responseEnd - responseStart
+
+    const userResponse: defaultUserResponse = {
+      type: 'practice',
+      node: timeline.index,
+      response: elementClicked + 1,
+      correct: isCorrect,
+      time: responseTime,
+    }
+    timeline.onFinish(userResponse)
+  }
+
   // Saves the time when the question is shown, might want to set this to just active
   useEffect(() => {
-    const waitFeedback = async (): Promise<void> => {
-      const responseEnd = Date.now()
-
-      const responseTime = responseEnd - responseStart
-
-      const userResponse: defaultUserResponse = {
-        type: 'practice',
-        node: timeline.index,
-        response: elementClicked + 1,
-        correct: isCorrect,
-        time: responseTime,
-      }
-      await sleep(5000)
-      timeline.onFinish(userResponse)
-    }
-
     if (show === 'question') {
       setResponseStart(Date.now())
       const maxResponseTime = async (): Promise<void> => {
@@ -80,7 +79,6 @@ export const PracticeSelectImage: React.FC<PracticeSelectImageProps> = ({
       }
       maxResponseTime()
     }
-    if (show === 'feedback') waitFeedback()
   }, [show])
 
   // Gives time before telling user to select an option
@@ -182,7 +180,7 @@ export const PracticeSelectImage: React.FC<PracticeSelectImageProps> = ({
     body = (
       <>
         <Center>
-          <VStack>
+          <VStack spacing="20mm">
             {isCorrect ? (
               <>
                 <CheckIcon boxSize="70px" />
@@ -194,6 +192,18 @@ export const PracticeSelectImage: React.FC<PracticeSelectImageProps> = ({
                 <Heading fontSize="60px">Incorrect</Heading>
               </>
             )}
+            <Button
+              colorScheme="blue"
+              mt="10mm"
+              size="lg"
+              height="15mm"
+              width="50mm"
+              fontSize="10mm"
+              fontWeight="800"
+              onClick={handleFeedbackResponse}
+            >
+              Next
+            </Button>
           </VStack>
         </Center>
       </>

@@ -2,7 +2,7 @@ import { Button, VStack } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { getResponseTime, useResponseStart } from '../hooks/useResponseStart'
 import { TimelineNodeProps } from '../types'
-import { TimelineNodeError } from '../utils/errors'
+import { TimelineNodeError } from '../../react-psych/utils/errors'
 
 interface BeginScreen {
   timeline?: TimelineNodeProps
@@ -14,7 +14,6 @@ export const BeginScreen: React.FC<BeginScreen> = ({
   children,
   timeline,
   buttonText,
-  inputKey = ' ',
 }) => {
   const [shownText, setShownText] = useState(buttonText)
 
@@ -28,7 +27,7 @@ export const BeginScreen: React.FC<BeginScreen> = ({
     if (timeline.fullscreen) {
       setShownText('Click here to go fullscreen')
     }
-  }, [])
+  }, [timeline.fullscreen])
 
   const handleResponse = (): void => {
     if (timeline.fullscreen && !timeline.fullscreen.active) {
@@ -39,18 +38,13 @@ export const BeginScreen: React.FC<BeginScreen> = ({
 
     const responseTime = getResponseTime(responseStart)
     timeline.onFinish({
+      type: 'instruction',
       node: timeline.index,
       correct: null,
       response: buttonText,
       time: responseTime,
     })
   }
-
-  useEffect(() => {
-    if (timeline.isActive && timeline.keyPressed === inputKey) {
-      handleResponse()
-    }
-  }, [timeline.isActive, timeline.keyPressed, inputKey])
 
   if (!timeline.isActive) {
     return null

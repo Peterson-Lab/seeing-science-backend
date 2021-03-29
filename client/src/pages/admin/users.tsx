@@ -1,5 +1,4 @@
 import {
-  Button,
   Flex,
   Heading,
   HStack,
@@ -13,17 +12,16 @@ import {
   Tr,
   VStack,
 } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import NextLink from 'next/link'
+import React from 'react'
 import AdminLayout from '../../components/admin/AdminLayout'
-import { NextChakraLink } from '../../components/NextChakraLink'
 import { useUsersQuery } from '../../generated/graphql'
 import { createClient } from '../../graphql/createClient'
-import NextLink from 'next/link'
 
 const Users: React.FC = () => {
   const rqClient = createClient()
   // TODO: Pagination
-  const [cursor, setCursor] = useState(0)
+  // const [cursor, setCursor] = useState(0)
   const { data } = useUsersQuery(rqClient, { limit: 20 })
 
   return (

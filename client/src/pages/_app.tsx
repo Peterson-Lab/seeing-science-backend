@@ -1,5 +1,4 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import '../libraries/css/jspsych.css'
 import theme from '../theme'
 import { AppProps } from 'next/app'
 import React from 'react'

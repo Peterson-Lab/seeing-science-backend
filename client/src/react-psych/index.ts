@@ -1,4 +1,3 @@
-export * from './components/archived/ImageQuestion'
 export * from './components/Timeline'
 export * from './utils/createImagePaths'
 export * from './components/TextScreen'

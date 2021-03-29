@@ -8,12 +8,7 @@ import {
   usePostTrialMutation,
 } from '../../generated/graphql'
 import { createClient } from '../../graphql/createClient'
-import {
-  createQuestionList,
-  SelectImage,
-  TextScreen,
-  Timeline,
-} from '../../react-psych'
+import { SelectImage, TextScreen, Timeline } from '../../react-psych'
 import { BeginScreen } from '../../react-psych/components/BeginScreen'
 import { NumberInputScreen } from '../../react-psych/components/NumberInputScreen'
 import { PracticeSelectImage } from '../../react-psych/components/PracticeSelectImage'
