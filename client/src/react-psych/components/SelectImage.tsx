@@ -154,7 +154,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
             <Button
               colorScheme="blue"
               onClick={handleResponse}
-              mt="10mm"
+              mt="5mm"
               size="lg"
               height="15mm"
               width="50mm"
@@ -204,7 +204,7 @@ export const SelectImage: React.FC<SelectImageProps> = ({
       {/* The actual shown part. Body starts as just the + and then is rerendered as the question */}
       <VStack
         mt="10mm"
-        spacing="20mm"
+        spacing="10mm"
         display={timeline.isActive ? 'flex' : 'none'}
       >
         {body}

@@ -156,7 +156,7 @@ export const PracticeSelectImage: React.FC<PracticeSelectImageProps> = ({
             <Button
               colorScheme="blue"
               onClick={handleResponse}
-              mt="10mm"
+              mt="5mm"
               size="lg"
               height="15mm"
               width="50mm"
@@ -238,7 +238,7 @@ export const PracticeSelectImage: React.FC<PracticeSelectImageProps> = ({
       {/* The actual shown part. Body starts as just the + and then is rerendered as the question, then the feedback */}
       <VStack
         mt="10mm"
-        spacing="20mm"
+        spacing="10mm"
         display={timeline.isActive ? 'flex' : 'none'}
       >
         {body}
