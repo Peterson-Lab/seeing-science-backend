@@ -1,7 +1,6 @@
 import { Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import ReactPlayer from 'react-player/lazy'
 import Layout from '../../components/Layout/Layout'
 import {
   PostTrialMutation,
@@ -12,6 +11,7 @@ import { SelectImage, TextScreen, Timeline } from '../../react-psych'
 import { BeginScreen } from '../../react-psych/components/BeginScreen'
 import { NumberInputScreen } from '../../react-psych/components/NumberInputScreen'
 import { PracticeSelectImage } from '../../react-psych/components/PracticeSelectImage'
+import { VideoScreen } from '../../react-psych/components/VideoScreen'
 import {
   createPracticeQuestionList,
   createTestQuestionList,
@@ -111,43 +111,52 @@ const ReactPsych: React.FC = () => {
             >
               <Heading>Enter your Participant ID</Heading>
             </NumberInputScreen>
-            <TextScreen buttonText="Next">
+            <VideoScreen
+              buttonText="Next"
+              url="/react-psych/DRT/instructions/audio_test.mp3"
+              playerProps={{ height: '50px' }}
+            >
               <VStack spacing={8} mx={10} mb={10} textAlign="center">
                 <Heading fontSize="60px">Audio Test</Heading>
                 <Text px={60} fontSize="25px">
                   Please click the play button below and ensure you can hear the
                   audio clip, then click Next.
                 </Text>
-                <ReactPlayer
-                  url="/react-psych/DRT/instructions/audio_test.mp3"
-                  height="50px"
-                  controls={true}
-                />
               </VStack>
-            </TextScreen>
+            </VideoScreen>
+            <VideoScreen
+              buttonText="Next"
+              url="/react-psych/DRT/instructions/DRT_instructions.mp4"
+              playerProps={{ playing: true }}
+            />
+            <VideoScreen
+              url="/react-psych/DRT/instructions/DRT_demo.mp4"
+              buttonText="Next"
+              playerProps={{ playing: true }}
+            />
             <TextScreen buttonText="Begin">
-              <VStack px={20} spacing={2} textAlign="center">
-                <ReactPlayer
-                  url="/react-psych/DRT/instructions/DRT_instructions.mp4"
-                  controls={true}
-                  width="80%"
-                  height="80%"
-                  playing={true}
-                />
+              <VStack spacing={3} mb={5}>
+                <Heading fontSize="60px">Practice Questions</Heading>
+                <Text fontSize="25px">
+                  Now you are going to see a series of practice questions.
+                </Text>
+                <Text fontSize="25px">When you are ready, click begin!</Text>
               </VStack>
             </TextScreen>
             {practiceQuestionList.map((q, idx) => {
               return <PracticeSelectImage key={idx} {...q} />
             })}
-            <TextScreen buttonText="Next">
-              <VStack px={20} spacing={4} textAlign="center">
-                <ReactPlayer
-                  url="/react-psych/DRT/instructions/DRT_demo.mp4"
-                  controls={true}
-                  width="80%"
-                  height="80%"
-                  playing={true}
-                />
+            <TextScreen buttonText="Begin">
+              <VStack spacing={3} mb={5}>
+                <Heading fontSize="60px">Test Start</Heading>
+                <Text fontSize="25px">
+                  Now we&apos;ll move on to the real test!
+                </Text>
+                <Text fontSize="25px">
+                  This time, you won&apos;t see if your answers were right or
+                  wrong.
+                </Text>
+                <Text fontSize="25px">When you are ready, click begin!</Text>
               </VStack>
             </TextScreen>
 
