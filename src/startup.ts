@@ -5,6 +5,7 @@ import express, { Express } from "express"
 import 'reflect-metadata'
 import { buildTGServer } from "./buildTGServer"
 import { attachRoutes } from "./routes/routes"
+import { __prod__ } from './utils/constants'
 import { addErrorHandler, addMiddlewares } from "./utils/expressMiddlewares"
 import { checkRootUser } from "./utils/rootUser"
 
@@ -18,7 +19,7 @@ export const buildExpress = async (prisma: PrismaClient): Promise<Express> => {
     await buildTGServer(app, prisma)
   
   
-    checkRootUser(prisma)
+    __prod__ ? checkRootUser(prisma) : null
   
     // any other routes, for not gql clients (Unity game)
     attachRoutes(app)

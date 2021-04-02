@@ -1,7 +1,8 @@
-import {connections, delay} from './globalSetup'
+import {delay, connections} from './globalSetup'
 
 const globalTeardown = async () => {
-    await delay(500)
+    await connections.prisma?.$executeRaw(`DELETE FROM "User";`)
+    await delay(5000)
     await connections.prisma?.$disconnect()
     connections.server?.close()
 }
