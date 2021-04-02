@@ -1,7 +1,5 @@
 name: Test
 
-environment: Test
-
 on:
   push:
     branches: [main]
@@ -24,6 +22,7 @@ env:
 jobs:
   build:
     name: Build
+    environment: Test
     strategy:
       matrix:
         node-version: [15.x]
@@ -42,6 +41,7 @@ jobs:
           yarn build
   test:
     name: Test
+    environment: Test
     strategy:
       matrix:
         node-version: [15.x]
