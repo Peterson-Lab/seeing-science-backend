@@ -3,7 +3,7 @@ import { __prod__ } from './constants'
 
 
 export const startExpress = (app: Express) => {
-    app.listen(parseInt(process.env.PORT), () =>
+    return app.listen(parseInt(process.env.PORT), () =>
         {__prod__ ? null : console.log(`🚀 Server ready at: http://localhost:${process.env.PORT}`)}
   )
 }

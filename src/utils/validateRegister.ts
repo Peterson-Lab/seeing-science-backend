@@ -1,4 +1,4 @@
-import { FieldError, RegisterInput } from '../typegraph/resolvers/user'
+import { FieldError, RegisterInput } from '../resolvers/user'
 
 export const validateRegister = (
   options: RegisterInput

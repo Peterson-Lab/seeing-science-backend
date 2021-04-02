@@ -4,12 +4,13 @@ import { ApolloServer } from "apollo-server-express"
 import { Express } from 'express'
 import { graphqlUploadExpress } from "graphql-upload"
 import { buildSchema } from "type-graphql"
-import { createContext } from "../context"
-import { authChecker, resolversEnhanceMap } from "../utils/gqlAuth"
+import { createContext } from "./context"
+import { authChecker, resolversEnhanceMap } from "./utils/gqlAuth"
 import { DrawingResolver } from "./resolvers/drawing"
 import { TrialResolver } from "./resolvers/drt"
 import { SpatialResolver } from "./resolvers/spatial"
 import { UserResolver } from "./resolvers/user"
+import { HealthCheckResolver } from './resolvers/health_check'
 
 export const buildTGServer = async (app: Express, prisma: PrismaClient): Promise<void> => {
   app.use(graphqlUploadExpress())
@@ -21,7 +22,8 @@ export const buildTGServer = async (app: Express, prisma: PrismaClient): Promise
           UserResolver,
           DrawingResolver,
           SpatialResolver,
-          TrialResolver
+          TrialResolver,
+          HealthCheckResolver
         ],
         validate: false,
         // using built in type-graphql auth

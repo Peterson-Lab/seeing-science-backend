@@ -7,7 +7,7 @@ import {
   InputType,
   Mutation,
 } from 'type-graphql'
-import { Context } from '../../context'
+import { Context } from '../context'
 
 @ObjectType()
 export class TrialError {
