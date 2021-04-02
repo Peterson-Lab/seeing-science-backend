@@ -13,15 +13,23 @@ type TestState = {
 
 export let connections: TestState = {}
 
+function delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
 export default async function() {
     const prisma = createPrismaClient()
     const app = await buildExpress(prisma)
 
     const server = startExpress(app)
 
+
+
     connections = {
         prisma,
         app,
         server
     }
+
+    await delay(5000)
 }
