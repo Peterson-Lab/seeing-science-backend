@@ -1,10 +1,25 @@
-name: Build
+name: Test
+
+environment: Test
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
+env:
+  CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DOMAIN: ${{ secrets.DOMAIN }}
+  JWT_COOKIE_NAME: ${{ secrets.JWT_COOKIE_NAME }}
+  JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+  NODE_ENV: ${{ secrets.NODE_ENV }}
+  PORT: ${{ secrets.PORT }}
+  ROOT_EMAIL: ${{ secrets.ROOT_EMAIL }}
+  ROOT_PASSWORD: ${{ secrets.ROOT_PASSWORD }}
+  ROOT_USERNAME: ${{ secrets.ROOT_USERNAME }}
+  SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
 jobs:
   build:
@@ -14,10 +29,6 @@ jobs:
         node-version: [15.x]
     runs-on: ubuntu-latest
     steps:
-      - name: Dotenv Action
-        uses: falti/dotenv-action@v0.2.5
-        with:
-          path: 'tests/test.env'
       - uses: actions/checkout@v2
       - name: Node.js
         uses: actions/setup-node@v1
@@ -45,10 +56,6 @@ jobs:
         ports:
           - 5432:5432
     steps:
-      - name: Dotenv Action
-        uses: falti/dotenv-action@v0.2.5
-        with:
-          path: './tests/test.env'
       - uses: actions/checkout@v2
       - name: Node.js
         uses: actions/setup-node@v1
