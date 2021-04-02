@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install -g yarn
-      - name: yarn install, build, gen, and test
+      - name: yarn install, gen and build
         run: |
           yarn 
           yarn gen
@@ -62,7 +62,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install -g yarn
-      - name: yarn install, build, gen, and test
+      - name: yarn install, gen, and test
         run: |
           yarn 
           yarn gen
