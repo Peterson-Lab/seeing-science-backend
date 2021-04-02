@@ -1,6 +1,0 @@
-mutation updateUserRole($id: Int!, $role: Role) {
-  updateUser(where: { id: $id }, data: { role: { set: $role } }) {
-    id
-    role
-  }
-}

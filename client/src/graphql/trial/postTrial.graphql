@@ -1,9 +1,0 @@
-mutation postTrial($data: TrialInput!) {
-  postTrial(data: $data) {
-    success
-    errors {
-      error
-      message
-    }
-  }
-}
