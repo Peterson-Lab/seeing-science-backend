@@ -13,7 +13,7 @@ type TestState = {
 
 export let connections: TestState = {}
 
-function delay(ms: number) {
+export function delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
 
