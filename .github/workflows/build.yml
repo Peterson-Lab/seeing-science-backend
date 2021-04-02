@@ -17,7 +17,7 @@ jobs:
       - name: Dotenv Action
         uses: falti/dotenv-action@v0.2.5
         with:
-          path: ./.env.test
+          path: './.env.test'
       - uses: actions/checkout@v2
       - name: Node.js
         uses: actions/setup-node@v1
@@ -48,7 +48,7 @@ jobs:
       - name: Dotenv Action
         uses: falti/dotenv-action@v0.2.5
         with:
-          path: ./.env.test
+          path: './.env.test'
       - uses: actions/checkout@v2
       - name: Node.js
         uses: actions/setup-node@v1
