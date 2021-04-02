@@ -9,6 +9,8 @@ test("Run health check endpoint", async () => {
     }`
 
     const res = await request('http://localhost:4000/graphql', query)
-    console.log(res)
+    expect(res.healthCheck).toBeTruthy()
+
+
     
 })
