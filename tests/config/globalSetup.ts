@@ -31,5 +31,5 @@ export default async function() {
         server
     }
 
-    await delay(5000)
+    await delay(1000)
 }
