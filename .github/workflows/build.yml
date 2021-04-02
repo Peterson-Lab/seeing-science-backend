@@ -17,7 +17,7 @@ jobs:
       - name: Export test envs
         uses: c-py/action-dotenv-to-setenv@v2
         with:
-          env-file: './.env.test'
+          env-file: tests/test.env
       - uses: actions/checkout@v2
       - name: Node.js
         uses: actions/setup-node@v1
@@ -48,7 +48,7 @@ jobs:
       - name: Export test envs
         uses: c-py/action-dotenv-to-setenv@v2
         with:
-          env-file: './.env.test'
+          env-file: tests/test.env
       - uses: actions/checkout@v2
       - name: Node.js
         uses: actions/setup-node@v1
