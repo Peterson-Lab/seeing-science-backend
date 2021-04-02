@@ -8,6 +8,29 @@ on:
 
 jobs:
   build:
+    name: Build
+    strategy:
+      matrix:
+        node-version: [15.x]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dotenv Action
+        uses: falti/dotenv-action@v0.2.5
+        with:
+          path: .env.test
+      - uses: actions/checkout@v2
+      - name: Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install -g yarn
+      - name: yarn install, build, gen, and test
+        run: |
+          yarn 
+          yarn gen
+          yarn build
+  test:
+    name: Test
     strategy:
       matrix:
         node-version: [15.x]
@@ -22,6 +45,10 @@ jobs:
         ports:
           - 5432:5432
     steps:
+      - name: Dotenv Action
+        uses: falti/dotenv-action@v0.2.5
+        with:
+          path: .env.test
       - uses: actions/checkout@v2
       - name: Node.js
         uses: actions/setup-node@v1
@@ -32,5 +59,4 @@ jobs:
         run: |
           yarn 
           yarn gen
-          yarn build
           yarn test

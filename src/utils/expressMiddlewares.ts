@@ -33,6 +33,7 @@ const initSentry = (app: Express) => {
           new Tracing.Integrations.Express({ app }),
         ],
         environment: process.env.NODE_ENV,
+        enabled: __prod__ ? true : false,
     
         // We recommend adjusting this value in production, or using tracesSampler
         // for finer control
