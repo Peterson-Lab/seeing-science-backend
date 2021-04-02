@@ -14,10 +14,10 @@ jobs:
         node-version: [15.x]
     runs-on: ubuntu-latest
     steps:
-      - name: Dotenv Action
-        uses: falti/dotenv-action@v0.2.5
+      - name: Export test envs
+        uses: c-py/action-dotenv-to-setenv@v2
         with:
-          path: '.env.test'
+          env-file: .env.test
       - uses: actions/checkout@v2
       - name: Node.js
         uses: actions/setup-node@v1
@@ -45,10 +45,10 @@ jobs:
         ports:
           - 5432:5432
     steps:
-      - name: Dotenv Action
-        uses: falti/dotenv-action@v0.2.5
+      - name: Export test envs
+        uses: c-py/action-dotenv-to-setenv@v2
         with:
-          path: '.env.test'
+          env-file: .env.test
       - uses: actions/checkout@v2
       - name: Node.js
         uses: actions/setup-node@v1
