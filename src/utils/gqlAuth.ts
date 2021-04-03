@@ -1,8 +1,6 @@
 import { AuthChecker, Authorized } from 'type-graphql'
 import { Context } from '../context'
-import {
-  ResolversEnhanceMap,
-} from '@generated/type-graphql'
+import { ResolversEnhanceMap } from '@generated/type-graphql'
 import { Role } from '@prisma/client'
 
 export const authChecker: AuthChecker<Context> = (
@@ -19,21 +17,17 @@ export const authChecker: AuthChecker<Context> = (
   return false
 }
 
-
 export const resolversEnhanceMap: ResolversEnhanceMap = {
   User: {
-    _all: [Authorized(Role.ADMIN)]
+    _all: [Authorized(Role.ADMIN)],
   },
   Drawing: {
-    _all: [Authorized(Role.ADMIN)]
+    _all: [Authorized(Role.ADMIN)],
   },
   DrtTrialResponse: {
-    _all: [Authorized(Role.ADMIN)]
+    _all: [Authorized(Role.ADMIN)],
   },
   SpatialActivity: {
-    _all: [Authorized(Role.ADMIN)]
-  }
+    _all: [Authorized(Role.ADMIN)],
+  },
 }
-
-
-

@@ -29,7 +29,6 @@ class TrialResponse {
 
 @InputType()
 export class TrialInput {
-
   @Field()
   answer: number
 
@@ -58,22 +57,19 @@ export class TrialInput {
   response_4: string
 }
 
-
 @Resolver()
 export class TrialResolver {
   @Mutation(() => TrialResponse)
   async postTrial(
-    @Arg('data') {participantId, questionId, ...data }: TrialInput,
+    @Arg('data') { participantId, questionId, ...data }: TrialInput,
     @Ctx() { prisma }: Context
   ): Promise<TrialResponse> {
-
-
     await prisma.drtTrialResponse.create({
       data: {
         participant_id: participantId,
         question: questionId,
-        ...data
-      }
+        ...data,
+      },
     })
 
     return { success: true }
