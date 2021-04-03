@@ -6,46 +6,46 @@ import { createPrismaClient } from '../src/utils/prismaHelpers'
 import { startExpress } from '../src/utils/startExpress'
 
 export type TestState = {
-    prisma: PrismaClient
-    app: Express
-    server: Server
-    port: number
+  prisma: PrismaClient
+  app: Express
+  server: Server
+  port: number
 }
 
 // function delay(ms: number) {
 //     return new Promise( resolve => setTimeout(resolve, ms) );
 // }
 
-const isAddressInfo = (obj:any): obj is AddressInfo => {
-    return obj.port !== undefined
+const isAddressInfo = (obj: any): obj is AddressInfo => {
+  return obj.port !== undefined
 }
 
 export const setupTestServer = async (): Promise<TestState> => {
-    const prisma = createPrismaClient()
+  const prisma = createPrismaClient()
 
-    const app = await buildExpress(prisma)
+  const app = await buildExpress(prisma)
 
-    const server = startExpress(app, 0)
+  const server = startExpress(app, 0)
 
-    const address = server.address()
-    if(! isAddressInfo(address)) throw new Error("address is not AddressInfo")
+  const address = server.address()
+  if (!isAddressInfo(address)) throw new Error('address is not AddressInfo')
 
-    const port = address.port
+  const port = address.port
 
-    // await delay(200)
+  // await delay(200)
 
-
-
-    return {
-        prisma,
-        app,
-        server,
-        port
-    }
+  return {
+    prisma,
+    app,
+    server,
+    port,
+  }
 }
 
-export const teardownTestServer = async (testState:TestState): Promise<void> => {
-    await testState.prisma.$executeRaw(`DELETE FROM "User";`)
-    await testState.prisma.$disconnect()
-    testState.server.close()
+export const teardownTestServer = async (
+  testState: TestState
+): Promise<void> => {
+  await testState.prisma.$executeRaw(`DELETE FROM "User";`)
+  await testState.prisma.$disconnect()
+  testState.server.close()
 }

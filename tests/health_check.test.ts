@@ -3,26 +3,25 @@ import { setupTestServer, teardownTestServer, TestState } from './helpers'
 
 let testState: TestState | null = null
 
-
 beforeAll(async () => {
-    testState = await setupTestServer()
+  testState = await setupTestServer()
 })
 
 afterAll(async () => {
-    if(testState === null) throw new Error('test state cannot be null')
-    await teardownTestServer(testState)
+  if (testState === null) throw new Error('test state cannot be null')
+  await teardownTestServer(testState)
 })
 
-test("Run health check endpoint", async () => {
-    
-    const query = gql`
+test('Run health check endpoint', async () => {
+  const query = gql`
     {
-        healthCheck
-    }`
+      healthCheck
+    }
+  `
 
-    const res = await request(`http://localhost:${testState?.port}/graphql`, query)
-    expect(res.healthCheck).toBeTruthy()
-
-
-    
+  const res = await request(
+    `http://localhost:${testState?.port}/graphql`,
+    query
+  )
+  expect(res.healthCheck).toBeTruthy()
 })
