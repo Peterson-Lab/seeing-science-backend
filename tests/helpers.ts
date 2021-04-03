@@ -12,8 +12,12 @@ export type TestState = {
     port: number
 }
 
-function delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
+// function delay(ms: number) {
+//     return new Promise( resolve => setTimeout(resolve, ms) );
+// }
+
+const isAddressInfo = (obj:any): obj is AddressInfo => {
+    return obj.port !== undefined
 }
 
 export const setupTestServer = async (): Promise<TestState> => {
@@ -23,11 +27,12 @@ export const setupTestServer = async (): Promise<TestState> => {
 
     const server = startExpress(app, 0)
 
-    const address = server.address() as AddressInfo
+    const address = server.address()
+    if(! isAddressInfo(address)) throw new Error("address is not AddressInfo")
 
     const port = address.port
 
-    await delay(1000)
+    // await delay(200)
 
 
 
