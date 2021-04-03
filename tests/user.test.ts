@@ -32,7 +32,8 @@ test("Register user", async () => {
     }
     `
 
-    const res = await request('http://localhost:4000/graphql', mutation, {input: {email: "mw123@gmail.com", username: "zir123", password: "hunter2"}})
+
+    const res = await request(`http://localhost:${testState?.port}/graphql`, mutation, {input: {email: "mw123@gmail.com", username: "zir123", password: "hunter2"}})
 
     expect(res.register.user.id).toBeTruthy()
     expect(res.register.errors).toBeFalsy()
@@ -65,7 +66,7 @@ describe('Register invalid inputs', () => {
         }
         `
     
-        const res = await request('http://localhost:4000/graphql', mutation, { input: {email: input.email, username: input.username, password: input.password}})
+        const res = await request(`http://localhost:${testState?.port}/graphql`, mutation, { input: {email: input.email, username: input.username, password: input.password}})
 
         console.log(res)
     
