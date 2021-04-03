@@ -1,8 +1,8 @@
 // ALWAYS KEEP REFLECT META AT TOP
+import 'reflect-metadata'
 import { PrismaClient } from '.prisma/client'
 import 'dotenv-safe/config'
 import express, { Express } from "express"
-import 'reflect-metadata'
 import { buildTGServer } from "./buildTGServer"
 import { attachRoutes } from "./routes/routes"
 import { __prod__ } from './utils/constants'

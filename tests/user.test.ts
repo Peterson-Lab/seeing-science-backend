@@ -13,10 +13,7 @@ afterAll(async () => {
     await teardownTestServer(testState)
 })
 
-
-test("Register user", async () => {
-    const mutation = gql`
-    mutation Register($input: RegisterInput!) {
+const registerGql = gql`mutation Register($input: RegisterInput!) {
   register(input: $input) {
     user {
       id
@@ -29,46 +26,31 @@ test("Register user", async () => {
       message
         }
     }
-    }
-    `
+    }`
 
 
-    const res = await request(`http://localhost:${testState?.port}/graphql`, mutation, {input: {email: "mw123@gmail.com", username: "zir123", password: "hunter2"}})
+test("Register user - valid input", async () => {
+
+
+    const res = await request(`http://localhost:${testState?.port}/graphql`, registerGql, {input: {email: "mw123@gmail.com", username: "zir123", password: "hunter2"}})
 
     expect(res.register.user.id).toBeTruthy()
     expect(res.register.errors).toBeFalsy()
 })
 
-type invalidInput = [{email: string, username: string, password: string}, {field: string, message: string}]
+type InvalidInput = [{email: string, username: string, password: string}, {field: string, message: string}]
 
-const invalidInputTable: invalidInput[] = [[
+const invalidInputTable: InvalidInput[] = [[
   {email: "mw123.com", username: "zireael", password: "hunter2"}, {field: "email", message: "Invalid Email"}
 ], [{email: "mattwilki@123.com", username: "zi", password: "hunter2"}, {field: "username", message: "Username must be longer than 2 characters"}], [
   {email: "mattwilki@123.com", username: "zireael", password: "hun"}, {field: "password", message: "Password must be longer than 4 characters"}
 ]]
 
-describe('Register invalid inputs', () => {
+describe('Register user - invalid inputs', () => {
     test.each(invalidInputTable)(`Register(%s)`, async (input, expected) => {
-        const mutation = gql`
-        mutation Register($input: RegisterInput!) {
-      register(input: $input) {
-        user {
-          id
-          email
-          username
-          role
-        }
-        errors {
-          field
-          message
-            }
-        }
-        }
-        `
-    
-        const res = await request(`http://localhost:${testState?.port}/graphql`, mutation, { input: {email: input.email, username: input.username, password: input.password}})
 
-        console.log(res)
+    
+        const res = await request(`http://localhost:${testState?.port}/graphql`, registerGql, { input })
     
         
         expect(res.register.errors[0].field).toBe(expected.field)
