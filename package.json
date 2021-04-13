@@ -23,7 +23,7 @@
     "express": "^4.17.1",
     "graphql": "^15.5.0",
     "graphql-fields": "^2.0.3",
-    "graphql-middleware": "^6.0.5",
+    "graphql-middleware": "^6.0.7",
     "graphql-scalars": "^1.9.0",
     "graphql-type-json": "^0.3.2",
     "graphql-upload": "^11.0.0",
