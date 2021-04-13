@@ -45,7 +45,7 @@
     "@types/supertest": "^2.0.11",
     "@types/ws": "^7.4.1",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.19.0",
+    "@typescript-eslint/parser": "^4.22.0",
     "apollo-server-testing": "^2.22.2",
     "eslint": "^7.24.0",
     "eslint-plugin-jest": "^24.3.5",
