@@ -1,10 +1,9 @@
-import { __prod__ } from './constants'
-import express, { Express } from 'express'
-import cors from 'cors'
-import cookieParser from 'cookie-parser'
 import * as Sentry from '@sentry/node'
 import * as Tracing from '@sentry/tracing'
-import expressValidator from 'express-validator'
+import cookieParser from 'cookie-parser'
+import cors from 'cors'
+import express, { Express } from 'express'
+import { __prod__ } from './constants'
 
 const trustProxy = (app: Express) => {
   if (__prod__) {
