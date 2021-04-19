@@ -4,6 +4,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import * as Sentry from '@sentry/node'
 import * as Tracing from '@sentry/tracing'
+import expressValidator from 'express-validator'
 
 const trustProxy = (app: Express) => {
   if (__prod__) {
@@ -55,4 +56,5 @@ export const addMiddlewares = (app: Express) => {
   setupCORS(app)
   setupUrlEncoded(app)
   setupCookieParser(app)
+  app.use(express.json())
 }
