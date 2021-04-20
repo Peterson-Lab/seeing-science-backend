@@ -1,7 +1,8 @@
 declare namespace NodeJS {
-  export interface ProcessEnv {
+  interface ProcessEnv {
     DATABASE_URL: string
     PORT: string
+    TEST_CORS_ORIGIN: string;
     CORS_ORIGIN: string
     DOMAIN: string
     JWT_SECRET_KEY: string

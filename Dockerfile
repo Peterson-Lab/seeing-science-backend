@@ -1,4 +1,4 @@
-FROM node:15 AS builder
+FROM node:15
 
 # Create app directory
 WORKDIR /app
@@ -12,32 +12,20 @@ COPY yarn.lock ./
 RUN yarn
 
 # Bundle app source
-COPY tsconfig.json tsconfig.json
 COPY prisma prisma
-COPY .env .env
-COPY .env.example .env.example
-COPY src src
-
-
 RUN yarn gen
 
+
+COPY .env .env
+COPY .env.example .env.example
+COPY tsconfig.json tsconfig.json
+COPY src src
 RUN yarn build
 
-FROM node:15-alpine AS runtime
-
-
-WORKDIR /app
-COPY --from=builder /app/node_modules node_modules
-COPY --from=builder /app/dist dist
-COPY --from=builder /app/.env .env
-COPY --from=builder /app/.env.example .env.example
-
-
-
+COPY .env.production .env
 
 
 ENV NODE_ENV production
-ENV DATABASE_URL postgresql://postgres:postgres@postgres:5432/seeing-science
 ENV PORT 8080
 
 EXPOSE 8080

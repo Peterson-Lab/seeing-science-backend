@@ -11,7 +11,12 @@ const trustProxy = (app: Express) => {
   }
 }
 const setupCORS = (app: Express) => {
-  app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }))
+  app.use(
+    cors({
+      origin: [process.env.CORS_ORIGIN, process.env.TEST_CORS_ORIGIN],
+      credentials: true,
+    })
+  )
 }
 
 const setupUrlEncoded = (app: Express) => {
