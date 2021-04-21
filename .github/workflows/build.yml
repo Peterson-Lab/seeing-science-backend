@@ -18,6 +18,7 @@ env:
   ROOT_PASSWORD: ${{ secrets.ROOT_PASSWORD }}
   ROOT_USERNAME: ${{ secrets.ROOT_USERNAME }}
   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+  CORS_ORIGIN_VERCEL: ${{ secrets.CORS_ORIGIN_VERCEL }}
 
 jobs:
   build:
