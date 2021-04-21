@@ -47,7 +47,7 @@ export const buildTGServer = async (
   apolloSrv.applyMiddleware({
     app,
     cors: {
-      origin: [process.env.CORS_ORIGIN, process.env.TEST_CORS_ORIGIN],
+      origin: [process.env.CORS_ORIGIN, process.env.CORS_ORIGIN_VERCEL],
       credentials: true,
     },
   })
