@@ -24,7 +24,7 @@
     "express-validator": "^6.10.1",
     "graphql": "^15.5.0",
     "graphql-fields": "^2.0.3",
-    "graphql-middleware": "^6.0.8",
+    "graphql-middleware": "^6.0.9",
     "graphql-scalars": "^1.9.3",
     "graphql-type-json": "^0.3.2",
     "graphql-upload": "^11.0.0",
