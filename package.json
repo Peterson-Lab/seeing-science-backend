@@ -27,7 +27,7 @@
     "graphql-middleware": "^6.0.10",
     "graphql-scalars": "^1.9.3",
     "graphql-type-json": "^0.3.2",
-    "graphql-upload": "^11.0.0",
+    "graphql-upload": "^12.0.0",
     "jsonwebtoken": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^1.1.1"
