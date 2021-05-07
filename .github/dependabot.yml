@@ -1,14 +1,7 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: "@types/node"
-    versions:
-    - 15.0.0
-  - dependency-name: "@prisma/cli"
-    versions:
-    - 2.20.1
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
