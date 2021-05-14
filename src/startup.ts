@@ -21,7 +21,7 @@ export const buildExpress = async (prisma: PrismaClient): Promise<Express> => {
   __prod__ ? checkRootUser(prisma) : null
 
   // any other routes, for not gql clients (Unity game)
-  attachRoutes(app)
+  attachRoutes(app, prisma)
 
   // sentry
   addErrorHandler(app)

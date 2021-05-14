@@ -1,6 +1,6 @@
 import { PrismaClient } from '.prisma/client'
 import { Express } from 'express'
-import { AddressInfo, Server } from 'node:net'
+import { AddressInfo, Server } from 'net'
 import { buildExpress } from '../src/startup'
 import { createPrismaClient } from '../src/utils/prismaHelpers'
 import { startExpress } from '../src/utils/startExpress'
@@ -28,11 +28,11 @@ export const setupTestServer = async (): Promise<TestState> => {
   const server = startExpress(app, 0)
 
   const address = server.address()
-  if (!isAddressInfo(address)) throw new Error('address is not AddressInfo')
+  if (!isAddressInfo(address)) {
+    throw new Error('address is not AddressInfo')
+  }
 
   const port = address.port
-
-  // await delay(200)
 
   return {
     prisma,

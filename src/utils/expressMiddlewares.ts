@@ -1,9 +1,9 @@
-import { __prod__ } from './constants'
-import express, { Express } from 'express'
-import cors from 'cors'
-import cookieParser from 'cookie-parser'
 import * as Sentry from '@sentry/node'
 import * as Tracing from '@sentry/tracing'
+import cookieParser from 'cookie-parser'
+import cors from 'cors'
+import express, { Express } from 'express'
+import { __prod__ } from './constants'
 
 const trustProxy = (app: Express) => {
   if (__prod__) {
@@ -11,7 +11,12 @@ const trustProxy = (app: Express) => {
   }
 }
 const setupCORS = (app: Express) => {
-  app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }))
+  app.use(
+    cors({
+      origin: [process.env.CORS_ORIGIN, process.env.CORS_ORIGIN_VERCEL],
+      credentials: true,
+    })
+  )
 }
 
 const setupUrlEncoded = (app: Express) => {
@@ -55,4 +60,5 @@ export const addMiddlewares = (app: Express) => {
   setupCORS(app)
   setupUrlEncoded(app)
   setupCookieParser(app)
+  app.use(express.json())
 }

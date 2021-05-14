@@ -7,7 +7,8 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
 }
 
 generator typegraphql {
@@ -59,4 +60,21 @@ model SpatialActivity {
   answers    String[]
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+}
+
+model SpatialGame {
+  id            Int      @id @default(autoincrement())
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  times         Float[]
+  scores        Int[]
+  rotations     Int[]
+  scenes        String[]
+  consent       Boolean
+  first_time    Boolean
+  state         String
+  age           Int
+  gender        String
+  participantId Int
+  email_address String
 }
